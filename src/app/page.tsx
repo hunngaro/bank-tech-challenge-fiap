@@ -1,9 +1,9 @@
 import Image from "next/image";
-import ilustrac from "@/app/public/assets/ilustracao-banner.svg"
-import present from "@/app/public/assets/presente.svg"
-import saque from "@/app/public/assets/saque.svg"
-import pontos from "@/app/public/assets/pontos.svg"
-import dispositivos from "@/app/public/assets/dispositivos.svg"
+import ilustrac from "@/app/assets/ilustracao-banner.svg"
+import present from "@/app/assets/presente.svg"
+import saque from "@/app/assets/saque.svg"
+import pontos from "@/app/assets/pontos.svg"
+import dispositivos from "@/app/assets/dispositivos.svg"
 export default function Home() {
   return (
    
