@@ -4,11 +4,13 @@ import present from "@/app/assets/presente.svg"
 import saque from "@/app/assets/saque.svg"
 import pontos from "@/app/assets/pontos.svg"
 import dispositivos from "@/app/assets/dispositivos.svg"
+import Cadastro from "../components/formulario-cadastro/formulario-cadastro";
 export default function Home() {
   return (
 
 
     <div className="bg-gradient-to-t from-white to-cyan-900 md:h-full">
+      
       <div className=" flex flex-col xl:flex-row justify-center items-center">
         <h1 className="text-black xl:w-1/3 font-semibold p-6 md:text-[28px] text-center">Experimente mais liberdade no controle da sua vida financeira. Crie sua conta com a gente!</h1>
         <Image
