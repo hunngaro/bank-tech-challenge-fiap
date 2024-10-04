@@ -8,8 +8,8 @@ interface Props {
 export default function DashboardLayout({ children }: Props) {
   return (
     <div className="flex flex-col min-h-screen">
-      <div className="flex flex-grow">
-        <aside className="w-[180px] bg-[#F5F5F5] text-black rounded-lg p-8">
+      <div className="flex md:flex-col lg:flex-row flex-grow">
+        <aside className="lg:w-[180px] lg:bg-[#F5F5F5] text-black rounded-lg p-8">
           <NavLinks />
         </aside>
 
