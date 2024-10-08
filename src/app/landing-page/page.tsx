@@ -10,7 +10,7 @@ export default function Home() {
 
 
     <div className="bg-gradient-to-t from-white to-cyan-900 md:h-full">
-      
+
       <div className=" flex flex-col xl:flex-row justify-center items-center">
         <h1 className="text-black xl:w-1/3 font-semibold p-6 md:text-[28px] text-center">Experimente mais liberdade no controle da sua vida financeira. Crie sua conta com a gente!</h1>
         <Image
@@ -37,7 +37,7 @@ export default function Home() {
             <div className="flex flex-col justify-center items-center mb-10 gap-4 xl:m-0">
               <Image
                 src={present}
-                alt="Image of a Present"
+                alt="An image of a Present"
               />
               <h3 className="text-my-green font-bold text-xl text-center">Conta e Cartão Gratuito</h3>
               <p className="text-my-gray text-center xl:h-24">Isso mesmo, nossa conta é digital, sem custo fixo e mais que isso: sem tarifa de manutenção.</p>
@@ -46,21 +46,21 @@ export default function Home() {
             <div className="flex flex-col justify-center items-center gap-4 mb-10 xl:m-0" >
               <Image
                 src={saque}
-                alt="Image of a saque" />
+                alt="An image of a withdrawal" />
               <h3 className="text-my-green font-bold text-xl">Saques sem custo</h3>
               <p className="text-my-gray text-center xl:h-24 ">Você pode sacar gratuitamente 4x por mês de qualquer Banco 24h.</p>
             </div>
             <div className="flex flex-col justify-center items-center gap-4 mb-10 xl:m-0" >
               <Image
                 src={pontos}
-                alt="Image of a star" />
+                alt="An image of a star" />
               <h3 className="text-my-green font-bold text-xl">Programa de pontos</h3>
               <p className="text-my-gray text-center xl:h-24">Você pode acumular pontos com suas compras no crédito sem pagar mensalidade!</p>
             </div>
             <div className="flex flex-col justify-center items-center gap-4 mb-10 xl:m-0" >
               <Image
                 src={dispositivos}
-                alt="Image of an eletronic" />
+                alt="An image of an eletronic device" />
               <h3 className="text-my-green font-bold text-xl">Seguro Dispositivos</h3>
               <p className="text-my-gray text-center xl:h-24">Seus dispositivos móveis (computador e laptop) protegidos por uma mensalidade simbólica.</p>
             </div>
