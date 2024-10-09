@@ -3,11 +3,11 @@ import React from "react";
 import Image from "next/image";
 import imgCadastro from "@/app/assets/cadastro.svg"
 
-interface CadastroProps {
-    isOpen: boolean
-    onClose: VoidFunction
-}
 
+interface CadastroProps {
+  isOpen: boolean;
+  onClose: VoidFunction;
+}
 
 const Cadastro: React.FC<CadastroProps> = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
@@ -55,9 +55,22 @@ const Cadastro: React.FC<CadastroProps> = ({ isOpen, onClose }) => {
                     </form>
                 </div>
             </div>
+            <div>
+              <label htmlFor="password" className="block mb-2">
+                <div className="text-black font-bold">Senha</div>
+              </label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                className="bg-white border-gray-300 p-2 rounded-lg"
+                placeholder="Digite sua senha"
+              />
+            </div>
+          </form>
         </div>
-    );
-
-
+      </div>
+    </div>
+  );
 };
 export default Cadastro;
