@@ -12,6 +12,9 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         "my-dark-green": "#004D61",
+        "my-green": "#47A138",
+        "my-gray": "#767676",
+        "my-light-gray": "#F8F8F8",
       },
       container: {
         screens: {
