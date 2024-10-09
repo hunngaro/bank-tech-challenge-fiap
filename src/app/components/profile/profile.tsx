@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import Image from "next/image";
 import iluProfile from '@/app/assets/ilu-profile.svg';
-import BoxInside from "@/app/ui/boxInside";
+import BoxInside from "@/app/ui/BoxInside";
 
 
 export default function Profile() {
