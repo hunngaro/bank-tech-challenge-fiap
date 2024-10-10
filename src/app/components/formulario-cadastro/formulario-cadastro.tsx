@@ -17,7 +17,7 @@ const Cadastro: React.FC<CadastroProps> = ({ isOpen, onClose }) => {
     return (
         <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center ">
             <div className="fixed  inset-0 flex justify-center items-center  " id="wrapper" onClick={handleClose}></div>
-            <div className=" z-10 xl:w-5/12 w-5/6 h-screen flex flex-col bg-my-light-gray max-md:overflow-y-auto max-md:px-4 ">
+            <div className=" z-10 xl:w-5/12 w-5/6 h-screen flex flex-col bg-my-light-gray max-md:overflow-y-auto max-md:px-4 items-center">
                 <button className="text-black text-xl place-self-end md:p-4" onClick={() => onClose()}>X
                 </button>
                 <div className="flex flex-col justify-center text-black items-center ">
@@ -29,7 +29,7 @@ const Cadastro: React.FC<CadastroProps> = ({ isOpen, onClose }) => {
                     <p className="py-8  text-xl font-bold">Preencha os campos abaixo para criar sua conta corrente!</p>
 
                 </div>
-                <div className="flex justify-start xl:ml-20 md:ml-20 w-3/4 ">
+                <div className="flex justify-start xl:ml-10  w-3/4 ">
                     <form action="#">
                         <div>
                             <label htmlFor="name" className="block mb-2"
@@ -64,12 +64,12 @@ const Cadastro: React.FC<CadastroProps> = ({ isOpen, onClose }) => {
                                 id="password"
                                 className="bg-white border-gray-200 border-2 p-2 rounded-lg" placeholder="Digite sua senha" />
                         </div>
-                        <div className="text-black flex gap-2 max-md:w-[264px] mb-8">
+                        <div className="text-black flex gap-2 mb-8 p-2">
                             <input type="checkbox" className="w-6 borde-2 border-my-green"></input>
                             <p> Li e estou ciente quanto às condições de tratamento dos meus dados conforme descrito na Política de Privacidade do banco.</p>
                         </div>
                         <div className="flex items-center justify-center">
-                            <button type="submit" className="bg-my-orange rounded-md w-[144px] h-[50px] mb-8">Criar conta</button>
+                            <button type="submit" className="bg-my-orange rounded-md w-[144px] h-[50px] mb-8 hover:opacity-70 hover:transition-opacity">Criar conta</button>
                         </div>
                     </form>
                 </div >

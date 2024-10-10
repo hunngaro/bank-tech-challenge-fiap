@@ -3,8 +3,10 @@ import Image from "next/image";
 import Icon from "@/app/assets/logo-icon.svg"
 import Cadastro from "../formulario-cadastro/formulario-cadastro";
 import { useState } from "react";
+import Login from "../modal-login/modal-login";
 export default function Header() {
     const [showModal, setShowModal] = useState(false);
+    const [showModalLog, setShowModalLog] = useState(false);
     return (
         <header className="flex justify-center items-center gap-14 p-4">
             <div className="flex col">
@@ -21,10 +23,12 @@ export default function Header() {
                     setShowModal(true)}>Abrir minha conta
                 </button>
 
-                <button className="border-2 border-my-green rounded-md p-2 hover:opacity-55 hover:transition-opacity text-my-green">Já tenho conta
+                <button className="border-2 border-my-green rounded-md p-2 hover:opacity-55 hover:transition-opacity text-my-green" onClick={() =>
+                    setShowModalLog(true)}>Já tenho conta
                 </button>
             </div>
             <Cadastro isOpen={showModal} onClose={() => setShowModal(false)} />
+            <Login isOpenLog={showModalLog} onCloseLog={() => setShowModalLog(false)} />
         </header>
 
     );

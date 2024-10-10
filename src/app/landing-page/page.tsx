@@ -7,8 +7,10 @@ import pontos from "@/app/assets/pontos.svg"
 import dispositivos from "@/app/assets/dispositivos.svg"
 import Cadastro from "../components/formulario-cadastro/formulario-cadastro";
 import { useState } from "react";
+import Login from "../components/modal-login/modal-login";
 export default function Home() {
   const [showModal, setShowModal] = useState(false);
+  const [showModalLog, setShowModalLog] = useState(false);
   return (
 
 
@@ -27,7 +29,8 @@ export default function Home() {
           <button className="p-2  rounded-md bg-black text-white w-36 mr-4 hover:opacity-70 hover:transition-opacity" onClick={() =>
             setShowModal(true)}>Abrir conta</button>
 
-          <button className="p-2 border-2  border-black rounded-md text-black w-36 ml-4">Já tenho conta</button>
+          <button className="p-2 border-2  border-black rounded-md text-black w-36 ml-4 hover:opacity-70 hover:transition-opacity" onClick={() =>
+            setShowModalLog(true)} >Já tenho conta</button>
 
         </div>
       </div>
@@ -73,6 +76,7 @@ export default function Home() {
         </div>
       </div>
       <Cadastro isOpen={showModal} onClose={() => setShowModal(false)} />
+      <Login isOpenLog={showModalLog} onCloseLog={() => setShowModalLog(false)} />
     </div>
   );
 }
