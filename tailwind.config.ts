@@ -15,6 +15,7 @@ const config: Config = {
         "my-green": "#47A138",
         "my-gray": "#767676",
         "my-light-gray": "#F8F8F8",
+        "my-orange": "#FF5031",
       },
       container: {
         screens: {

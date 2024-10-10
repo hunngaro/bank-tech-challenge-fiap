@@ -1,3 +1,4 @@
+'use client'
 import Image from "next/image";
 import ilustrac from "@/app/assets/ilustracao-banner.svg"
 import present from "@/app/assets/presente.svg"
@@ -5,13 +6,15 @@ import saque from "@/app/assets/saque.svg"
 import pontos from "@/app/assets/pontos.svg"
 import dispositivos from "@/app/assets/dispositivos.svg"
 import Cadastro from "../components/formulario-cadastro/formulario-cadastro";
+import { useState } from "react";
 export default function Home() {
+  const [showModal, setShowModal] = useState(false);
   return (
 
 
     <div className="bg-gradient-to-t from-white to-cyan-900 md:h-full">
 
-      <div className=" flex flex-col xl:flex-row justify-center items-center">
+      <div className=" flex mt-6 flex-col xl:flex-row justify-center items-center">
         <h1 className="text-black xl:w-1/3 font-semibold p-6 md:text-[28px] text-center">Experimente mais liberdade no controle da sua vida financeira. Crie sua conta com a gente!</h1>
         <Image
           src={ilustrac}
@@ -21,7 +24,8 @@ export default function Home() {
           className="lg:w-2/3 lg:max-w-2xl max-w-80" />
 
         <div className="md:hidden grid grid-rows-1 grid-cols-2 mt-4">
-          <button className="p-2  rounded-md bg-black text-white w-36 mr-4">Abrir conta</button>
+          <button className="p-2  rounded-md bg-black text-white w-36 mr-4 hover:opacity-70 hover:transition-opacity" onClick={() =>
+            setShowModal(true)}>Abrir conta</button>
 
           <button className="p-2 border-2  border-black rounded-md text-black w-36 ml-4">Já tenho conta</button>
 
@@ -68,6 +72,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <Cadastro isOpen={showModal} onClose={() => setShowModal(false)} />
     </div>
   );
 }
