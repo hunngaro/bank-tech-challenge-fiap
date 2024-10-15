@@ -5,7 +5,7 @@ interface Props {
   children: ReactNode;
 }
 
-export default function DashboardLayout({ children }: Props) {
+export default function ServicosLayout({ children }: Props) {
   return (
     <div className="flex flex-col flex-1">
       <div className="container mx-auto flex md:flex-col lg:flex-row flex-grow gap-0 lg:gap-6">
