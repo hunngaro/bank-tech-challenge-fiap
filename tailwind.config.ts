@@ -22,11 +22,6 @@ const config: Config = {
           md: "720px",
           lg: "1200px",
         },
-        padding: {
-          sm: "1.5rem",
-          md: "5rem",
-          lg: "1.5rem",
-        },
       },
     },
     screens: {
