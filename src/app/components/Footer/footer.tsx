@@ -2,10 +2,10 @@ import Image from "next/image";
 import intagramIcon from "@/app/assets/instagram.svg"
 import whatsappIcon from "@/app/assets/whatsapp.svg"
 import youtubeIcon from "@/app/assets/youtube.svg"
-import LogoIcon from "@/app//assets/logo-icon.svg"
+import LogoIcon from "@/app//assets/logo-branca.svg"
 export default function Footer() {
     return (
-        <footer className="flex max-md:flex-col max-md:justify-start max-md:gap-6 max-md:ml-8  md:justify-center md:items-center xl:gap-60 md:gap-20 p-3 bg-black md:text-xl">
+        <footer className="flex max-md:flex-col max-md:justify-start max-md:gap-6 max-md:px-10 md:justify-center md:items-center xl:gap-60 md:gap-20 p-3 bg-black md:text-xl">
             <div className="flex flex-col gap-2">
                 <h3>Serviços</h3>
                 <a href="#">Conta corrente</a>
@@ -20,7 +20,7 @@ export default function Footer() {
 
             <div className="flex flex-col">
                 <p> Desenvolvido por Alura</p>
-                <div className="flex my-3 gap-2"><Image src={LogoIcon} alt="The icon from ByteBank"></Image>ByteBank</div>
+                <div className="flex my-3 gap-2"><Image src={LogoIcon} alt="The icon from ByteBank"></Image></div>
                 <div className="flex gap-2">
                     <a href="#"><Image
                         src={intagramIcon}

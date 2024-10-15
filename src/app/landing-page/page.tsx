@@ -71,7 +71,6 @@ export default function Home() {
               <h3 className="text-my-green font-bold text-xl">Seguro Dispositivos</h3>
               <p className="text-my-gray text-center xl:h-24">Seus dispositivos móveis (computador e laptop) protegidos por uma mensalidade simbólica.</p>
             </div>
-
           </div>
         </div>
       </div>
