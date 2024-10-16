@@ -5,10 +5,12 @@ import IconMobile from "@/app/assets/logo-icon-mobile.svg";
 import menu from "@/app/assets/menu-green.svg";
 import Cadastro from "../formulario-cadastro/formulario-cadastro";
 import { useState } from "react";
+import Login from "../modal-login/modal-login";
+
 
 export default function Header() {
   const [showModal, setShowModal] = useState(false);
-
+  const [showModalLog, setShowModalLog] = useState(false);
   return (
     <header className="bg-black px-6 md:px-[60px]">
       <Cadastro isOpen={showModal} onClose={() => setShowModal(false)} />
@@ -64,11 +66,14 @@ export default function Header() {
           >
             Abrir conta
           </button>
-          <button className="h-12 md:w-36 lg:w-[180px] border-2 text-my-green font-semibold rounded-lg border-my-green hidden md:block">
+          <button className="h-12 md:w-36 lg:w-[180px] border-2 text-my-green font-semibold rounded-lg border-my-green hidden md:block" onClick={() =>
+                    setShowModalLog(true)}>
             Já tenho conta
           </button>
         </div>
       </div>
+      <Cadastro isOpen={showModal} onClose={() => setShowModal(false)} />
+      <Login isOpenLog={showModalLog} onCloseLog={() => setShowModalLog(false)} />
     </header>
   );
 }
