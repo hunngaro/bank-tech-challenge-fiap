@@ -13,7 +13,7 @@ export default function ServicosLayout({ children }: Props) {
           <NavLinks />
         </aside>
 
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 mt-6">{children}</main>
       </div>
     </div>
   );
