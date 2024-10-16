@@ -2,10 +2,11 @@
 import Image from "next/image";
 import page404 from "@/app/assets/404.svg"
 
+
 export default function Home() {
     return (
 
-        <div className="bg-gradient-to-t from-white to-cyan-900 md:h-full ">
+        <div className="bg-gradient-to-t from-white to-cyan-900 md:h-screen ">
             <div className=" flex my-6 flex-col justify-center items-center">
                 <h1 className="text-black xl:w-1/3 font-semibold p-6 md:text-[28px] text-center">Ops! Não encontramos a página... </h1>
                 <p className="text-black p-4">E olha que exploramos o universo procurando por ela!

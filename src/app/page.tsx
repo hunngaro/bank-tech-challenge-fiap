@@ -14,7 +14,7 @@ export default function Home() {
   return (
 
 
-    <div className="bg-gradient-to-t from-white to-cyan-900 md:h-full">
+    <div className="bg-gradient-to-t from-white to-cyan-900 md:h-full lg:pb-11">
 
       <div className=" flex mt-6 flex-col xl:flex-row justify-center items-center">
         <h1 className="text-black xl:w-1/3 font-semibold p-6 md:text-[28px] text-center">Experimente mais liberdade no controle da sua vida financeira. Crie sua conta com a gente!</h1>
