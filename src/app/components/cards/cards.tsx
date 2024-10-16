@@ -25,7 +25,7 @@ export default function Cards() {
                             <p>***********</p>
                         </div>
                         <div className="flex flex-col gap-4">
-                            <button className="bg-my-red py-2 px-16 rounded-lg font-bold">Configurar</button>
+                            <button className="bg-my-red py-2 text-white px-16 rounded-lg font-bold">Configurar</button>
                             <button className="border-2 border-my-red text-my-red py-2 px-16 rounded-lg font-bold">Bloquear</button>
                             <p className="text-center text-black text-sm">Função: Débito/Crédito</p>
                         </div>
@@ -46,7 +46,7 @@ export default function Cards() {
                             <p>***********</p>
                         </div>
                         <div className="flex flex-col gap-4">
-                            <button className="bg-my-red py-2 px-16 rounded-lg font-bold">Configurar</button>
+                            <button className="bg-my-red py-2 text-white px-16 rounded-lg font-bold">Configurar</button>
                             <button className="border-2 border-my-red text-my-red py-2 px-16 rounded-lg font-bold">Bloquear</button>
                             <p className="text-center text-black text-sm">Função: Débito/Crédito</p>
                         </div>
