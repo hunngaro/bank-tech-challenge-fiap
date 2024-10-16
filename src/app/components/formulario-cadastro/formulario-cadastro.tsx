@@ -1,7 +1,7 @@
-'use client'
+"use client";
 import React from "react";
 import Image from "next/image";
-import imgCadastro from "@/app/assets/cadastro.svg"
+import imgCadastro from "@/app/assets/cadastro.svg";
 
 
 interface CadastroProps {

@@ -16,17 +16,14 @@ const config: Config = {
         "my-gray": "#767676",
         "my-light-gray": "#F8F8F8",
         "my-orange": "#FF5031",
+        "my-services-gray": "#CBCBCB",
+        "my-services-card-bg": "#F2F2F2",
       },
       container: {
         screens: {
           sm: "360px",
           md: "720px",
           lg: "1200px",
-        },
-        padding: {
-          sm: "1.5rem",
-          md: "5rem",
-          lg: "1.5rem",
         },
       },
     },

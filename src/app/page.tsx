@@ -16,14 +16,14 @@ export default function Home() {
 
     <div className="bg-gradient-to-t from-white to-cyan-900 md:h-full lg:pb-11">
 
-      <div className=" flex mt-6 flex-col xl:flex-row justify-center items-center">
-        <h1 className="text-black xl:w-1/3 font-semibold p-6 md:text-[28px] text-center">Experimente mais liberdade no controle da sua vida financeira. Crie sua conta com a gente!</h1>
+      <div className=" flex mt-6 flex-col lg:flex-row justify-center items-center lg:gap-[70px] gap-4">
+        <h1 className="text-black lg:w-[440px]  font-semibold md:text-[28px] max-lg:text-center">Experimente mais liberdade no controle da sua vida financeira. Crie sua conta com a gente!</h1>
         <Image
           src={ilustrac}
 
           alt="graphics and a 
           "
-          className="lg:w-2/3 lg:max-w-2xl max-w-80" />
+          className="lg:w-2/3 md:max-w-2xl max-w-80" />
 
         <div className="md:hidden grid grid-rows-1 grid-cols-2 mt-4">
           <button className="p-2  rounded-md bg-black text-white w-36 mr-4 hover:opacity-70 hover:transition-opacity" onClick={() =>
@@ -35,41 +35,41 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="  xl:ml-80 xl:mr-80  m-10">
+      <div className="  lg:ml-80 lg:mr-80  m-10">
         <div className="grid grid-rows-1 grid-cols-12 m-10">
           <h2 className=" text-black font-bold col-span-12 text-lg md:text-2xl text-center ">Vantagens do nosso banco:</h2>
         </div>
         <div className="flex justify-center items-center ">
-          <div className="md:grid md:grid-rows-2 md:grid-cols-2 xl:grid-rows-1 xl:grid-cols-4 place-items-center">
-            <div className="flex flex-col justify-center items-center mb-10 gap-4 xl:m-0">
+          <div className="md:grid md:grid-rows-2 md:grid-cols-2 lg:grid-rows-1 lg:grid-cols-4 place-items-center">
+            <div className="flex flex-col justify-center items-center mb-10 gap-4 lg:m-0">
               <Image
                 src={present}
                 alt="An image of a Present"
               />
               <h3 className="text-my-green font-bold text-xl text-center">Conta e Cartão Gratuito</h3>
-              <p className="text-my-gray text-center xl:h-24">Isso mesmo, nossa conta é digital, sem custo fixo e mais que isso: sem tarifa de manutenção.</p>
+              <p className="text-my-gray text-center lg:h-24">Isso mesmo, nossa conta é digital, sem custo fixo e mais que isso: sem tarifa de manutenção.</p>
 
             </div>
-            <div className="flex flex-col justify-center items-center gap-4 mb-10 xl:m-0" >
+            <div className="flex flex-col justify-center items-center gap-4 mb-10 lg:m-0" >
               <Image
                 src={saque}
                 alt="An image of a withdrawal" />
               <h3 className="text-my-green font-bold text-xl">Saques sem custo</h3>
-              <p className="text-my-gray text-center xl:h-24 ">Você pode sacar gratuitamente 4x por mês de qualquer Banco 24h.</p>
+              <p className="text-my-gray text-center lg:h-24 ">Você pode sacar gratuitamente 4x por mês de qualquer Banco 24h.</p>
             </div>
-            <div className="flex flex-col justify-center items-center gap-4 mb-10 xl:m-0" >
+            <div className="flex flex-col justify-center items-center gap-4 mb-10 lg:m-0" >
               <Image
                 src={pontos}
                 alt="An image of a star" />
               <h3 className="text-my-green font-bold text-xl">Programa de pontos</h3>
-              <p className="text-my-gray text-center xl:h-24">Você pode acumular pontos com suas compras no crédito sem pagar mensalidade!</p>
+              <p className="text-my-gray text-center lg:h-24">Você pode acumular pontos com suas compras no crédito sem pagar mensalidade!</p>
             </div>
-            <div className="flex flex-col justify-center items-center gap-4 mb-10 xl:m-0" >
+            <div className="flex flex-col justify-center items-center gap-4 mb-10 lg:m-0" >
               <Image
                 src={dispositivos}
                 alt="An image of an eletronic device" />
               <h3 className="text-my-green font-bold text-xl">Seguro Dispositivos</h3>
-              <p className="text-my-gray text-center xl:h-24">Seus dispositivos móveis (computador e laptop) protegidos por uma mensalidade simbólica.</p>
+              <p className="text-my-gray text-center lg:h-24">Seus dispositivos móveis (computador e laptop) protegidos por uma mensalidade simbólica.</p>
             </div>
 
           </div>

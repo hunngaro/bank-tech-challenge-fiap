@@ -35,7 +35,7 @@ function Link({ text, href, hasBorder = true, ...rest }: LinkProps) {
         hasBorder && "sm:border-b md:border-0 lg:border-b"
       } pb-4 ${
         pathname === href
-          ? "active: lg:text-[#47A138] md:text-[#47A138] sm:text-[#FF5031] font-bold md:border-b-[1px] border-b border-[#47A138]"
+          ? `active: lg:text-[#47A138] md:text-[#47A138] sm:text-[#FF5031] font-bold md:border-b-[1px] lg:border-0 border-[#47A138]`
           : "border-[#004D61]"
       }`}
       href={href}
