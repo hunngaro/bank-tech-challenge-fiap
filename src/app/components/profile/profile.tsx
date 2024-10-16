@@ -18,8 +18,8 @@ export default function Profile() {
     return (
         <BoxInside>
             <h2 className="text-2xl font-bold pb-8 relative z-10">Minha conta</h2>
-            <div className="profile__container md:flex md:flex-row-reverse gap-8 justify-between z-10 relative">
-                <div className="profile__info w-full">
+            <div className="md:flex md:flex-row-reverse gap-8 justify-between z-10 relative">
+                <div className="w-full">
                     <form onSubmit={handleSubmit} className="w-full">
                         <div className="profile__input flex flex-col gap-2 mb-4 relative">
                             <label className="font-bold" htmlFor="name">Nome</label>
