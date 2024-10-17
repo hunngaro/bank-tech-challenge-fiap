@@ -11,7 +11,7 @@ export function ServiceCard({ title, icon, ...rest }: Props) {
   return (
     <button
       type="button"
-      className="flex flex-col justify-center items-center gap-7 bg-my-services-card-bg rounded-lg p-5"
+      className="w-full flex flex-col justify-center items-center gap-7 bg-my-services-card-bg rounded-lg p-5"
       {...rest}
     >
       <Image src={icon} alt={`Botão com um ícone que representa ${title}`} />
