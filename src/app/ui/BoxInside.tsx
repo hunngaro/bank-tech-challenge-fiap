@@ -6,7 +6,7 @@ interface Props {
 
 export default function BoxInside({ children }: Props) {
   return (
-    <div className="box-inside relative bg-my-gray-box text-black max-w-5xl w-full rounded-lg mx-auto px-8 pt-8 pb-16 overflow-hidden">
+    <div className="box-inside relative bg-my-gray-box text-black max-w-5xl w-full rounded-lg mx-auto px-8 md:px-12 pt-8 md:pt-10 pb-16 overflow-hidden">
       {children}
       <style jsx>{`
             .box-inside::before {

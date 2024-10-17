@@ -18,12 +18,12 @@ export default function Profile() {
     return (
         <BoxInside>
             <h2 className="text-2xl font-bold pb-8 relative z-10">Minha conta</h2>
-            <div className="md:flex md:flex-row-reverse gap-8 justify-between z-10 relative">
+            <div className="lg:flex lg:flex-row-reverse gap-8 justify-between z-10 relative">
                 <div className="w-full">
                     <form onSubmit={handleSubmit} className="w-full">
                         <div className="profile__input flex flex-col gap-2 mb-4 relative">
                             <label className="font-bold" htmlFor="name">Nome</label>
-                            <input className="p-4 rounded-lg border-my-green border-2" type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} required/>
+                            <input className="p-4 appearance-none rounded-lg border-my-green border-2" type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} required/>
                         </div>
 
                         <div className="profile__input flex flex-col gap-2 mb-4 relative">
@@ -36,7 +36,7 @@ export default function Profile() {
                             <input className="p-4 rounded-lg border-my-green border-2" type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
                         </div>
 
-                        <button className="text-white font-bold bg-my-red px-12 py-3 rounded-lg mt-2 mb-8 md:mb-0" type="submit">Salvar alterações</button>
+                        <button className="text-white font-bold bg-my-red px-12 py-3 rounded-lg mt-2 mb-8 lg:mb-0" type="submit">Salvar alterações</button>
                     </form>
                 </div>
 

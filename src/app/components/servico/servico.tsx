@@ -7,6 +7,7 @@ import pix from "@/app/assets/pix.svg";
 import seguros from "@/app/assets/seguros.svg";
 import credito from "@/app/assets/credito-celular.svg";
 import { ServiceCard } from "@/app/components/service-card/service-card";
+import Link from "next/link";
 
 export default function Servico() {
     return (
@@ -20,7 +21,9 @@ export default function Servico() {
 
       <div className="grid md:grid-cols-3 gap-4 md:gap-6 lg:gap-7 mt-8 relative z-10">
         <ServiceCard title="Empréstimo" icon={emprestimo} />
-        <ServiceCard title="Meus cartões" icon={cartoes} />
+        <Link href="/meus-cartoes">
+          <ServiceCard title="Meus cartões" icon={cartoes} />
+        </Link>
         <ServiceCard title="Doações" icon={doacoes} />
         <ServiceCard title="Pix" icon={pix} />
         <ServiceCard title="Seguros" icon={seguros} />

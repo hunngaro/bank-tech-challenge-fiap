@@ -8,8 +8,8 @@ export default function Cards() {
         <BoxInside>
             <h2 className="text-2xl font-bold pb-8 relative z-10 text-black">Meus cartões</h2>
             <div className="flex flex-col gap-8 justify-between z-10 relative">
-                <Card name="Joana Fonseca Gomes" funcoes="Débito/Crédito" typeCard="físico" number="**********" />
-                <Card name="Joana Fonseca Gomes" funcoes="Débito" typeCard="digital" number="**********" />
+                <Card name="Joana Fonseca Gomes" funcoes="Débito/Crédito" typeCard="Cartão físico" number="**********" />
+                <Card name="Joana Fonseca Gomes" funcoes="Débito" typeCard="Cartão digital" number="**********" />
             </div>
         </BoxInside>
     )

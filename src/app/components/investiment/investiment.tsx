@@ -71,7 +71,7 @@ export default function Investiment() {
               <p className="text-xl mt-2">{formatToBRL(fixa)}</p>
             </div>
             <div className="py-3 px-6 flex-1 rounded-lg text-center bg-my-blue text-white">
-              <p>Texto variável:</p>
+              <p>Renda variável:</p>
               <p className="text-xl mt-2">{formatToBRL(variavel)}</p>
             </div>
           </div>
