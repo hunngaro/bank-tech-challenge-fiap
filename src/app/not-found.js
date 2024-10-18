@@ -3,7 +3,7 @@ import Image from "next/image";
 import page404 from "@/app/assets/404.svg"
 
 
-export default function Home() {
+export default function Custom404() {
     return (
 
         <div className="bg-gradient-to-t from-white to-cyan-900 md:h-screen ">
