@@ -22,6 +22,7 @@ const config: Config = {
         "my-orange": "#FF5031",
         "my-services-gray": "#CBCBCB",
         "my-services-card-bg": "#F2F2F2",
+        "my-input-border": "#DEE9EA",
       },
       container: {
         screens: {
