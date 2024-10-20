@@ -23,6 +23,7 @@ const config: Config = {
         "my-services-gray": "#CBCBCB",
         "my-services-card-bg": "#F2F2F2",
         "my-input-border": "#DEE9EA",
+        "my-extract-date-color": "#8B8B8B",
       },
       container: {
         screens: {
