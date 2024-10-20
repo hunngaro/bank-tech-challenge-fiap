@@ -16,8 +16,8 @@ export default function Home() {
 
     <div className="bg-gradient-to-t from-white to-cyan-900 md:h-full lg:pb-11">
 
-      <div className=" flex mt-6 flex-col lg:flex-row justify-center items-center lg:gap-[70px] gap-4">
-        <h1 className="text-black lg:w-[440px]  font-semibold md:text-[28px] max-lg:text-center">Experimente mais liberdade no controle da sua vida financeira. Crie sua conta com a gente!</h1>
+      <div className=" flex  flex-col lg:flex-row justify-center items-center lg:gap-[70px] gap-4">
+        <h1 className="text-black lg:w-[440px] p-6 max-md:mx-7 md:mx-32 font-semibold md:text-[28px]  max-lg:text-center">Experimente mais liberdade no controle da sua vida financeira. Crie sua conta com a gente!</h1>
         <Image
           src={ilustrac}
 
