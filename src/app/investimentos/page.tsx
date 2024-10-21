@@ -1,11 +1,11 @@
-import Investiment from "../components/investiment/investiment"
+import Investiment from "../components/investiment/investiment";
 import Saldo from "../components/saldo/saldo";
 
 export default function InvestimentPage() {
-    return (
-        <div className="flex flex-col gap-6">
-            <Saldo/>
-            <Investiment />
-        </div>
-    )
+  return (
+    <div className="flex flex-col gap-8">
+      <Saldo />
+      <Investiment />
+    </div>
+  );
 }
