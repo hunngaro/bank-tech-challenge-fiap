@@ -6,7 +6,7 @@ interface Props {
   children: ReactNode;
 }
 
-export default function DashboardLayout({ children }: Props) {
+export default function InvestimentosLayout({ children }: Props) {
   return (
     <div className="flex flex-col flex-1 bg-my-light-green">
       <div className="flex px-6 md:px-[60px] lg:px-0">

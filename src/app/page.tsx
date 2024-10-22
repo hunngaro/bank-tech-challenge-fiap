@@ -1,101 +1,106 @@
+"use client";
 import Image from "next/image";
+import ilustrac from "@/app/assets/ilustracao-banner.svg";
+import present from "@/app/assets/presente.svg";
+import saque from "@/app/assets/saque.svg";
+import pontos from "@/app/assets/pontos.svg";
+import dispositivos from "@/app/assets/dispositivos.svg";
+import Cadastro from "./components/formulario-cadastro/formulario-cadastro";
+import Login from "./components/modal-login/modal-login";
+import { useState } from "react";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [showModal, setShowModal] = useState(false);
+  const [showModalLog, setShowModalLog] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+  return (
+    <>
+      <Cadastro isOpen={showModal} onClose={() => setShowModal(false)} />
+      <Login
+        isOpenLog={showModalLog}
+        onCloseLog={() => setShowModalLog(false)}
+      />
+      <div className="bg-gradient-to-t from-white to-cyan-900 px-6 md:px-[60px] mb-[77px] md:mb-[72px] lg:mb-36">
+        <div className="container mx-auto">
+          <div className="flex flex-col lg:flex-row md:justify-center lg:justify-between items-center gap-4 md:gap-16 mt-10 md:mt-6">
+            <h1 className="text-black text-center md:text-center lg:text-left font-bold md:font-semibold text-[25px] md:text-[28px] leading-[30px] md:leading-8 md:px-[77px] lg:px-0">
+              Experimente mais liberdade no controle da sua vida financeira.
+              Crie sua conta com a gente!
+            </h1>
             <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src={ilustrac}
+              alt="graphics and a person"
+              className="lg:w-2/3 lg:max-w-2xl "
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <div className="md:hidden w-full grid grid-rows-1 grid-cols-2 gap-6 mt-4">
+              <button
+                className="h-12 rounded-lg bg-black font-semibold text-white md:w-36"
+                onClick={() => setShowModal(true)}
+              >
+                Abrir conta
+              </button>
+              <button
+                className="h-12 border-2 border-black font-semibold rounded-lg text-black md:w-36"
+                onClick={() => setShowModalLog(true)}
+              >
+                Já tenho conta
+              </button>
+            </div>
+          </div>
+          <section>
+            <h2 className="text-black font-bold col-span-12 text-xl md:text-[25px] text-center mt-8 mb-10 md:my-10">
+              Vantagens do nosso banco:
+            </h2>
+            <div className="flex justify-center items-center ">
+              <div className="grid md:grid-rows-2 md:grid-cols-2 lg:grid-rows-1 lg:grid-cols-4 place-items-center md:gap-x-4 lg:gap-x-6 gap-y-10">
+                <div className="flex flex-col justify-center items-center gap-4">
+                  <Image src={present} alt="An image of a Present" />
+                  <h3 className="text-my-green font-bold text-xl text-center">
+                    Conta e Cartão Gratuito
+                  </h3>
+                  <p className="text-my-gray text-center leading-5">
+                    Isso mesmo, nossa conta é digital, sem custo fixo e mais que
+                    isso: sem tarifa de manutenção.
+                  </p>
+                </div>
+                <div className="flex flex-col justify-center items-center gap-4">
+                  <Image src={saque} alt="An image of a withdrawal" />
+                  <h3 className="text-my-green font-bold text-xl text-center">
+                    Saques sem custo
+                  </h3>
+                  <p className="text-my-gray text-center leading-5">
+                    Você pode sacar gratuitamente 4x por mês de qualquer Banco
+                    24h.
+                  </p>
+                </div>
+                <div className="flex flex-col justify-center items-center gap-4">
+                  <Image src={pontos} alt="An image of a star" />
+                  <h3 className="text-my-green font-bold text-xl text-center">
+                    Programa de pontos
+                  </h3>
+                  <p className="text-my-gray text-center leading-5">
+                    Você pode acumular pontos com suas compras no crédito sem
+                    pagar mensalidade!
+                  </p>
+                </div>
+                <div className="flex flex-col justify-center items-center gap-4">
+                  <Image
+                    src={dispositivos}
+                    alt="An image of an eletronic device"
+                  />
+                  <h3 className="text-my-green font-bold text-xl text-center">
+                    Seguro Dispositivos
+                  </h3>
+                  <p className="text-my-gray text-center">
+                    Seus dispositivos móveis (computador e laptop) protegidos
+                    por uma mensalidade simbólica.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </div>
+    </>
   );
 }
