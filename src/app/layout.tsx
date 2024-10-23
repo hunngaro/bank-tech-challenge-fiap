@@ -3,8 +3,6 @@ import "./globals.css";
 import Header from "./components/header/header";
 import Footer from "./components/Footer/footer";
 
-
-
 export const metadata: Metadata = {
   title: "ByteBank",
 };
@@ -15,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <body>
         <main className="flex flex-col h-screen overflow-x-hidden">
           <Header />

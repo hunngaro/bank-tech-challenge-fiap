@@ -51,7 +51,7 @@ export default function Investiment() {
           font: {
             size: 16,          // Tamanho da fonte da legenda
             weight: 'normal',    // Peso da fonte
-            family: 'Arial',   // Família da fonte
+            family: 'Inter',   // Família da fonte
           },
         }
       }
