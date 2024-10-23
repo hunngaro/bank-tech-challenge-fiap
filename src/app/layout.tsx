@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "./components/header/header";
 import Footer from "./components/Footer/footer";
-
-
+import { LoggedHeader } from "./components/logged-header/logged-header";
 
 export const metadata: Metadata = {
   title: "ByteBank",
@@ -18,7 +17,8 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <main className="flex flex-col h-screen overflow-x-hidden">
-          <Header />
+          {/* <Header /> */}
+          <LoggedHeader />
           {children}
           <Footer />
         </main>

@@ -1,9 +1,9 @@
 import avatar from "@/app/assets/avatar.svg";
 import menu from "@/app/assets/menu.svg";
 import Image from "next/image";
-import { BurgerMenu } from "./BurgerMenu";
+import { BurgerMenu } from "../burger-menu/burger-menu";
 
-export function Header() {
+export function LoggedHeader() {
   return (
     <header className="bg-my-dark-green">
       <div className="container mx-auto py-7">
