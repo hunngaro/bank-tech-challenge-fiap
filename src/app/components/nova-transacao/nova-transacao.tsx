@@ -3,7 +3,7 @@ import { useState } from "react";
 import BoxInside from "@/app/ui/BoxInside";
 import Image from "next/image";
 
-import ilustracao from "@/app/assets/ilustração2.svg";
+import ilustracao from "@/app/assets/ilustracao2.svg";
 
 type FormData = {
   typeTransaction: string;

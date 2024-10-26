@@ -13,7 +13,7 @@ export function NavLinks({ ...rest }: NavLinksProps) {
     <nav>
       <ul className={`flex md:justify-between lg:flex-col gap-4`} {...rest}>
         <Link href="/dashboard" text="Início" />
-        <Link href="/transferencias" text="Transferências" />
+        <Link href="/transacoes" text="Transações" />
         <Link href="/investimentos" text="Investimentos" />
         <Link href="/servicos" text="Outros serviços" hasBorder={false} />
       </ul>

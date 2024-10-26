@@ -1,12 +1,19 @@
+"use client"
 import Image from "next/image";
 import intagramIcon from "@/app/assets/instagram.svg";
 import whatsappIcon from "@/app/assets/whatsapp.svg";
 import youtubeIcon from "@/app/assets/youtube.svg";
 import LogoIcon from "@/app//assets/logo-branca.svg";
 
+import { usePathname } from 'next/navigation';
+
+
 export default function Footer() {
+  const pathname = usePathname();
+  const showFooter = pathname === '/' || pathname === '/not' ? true : false;
+
   return (
-    <footer className="bg-black md:pt-11 md:pb-14 py-6 px-16 md:px-[60px]">
+    <footer className={`bg-black md:pt-11 md:pb-14 py-6 px-16 md:px-[60px]" ${showFooter ? 'block' : 'hidden'} `}>
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row justify-between gap-8">
           <div className="flex flex-col gap-4">
