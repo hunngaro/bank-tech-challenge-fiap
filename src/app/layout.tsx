@@ -13,12 +13,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isLogged = false;
+
   return (
     <html lang="pt-BR">
       <body>
         <main className="flex flex-col h-screen overflow-x-hidden">
-          {/* <Header /> */}
-          <LoggedHeader />
+          {isLogged ? <LoggedHeader /> : <Header />}
           {children}
           <Footer />
         </main>

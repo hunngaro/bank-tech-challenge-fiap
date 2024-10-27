@@ -1,17 +1,39 @@
-import { NavLinks } from "@/app/ui/NavLinks";
+"use client";
 import close from "@/app/assets/close.svg";
 import Image from "next/image";
-import { DetailedHTMLProps, HTMLAttributes } from "react";
+import { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
 
-type Props = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+type Props = DetailedHTMLProps<
+  HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+> & {
+  isOpen: boolean;
+  onClose: () => void;
+  children: ReactNode;
+};
 
-export function BurgerMenu({ className, ...rest }: Props) {
+export function BurgerMenu({
+  isOpen,
+  onClose,
+  className,
+  children,
+  ...rest
+}: Props) {
   return (
-    <div className={`sm:hidden ${className}`} {...rest}>
-      <button type="button" className="absolute right-2 top-2">
+    <div
+      className={`w-[172px] absolute z-50 bg-[#E4EDE3] p-6 lg:hidden md:hidden ${
+        isOpen ? "block" : "hidden"
+      } ${className}`}
+      {...rest}
+    >
+      <button
+        type="button"
+        className="absolute right-2 top-2"
+        onClick={onClose}
+      >
         <Image src={close} alt="" />
       </button>
-      <NavLinks className="grid mt-4" />
+      {children}
     </div>
   );
 }
