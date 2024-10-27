@@ -20,8 +20,8 @@ export default function Home() {
         isOpenLog={showModalLog}
         onCloseLog={() => setShowModalLog(false)}
       />
-      <div className="bg-gradient-to-t from-white to-cyan-900 px-6 md:px-[60px] mb-[77px] md:mb-[72px] lg:mb-36">
-        <div className="container mx-auto">
+      <div className="bg-gradient-to-t from-white to-cyan-900 px-6 md:px-[60px]">
+        <div className="container mx-auto mb-[77px] md:mb-[72px] lg:mb-36">
           <div className="flex flex-col lg:flex-row md:justify-center lg:justify-between items-center gap-4 md:gap-16 mt-10 md:mt-6">
             <h1 className="text-black text-center md:text-center lg:text-left font-bold md:font-semibold text-[25px] md:text-[28px] leading-[30px] md:leading-8 md:px-[77px] lg:px-0">
               Experimente mais liberdade no controle da sua vida financeira.
