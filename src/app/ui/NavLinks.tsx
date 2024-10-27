@@ -23,15 +23,22 @@ export function NavLinks({ ...rest }: NavLinksProps) {
 
 type LinkProps = NextLinkProps & {
   text: string;
+  textColor?: string;
   hasBorder?: boolean;
 };
 
-function Link({ text, href, hasBorder = true, ...rest }: LinkProps) {
+export function Link({
+  text,
+  textColor,
+  href,
+  hasBorder = true,
+  ...rest
+}: LinkProps) {
   const pathname = usePathname();
 
   return (
     <NextLink
-      className={`min-w-28 text-black hover:text-[#47A138] hover:border-b-[#47A138] text-center ${
+      className={`min-w-28 ${textColor} hover:text-[#47A138] hover:border-b-[#47A138] text-center ${
         hasBorder && "sm:border-b md:border-0 lg:border-b"
       } pb-4 ${
         pathname === href
