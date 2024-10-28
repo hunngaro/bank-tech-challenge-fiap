@@ -6,10 +6,14 @@ import menu from "@/app/assets/menu-green.svg";
 import Cadastro from "../formulario-cadastro/formulario-cadastro";
 import { useState } from "react";
 import Login from "../modal-login/modal-login";
+import { BurgerMenu } from "@/app/components/burger-menu/burger-menu";
+import { Link } from "@/app/ui/NavLinks";
 
 export default function Header() {
   const [showModal, setShowModal] = useState(false);
   const [showModalLog, setShowModalLog] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <header className="bg-black px-6 md:px-[60px]">
       <Cadastro isOpen={showModal} onClose={() => setShowModal(false)} />
@@ -19,7 +23,26 @@ export default function Header() {
       />
       <div className="container mx-auto flex items-center justify-between h-24">
         <div className="flex w-full justify-between md:justify-normal items-center md:gap-14 lg:gap-[72px]">
-          <button type="button" className="block sm:block md:hidden">
+          <BurgerMenu
+            className={`left-0 top-0 bg-black ${isOpen ? "!block" : "!hidden"}`}
+            isOpen={isOpen}
+            onClose={() => setIsOpen(false)}
+          >
+            <ul className="flex flex-col gap-4 mt-2">
+              <Link href="#" text="Sobre" textColor="text-white" />
+              <Link
+                href="#"
+                text="Serviços"
+                textColor="text-white"
+                hasBorder={false}
+              />
+            </ul>
+          </BurgerMenu>
+          <button
+            type="button"
+            className="block sm:block md:hidden"
+            onClick={() => setIsOpen(true)}
+          >
             <Image src={menu} alt="" />
           </button>
           <div className="flex gap-1 items-center">
@@ -58,13 +81,13 @@ export default function Header() {
         </div>
         <div className="flex items-center md:gap-4 lg:gap-6">
           <button
-            className="bg-my-green h-12 w-[180px] text-white font-semibold rounded-lg max-sm:hidden hidden lg:inline"
+            className="bg-my-green hover:bg-my-red transition-all h-12 w-[180px] text-white font-semibold rounded-lg max-sm:hidden hidden lg:inline"
             onClick={() => setShowModal(true)}
           >
             Abrir minha conta
           </button>
           <button
-            className="bg-my-green h-12 md:w-36 lg:w-[180px] text-white font-semibold rounded-lg max-sm:hidden hidden md:inline lg:hidden"
+            className="bg-my-green hover:bg-my-red transition-all h-12 md:w-36 lg:w-[180px] text-white font-semibold rounded-lg max-sm:hidden hidden md:inline lg:hidden"
             onClick={() => setShowModal(true)}
           >
             Abrir conta

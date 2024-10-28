@@ -36,7 +36,7 @@ const Cadastro: React.FC<CadastroProps> = ({ isOpen, onClose }) => {
               type="name"
               name="name"
               id="name"
-              className="bg-white border-my-input-border border-2 px-4 py-3 rounded-lg"
+              className="bg-white border-my-input-border border-2 px-4 py-3 rounded-lg outline-my-green"
               placeholder="Digite seu nome completo"
             />
           </div>
@@ -48,7 +48,7 @@ const Cadastro: React.FC<CadastroProps> = ({ isOpen, onClose }) => {
               type="email"
               name="email"
               id="email"
-              className="bg-white border-my-input-border border-2 px-4 py-3 rounded-lg"
+              className="bg-white border-my-input-border border-2 px-4 py-3 rounded-lg outline-my-green"
               placeholder="Digite seu email"
             />
           </div>
@@ -60,7 +60,7 @@ const Cadastro: React.FC<CadastroProps> = ({ isOpen, onClose }) => {
               type="password"
               name="password"
               id="password"
-              className="bg-white border-my-input-border border-2 px-4 py-3 rounded-lg md:w-2/3 lg:w-1/2"
+              className="bg-white border-my-input-border border-2 px-4 py-3 rounded-lg md:w-2/3 lg:w-1/2 outline-my-green"
               placeholder="Digite sua senha"
             />
           </div>
@@ -79,7 +79,7 @@ const Cadastro: React.FC<CadastroProps> = ({ isOpen, onClose }) => {
           <div className="flex justify-center mt-2">
             <button
               type="submit"
-              className="bg-my-red text-white font-bold rounded-lg w-36 py-[14px]"
+              className="bg-my-red hover:bg-black transition-all text-white font-bold rounded-lg w-36 py-[14px]"
             >
               Criar conta
             </button>
