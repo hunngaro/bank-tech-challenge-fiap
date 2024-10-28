@@ -65,14 +65,20 @@ export default function NovaTransacao() {
               name="typeTransaction"
               value={formData.typeTransaction}
               onChange={handleChange}
-              className="selectNewTransaction w-full h-12 pl-4 border-2 border-my-blue rounded-lg text-black appearance-none"
+              className="selectNewTransaction w-full h-12 pl-4 border-[1px] focus:border-my-green border-my-blue rounded-lg text-black appearance-none outline-none"
             >
-              <option value="">Selecione o tipo de transação</option>
-              <option value="credito">Credito</option>
-              <option value="debito">Debito</option>
+              <option value="" hidden>
+                Selecione o tipo de transação
+              </option>
+              <option value="credito">Câmbio de Moeda</option>
+              <option value="debito">DOC/TED</option>
+              <option value="debito">Empréstimo e Financiamento</option>
+              <option value="debito">Depósito</option>
+              <option value="debito">Débito</option>
+              <option value="debito">Crédito</option>
             </select>
             <svg
-              className="absolute right-5 top-1/2 -translate-y-1/2 "
+              className="absolute right-5 top-1/2 -translate-y-1/2"
               width="14"
               height="8"
               viewBox="0 0 14 8"
@@ -95,12 +101,13 @@ export default function NovaTransacao() {
               name="value"
               value={formData.value}
               onChange={handleChange}
-              className="py-3 w-full max-w-64 mt-3 border-2 border-my-blue rounded-lg text-black text-center"
+              className="py-3 w-full max-w-64 mt-3 border-[1px] border-my-blue focus:border-my-green rounded-lg text-black text-center outline-none"
             />
           </div>
           <button
             type="submit"
-            className="bg-my-blue text-white py-3 rounded-lg max-w-64"
+            className="bg-my-blue hover:bg-black disabled:bg-my-red disabled:cursor-not-allowed transition-all text-white py-3 rounded-lg max-w-64"
+            disabled
           >
             Concluir transação
           </button>

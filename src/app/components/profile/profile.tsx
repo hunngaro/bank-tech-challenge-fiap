@@ -27,7 +27,7 @@ export default function Profile() {
                 Nome
               </label>
               <input
-                className="p-4 pr-10 appearance-none rounded-lg border-my-green border-2"
+                className="p-4 pr-10 appearance-none rounded-lg border-my-green outline-none border-2"
                 type="text"
                 id="name"
                 value={name}
@@ -41,7 +41,7 @@ export default function Profile() {
                 Email
               </label>
               <input
-                className="p-4 pr-10 rounded-lg border-my-green border-2"
+                className="p-4 pr-10 rounded-lg border-my-green outline-none border-2"
                 type="email"
                 id="email"
                 value={email}
@@ -55,7 +55,7 @@ export default function Profile() {
                 Senha
               </label>
               <input
-                className="p-4 pr-10 rounded-lg border-my-green border-2"
+                className="p-4 pr-10 rounded-lg border-my-green outline-none border-2"
                 type="password"
                 id="password"
                 value={password}
@@ -65,7 +65,7 @@ export default function Profile() {
             </div>
 
             <button
-              className="text-white font-bold bg-my-red py-4 w-full md:w-3/5 rounded-lg mt-2 mb-8 lg:mb-0"
+              className="text-white font-bold bg-my-red hover:bg-black transition-all py-4 w-full md:w-3/5 rounded-lg mt-2 mb-8 lg:mb-0"
               type="submit"
             >
               Salvar alterações

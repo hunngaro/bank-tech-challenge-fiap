@@ -34,7 +34,7 @@ const Login: React.FC<LoginProps> = ({ isOpenLog, onCloseLog }) => {
               type="email"
               name="email"
               id="email"
-              className="bg-white border-my-input-border border-2 px-4 py-3 rounded-lg"
+              className="bg-white border-my-input-border border-2 px-4 py-3 rounded-lg outline-my-green"
               placeholder="Digite seu email"
             />
           </div>
@@ -46,7 +46,7 @@ const Login: React.FC<LoginProps> = ({ isOpenLog, onCloseLog }) => {
               type="password"
               name="password"
               id="password"
-              className="bg-white border-my-input-border border-2 px-4 py-3 rounded-lg"
+              className="bg-white border-my-input-border border-2 px-4 py-3 rounded-lg outline-my-green"
               placeholder="Digite sua senha"
             />
           </div>
@@ -57,7 +57,7 @@ const Login: React.FC<LoginProps> = ({ isOpenLog, onCloseLog }) => {
         <div className="flex justify-center mt-8">
           <button
             type="submit"
-            className="bg-my-green text-white font-bold rounded-lg w-36 py-[14px]"
+            className="bg-my-green hover:bg-black transition-all text-white font-bold rounded-lg w-36 py-[14px]"
           >
             Acessar
           </button>
