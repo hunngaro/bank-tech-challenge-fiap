@@ -15,7 +15,7 @@ const Login: React.FC<LoginProps> = ({ isOpenLog, onCloseLog }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center">
       <div className="fixed size-full" id="wrapper" onClick={onCloseLog}></div>
-      <div className="z-10 w-[313px] md:w-[597px] lg:w-[792px] h-full py-8 px-4 md:px-[76px] lg:px-[102px] overflow-auto bg-my-light-gray relative">
+      <div className="z-10 text-black w-[313px] md:w-[597px] lg:w-[792px] h-full py-8 px-4 md:px-[76px] lg:px-[102px] overflow-auto bg-my-light-gray relative">
         <button className="absolute right-4 top-4" onClick={onCloseLog}>
           <Image src={close} alt="" />
         </button>
@@ -52,7 +52,7 @@ const Login: React.FC<LoginProps> = ({ isOpenLog, onCloseLog }) => {
           </div>
         </form>
         <a href="#" className="text-my-green underline block mt-2">
-          Esqueci a senha
+          Esqueci a senha!
         </a>
         <div className="flex justify-center mt-8">
           <button

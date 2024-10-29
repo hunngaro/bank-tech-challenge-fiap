@@ -106,8 +106,7 @@ export default function NovaTransacao() {
           </div>
           <button
             type="submit"
-            className="bg-my-blue hover:bg-black disabled:bg-my-red disabled:cursor-not-allowed transition-all text-white py-3 rounded-lg max-w-64"
-            disabled
+            className="bg-my-blue hover:bg-black transition-all text-white py-3 rounded-lg max-w-64"
           >
             Concluir transação
           </button>

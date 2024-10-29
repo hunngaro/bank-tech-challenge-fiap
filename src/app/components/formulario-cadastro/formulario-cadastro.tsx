@@ -15,7 +15,7 @@ const Cadastro: React.FC<CadastroProps> = ({ isOpen, onClose }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center">
       <div className="fixed size-full" id="wrapper" onClick={onClose}></div>
-      <div className="z-10 w-[313px] md:w-[597px] lg:w-[792px] h-full py-8 px-4 md:px-[76px] lg:px-[102px] overflow-auto bg-my-light-gray relative">
+      <div className="z-10 text-black w-[313px] md:w-[597px] lg:w-[792px] h-full py-8 px-4 md:px-[76px] lg:px-[102px] overflow-auto bg-my-light-gray relative">
         <button className="absolute right-4 top-4" onClick={onClose}>
           <Image src={close} alt="" />
         </button>
