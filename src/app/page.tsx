@@ -48,17 +48,17 @@ export default function Home() {
             </div>
           </div>
           <section>
-            <h2 className="text-black font-bold col-span-12 text-xl md:text-[25px] text-center mt-8 mb-10 md:my-10">
+            <h2 className="text-black font-bold col-span-12 text-xl md:text-[25px] text-center mt-8 mb-10 md:my-14">
               Vantagens do nosso banco:
             </h2>
-            <div className="flex justify-center items-center ">
-              <div className="grid md:grid-rows-2 md:grid-cols-2 lg:grid-rows-1 lg:grid-cols-4 place-items-center md:gap-x-4 lg:gap-x-6 gap-y-10">
+            <div className="flex items-center ">
+              <div className="grid md:grid-rows-2 md:grid-cols-2 lg:grid-rows-1 place-items-start lg:grid-cols-4 md:gap-x-4 lg:gap-x-6 gap-y-10">
                 <div className="flex flex-col justify-center items-center gap-4">
                   <Image src={present} alt="An image of a Present" />
                   <h3 className="text-my-green font-bold text-xl text-center">
                     Conta e Cartão Gratuito
                   </h3>
-                  <p className="text-my-gray text-center leading-5">
+                  <p className="text-black text-center leading-5">
                     Isso mesmo, nossa conta é digital, sem custo fixo e mais que
                     isso: sem tarifa de manutenção.
                   </p>
@@ -68,7 +68,7 @@ export default function Home() {
                   <h3 className="text-my-green font-bold text-xl text-center">
                     Saques sem custo
                   </h3>
-                  <p className="text-my-gray text-center leading-5">
+                  <p className="text-black text-center leading-5">
                     Você pode sacar gratuitamente 4x por mês de qualquer Banco
                     24h.
                   </p>
@@ -78,7 +78,7 @@ export default function Home() {
                   <h3 className="text-my-green font-bold text-xl text-center">
                     Programa de pontos
                   </h3>
-                  <p className="text-my-gray text-center leading-5">
+                  <p className="text-black text-center leading-5">
                     Você pode acumular pontos com suas compras no crédito sem
                     pagar mensalidade!
                   </p>
@@ -91,7 +91,7 @@ export default function Home() {
                   <h3 className="text-my-green font-bold text-xl text-center">
                     Seguro Dispositivos
                   </h3>
-                  <p className="text-my-gray text-center">
+                  <p className="text-black text-center leading-5">
                     Seus dispositivos móveis (computador e laptop) protegidos
                     por uma mensalidade simbólica.
                   </p>
