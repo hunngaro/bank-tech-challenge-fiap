@@ -1,0 +1,19 @@
+{
+    "users" :[
+        { "id": 1, "name": "Hungaro", "email": "fernandohungaro@gmail.com", "password": "12345678"}
+    ],
+    "saldos" : [
+        {"id": 1,"idUser": 1, "contaCorrente": 1500, "contaInvestimentos": [
+           {"rendaFixa": 30000, "rendaVariavel": 26000}  
+        ]}       
+    ],
+    "depositos": [
+        { "id": 1, "idUser":1, "label":"deposito", "valor": 100, "data": "18/11/2023"},
+        { "id": 2, "idUser":1, "label":"cambio", "valor": 100, "data": "19/11/2023"},
+        { "id": 3, "idUser":1, "label":"credito", "valor": 100, "data": "20/11/2023"}
+    ],
+    "cartoes": [
+        {"id": 1, "idUser": 1, "nameCartao": "Fernando Hungaro", "type": "digital", "function": "credito", "status": true},
+        {"id": 2, "idUser": 1, "nameCartao": "Fernando Hungaro", "type": "fisico", "function": "debito", "status": false}
+    ]
+}
