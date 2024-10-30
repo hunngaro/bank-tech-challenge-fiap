@@ -1,12 +1,14 @@
 "use client";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import pixels from "@/app/assets/pixels.svg";
 import illustration from "@/app/assets/ilustracao.svg";
+import { SaldoContext } from "@/app/contexts/saldo-context";
 
 export default function Saldo() {
-  const [saldo, setSaldo] = useState<number>(2500);
+  const { saldos } = useContext(SaldoContext);
+  // const [saldo, setSaldo] = useState<number>(2500);
   const [showValue, setShowValue] = useState<boolean>(true);
 
   const formatToBRL = (value: number) => {
@@ -71,9 +73,8 @@ export default function Saldo() {
           >
             Saldo
             <span
-              className={`relative before:content-[''] before:w-1 before:h-7 ${
-                !showValue ? "before:block" : "before:hidden"
-              }  before:absolute before:top-1/2 before:left-1/2 before:bg-white lg:before:bg-my-red before:-rotate-45 before:-translate-x-1/2 before:-translate-y-1/2`}
+              className={`relative before:content-[''] before:w-1 before:h-7 ${!showValue ? "before:block" : "before:hidden"
+                }  before:absolute before:top-1/2 before:left-1/2 before:bg-white lg:before:bg-my-red before:-rotate-45 before:-translate-x-1/2 before:-translate-y-1/2`}
             >
               <svg
                 className="relative"
@@ -94,7 +95,16 @@ export default function Saldo() {
 
           <p className="mt-4">Conta Corrente</p>
           <p className="text-3xl mt-2">
-            {showValue ? formatToBRL(saldo) : "R$ *******"}
+            {saldos?.length  
+             ? saldos.map((res) => (
+                <div key={res.id}>
+                  <div className="flex justify-between w-full">
+                  {showValue ? formatToBRL(res?.contaCorrente) : "R$ *******"}
+                  </div>
+                </div>
+              ))
+            :null}
+
           </p>
         </div>
       </div>

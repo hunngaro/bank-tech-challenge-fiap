@@ -5,6 +5,12 @@
       "name": "Hungaro",
       "email": "fernandohungaro@gmail.com",
       "password": "12345678"
+    },
+    {
+      "id": 2,
+      "name": "Rafael",
+      "email": "rafamiralha1@gmail.com",
+      "password": "987654321"
     }
   ],
   "saldos": [
@@ -13,6 +19,11 @@
       "idUser": 1,
       "contaCorrente": 1500,
       "contaInvestimentos": [{ "rendaFixa": 30000, "rendaVariavel": 26000 }]
+    },    {
+      "id": 2,
+      "idUser": 2,
+      "contaCorrente": 5000,
+      "contaInvestimentos": [{ "rendaFixa": 25000, "rendaVariavel": 15000 }]
     }
   ],
   "depositos": [
