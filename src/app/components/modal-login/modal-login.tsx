@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import imgLogin from "@/app/assets/login.svg";
 import close from "@/app/assets/close-black.svg";
@@ -11,6 +11,21 @@ interface LoginProps {
 
 const Login: React.FC<LoginProps> = ({ isOpenLog, onCloseLog }) => {
   if (!isOpenLog) return null;
+  const [users, setUsers] = useState([]);
+
+  const fetchData = async (endpoint: any, setState: any) => {
+    try {
+      const response = await fetch(`http://localhost:3000/${endpoint}`);
+      const data = await response.json();
+      setState(data);
+    } catch (error) {
+      console.error(`Erro ao buscar ${endpoint}:`, error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData("users", setUsers);
+  }, []);
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center">
@@ -42,6 +57,7 @@ const Login: React.FC<LoginProps> = ({ isOpenLog, onCloseLog }) => {
             <label htmlFor="password" className="text-md font-bold">
               Senha
             </label>
+            <p></p>
             <input
               type="password"
               name="password"
