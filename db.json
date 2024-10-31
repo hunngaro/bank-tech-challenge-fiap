@@ -54,6 +54,7 @@
       "id": 1,
       "idUser": 1,
       "nameCartao": "Fernando Hungaro",
+      "number": "1234123412341234",
       "type": "digital",
       "function": "credito",
       "status": true
@@ -62,6 +63,7 @@
       "id": 2,
       "idUser": 1,
       "nameCartao": "Fernando Hungaro",
+      "number": "4321432143214321",
       "type": "fisico",
       "function": "debito",
       "status": false

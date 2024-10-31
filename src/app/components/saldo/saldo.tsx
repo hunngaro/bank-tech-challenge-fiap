@@ -94,18 +94,18 @@ export default function Saldo() {
           <div className="w-48 h-[2px] rounded-lg mt-3 bg-white lg:bg-my-red"></div>
 
           <p className="mt-4">Conta Corrente</p>
-          <p className="text-3xl mt-2">
+          <div className="text-3xl mt-2">
             {saldos?.length  
              ? saldos.map((res) => (
                 <div key={res.id}>
-                  <div className="flex justify-between w-full">
+                  <div className="flex justify-between w-full cursor-pointer" onClick={toggleValueVisibility}>
                   {showValue ? formatToBRL(res?.contaCorrente) : "R$ *******"}
                   </div>
                 </div>
               ))
             :null}
 
-          </p>
+          </div>
         </div>
       </div>
     </div>

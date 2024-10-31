@@ -39,13 +39,14 @@ export function LoggedHeader() {
             onClose={() => setIsOpenProfileMenu(false)}
           >
             <ul className="flex flex-col gap-4 mt-2">
-              <Link href="/profile" text="Minha conta" textColor="text-white" />
-              <Link href="#" text="Configurações" textColor="text-white" />
+              <Link href="/profile" text="Minha conta" textColor="text-white" onClick={() => setIsOpenProfileMenu(false)} />
+              <Link href="/servicos" text="Configurações" textColor="text-white" onClick={() => setIsOpenProfileMenu(false)}/>
               <Link
-                href="#"
+                href="/"
                 text="Sair"
                 hasBorder={false}
                 textColor="text-white"
+                onClick={() => setIsOpenProfileMenu(false)}
               />
             </ul>
           </BurgerMenu>

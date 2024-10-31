@@ -7,10 +7,7 @@ export default function InvestimentPage() {
   return (
     <div className="flex flex-col gap-8">
       <Saldo />
-      <BoxInside>
-        <h2 className="text-2xl font-bold pb-8 relative z-10 text-black">
-          Lista de transações
-        </h2>
+      <BoxInside title="Lista de transações">
         <CardTransaction />
       </BoxInside>
     </div>

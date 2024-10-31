@@ -17,8 +17,7 @@ export default function Profile() {
   };
 
   return (
-    <BoxInside>
-      <h2 className="text-2xl font-bold pb-8 relative z-10">Minha conta</h2>
+    <BoxInside title="Minha conta">
       <div className="lg:flex lg:flex-row-reverse gap-8 justify-between z-10 relative">
         <div className="w-full">
           <form onSubmit={handleSubmit} className="w-full">
