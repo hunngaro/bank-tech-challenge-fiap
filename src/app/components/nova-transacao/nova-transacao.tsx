@@ -47,14 +47,11 @@ export default function NovaTransacao() {
     event.preventDefault();
   };
   return (
-    <BoxInside>
+    <BoxInside title=" Nova transação">
       <div className="mb-56 md:mb-20">
         <div className="absolute w-[280px] md:w-auto right-6 bottom-6 md:block lg:hidden block z-10">
           <Image src={ilustracao} alt="" />
         </div>
-        <h2 className="text-2xl font-bold pb-8 relative z-10">
-          Nova transação
-        </h2>
         <form
           onSubmit={handleSubmit}
           className="relative z-10 flex flex-col gap-4 "
