@@ -15,6 +15,7 @@ const config: Config = {
         "my-light-green": "#E4EDE3",
         "my-green": "#47A138",
         "my-red": "#FF5031",
+        "my-dark-red": "#BF1313",
         "my-blue": "#004D61",
         "my-gray": "#767676",
         "my-gray-box": "#CBCBCB",
