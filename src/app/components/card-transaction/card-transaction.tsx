@@ -1,4 +1,4 @@
-import { DepositoContext } from "@/app/contexts/DepositoContext";
+import { DepositoContext } from "@/app/contexts/deposito-context";
 import { useContext } from "react";
 
 export default function CardTransaction() {
