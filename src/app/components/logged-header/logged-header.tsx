@@ -22,7 +22,8 @@ export function LoggedHeader() {
             isOpen={isOpenAppMenu}
             onClose={() => setIsOpenAppMenu(false)}
           >
-            <NavLinks className="grid gap-4 mt-4" />
+            <NavLinks className="grid gap-4 mt-4" onClick={() => setIsOpenAppMenu(false)} />
+              {/* verificar fechamento menu */}
           </BurgerMenu>
           <button
             className="lg:hidden md:hidden block"

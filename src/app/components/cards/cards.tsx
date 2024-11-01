@@ -1,6 +1,6 @@
 "use client";
 import { useContext, useState, useEffect } from "react";
-import { CartoesContext } from "@/app/contexts/meusCartoes";
+import { CartoesContext } from "@/app/contexts/meus-cartoes-context";
 
 import BoxInside from "@/app/ui/BoxInside";
 import Card from "../card/card";

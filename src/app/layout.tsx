@@ -3,9 +3,9 @@ import "./globals.css";
 import Header from "./components/header/header";
 import Footer from "./components/Footer/footer";
 import { LoggedHeader } from "./components/logged-header/logged-header";
-import { DepositoProvider } from "./contexts/DepositoContext";
+import { DepositoProvider } from "./contexts/deposito-context";
 import { SaldoProvider } from "./contexts/saldo-context";
-import { CartoesProvider } from "./contexts/meusCartoes";
+import { CartoesProvider } from "./contexts/meus-cartoes-context";
 
 export const metadata: Metadata = {
   title: "ByteBank",
