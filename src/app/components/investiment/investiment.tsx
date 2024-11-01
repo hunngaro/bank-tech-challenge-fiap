@@ -1,16 +1,43 @@
 "use client";
-import { useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
 import BoxInside from "@/app/ui/BoxInside";
+import { SaldoContext } from "@/app/contexts/saldo-context";
+
+interface ContaInvestimento {
+  rendaFixa: number;
+  rendaVariavel: number;
+}
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function Investiment() {
-  const [fixa, setFixa] = useState<number>(36000);
-  const [variavel, setVariavel] = useState<number>(14000);
-  const [amount, setAmount] = useState<number>(fixa+variavel);
+  const { saldos } = useContext(SaldoContext)
+  const [fixa, setFixa] = useState<number>(0);
+  const [variavel, setVariavel] = useState<number>(0);
+  const [amount, setAmount] = useState<number>(0);
+
+  let contaInvestimentos:ContaInvestimento
+  contaInvestimentos = { rendaVariavel:0, rendaFixa:0 }
+  
+  saldos.map(saldo => (
+    saldo.contaInvestimentos.map(sal => (
+      contaInvestimentos = sal
+    ))
+  ))
+  
+  useEffect(() => {
+    if (contaInvestimentos) {
+        setFixa(contaInvestimentos.rendaFixa);
+        setVariavel(contaInvestimentos.rendaVariavel);
+        setAmount(contaInvestimentos.rendaFixa + contaInvestimentos.rendaVariavel)
+      }
+  }, [contaInvestimentos]);
+  
+  
+
 
   const formatToBRL = (value: number) => {
     return value.toLocaleString('pt-BR', {

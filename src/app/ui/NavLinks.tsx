@@ -12,10 +12,10 @@ export function NavLinks({ ...rest }: NavLinksProps) {
   return (
     <nav>
       <ul className={`flex md:justify-between lg:flex-col gap-4`} {...rest}>
-        <Link href="/dashboard" text="Início" />
-        <Link href="/transacoes" text="Transações" />
-        <Link href="/investimentos" text="Investimentos" />
-        <Link href="/servicos" text="Outros serviços" hasBorder={false} />
+        <Link href="/dashboard" text="Início" textColor="text-black"  />
+        <Link href="/transacoes" text="Transações" textColor="text-black"/>
+        <Link href="/investimentos" text="Investimentos" textColor="text-black"/>
+        <Link href="/servicos" text="Outros serviços" textColor="text-black" hasBorder={false} />
       </ul>
     </nav>
   );

@@ -107,19 +107,19 @@ export default function Card({
         </div>
         <div className="flex flex-col gap-4">
           <button 
-            className={`border-2 border-my-red enabled:hover:border-black bg-my-red enabled:hover:bg-black disabled:cursor-not-allowed transition-all py-3 text-white px-16 rounded-lg font-bold ${!cardStatus ? 'brightness-[0.4]' : ''}`}
+            className={`border-2 border-my-red enabled:hover:border-black bg-my-red enabled:hover:bg-black disabled:cursor-not-allowed transition-all py-3 text-white w-full md:w-56 rounded-lg font-bold ${!cardStatus ? 'brightness-[0.4]' : ''}`}
             disabled={!cardStatus}
             onClick={handleOpenDialog}>
             Configurar
           </button>
-          <button className={`border-2 border-my-red text-my-red py-3 px-16 rounded-lg font-bold`} onClick={toggleStatus}>
-            Bloquear
+          <button className={`border-2 border-my-dark-red py-3 w-full md:w-56 rounded-lg font-bold ${cardStatus ? 'bg-transparent text-my-dark-red' : 'bg-my-dark-red text-white'}`} onClick={toggleStatus}>
+            { cardStatus ? 'Bloquear' : 'Desbloquear' }
           </button>
           <p className="text-center text-black text-sm">Função: {cardStatus ? formatFunctionType(cardFunction) : "Inativo"}</p>
         </div>
 
         {isDialogOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+        <div className="fixed z-50 inset-0 bg-black bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-6 rounded-md shadow-md">
             <h2 className="text-lg font-semibold mb-2">Seleciona a função do cartão</h2>
             <select
