@@ -30,23 +30,23 @@
     {
       "id": 1,
       "idUser": 2,
-      "label": "deposito",
+      "label": "Depósito",
       "valor": 100,
-      "data": "18/11/2023"
+      "data": "2023-11-18"
     },
     {
       "id": 2,
       "idUser": 1,
-      "label": "cambio",
+      "label": "Câmbio",
       "valor": 100,
-      "data": "19/11/2023"
+      "data": "2023-11-19"
     },
     {
       "id": 3,
       "idUser": 1,
-      "label": "credito",
+      "label": "Crédito",
       "valor": 100,
-      "data": "20/11/2023"
+      "data": "2023-11-20"
     }
   ],
   "cartoes": [
