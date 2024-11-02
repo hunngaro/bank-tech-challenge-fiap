@@ -4,13 +4,13 @@ import edit from "@/app/assets/lapis.svg";
 import trash from "@/app/assets/lixeira.svg";
 import { useContext } from "react";
 import { DepositoContext } from "@/app/contexts/deposito-context";
-import { formatDate, formatPrice, getLongMonth } from "@/app/utils/format";
+import { formatDate, getLongMonth } from "@/app/utils/format";
 
 export function Extract() {
   const { depositos } = useContext(DepositoContext)
 
   return (
-    <aside className="bg-[#F5F5F5] rounded-lg py-8 px-6 mt-8 lg:mt-0">
+    <aside className="bg-[#F5F5F5] h-screen overflow-auto rounded-lg py-8 px-6 mt-8 lg:mt-0">
       <div className="w-60 mx-auto lg:w-full">
         <div className="flex justify-between items-center">
           <h1 className="text-black font-bold text-[25px]">Extrato</h1>
@@ -35,7 +35,7 @@ export function Extract() {
                   {formatDate(deposito.data)}
                 </span>
               </div>
-              <strong className="text-black font-semibold">{formatPrice(deposito.valor)}</strong>
+              <strong className="text-black font-semibold">{deposito.valor}</strong>
               <hr className="w-3/4 border-b-[1px] border-b-my-green" />
             </div>
           ))}

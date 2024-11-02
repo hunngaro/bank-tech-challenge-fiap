@@ -1,9 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import BoxInside from "@/app/ui/BoxInside";
 import Image from "next/image";
 
 import ilustracao from "@/app/assets/ilustracao2.svg";
+import { DepositoContext } from "@/app/contexts/deposito-context";
 
 type FormData = {
   typeTransaction: string;
@@ -11,10 +12,12 @@ type FormData = {
 };
 
 export default function NovaTransacao() {
+  const { addNewTransaction } = useContext(DepositoContext)
   const [formData, setFormData] = useState<FormData>({
     typeTransaction: "",
     value: "R$ 0,00",
   });
+  const [date, setDate] = useState('')
 
   //remove texto e formata para reias o valor digitado
   const formatToReais = (value: string): string => {
@@ -26,6 +29,23 @@ export default function NovaTransacao() {
     });
     return formattedValue;
   };
+
+  const handleAddNewTransaction = async () => {
+    try {
+      const data = {
+        ...formData,
+        date
+      }
+      await addNewTransaction(data)
+      setFormData({
+        typeTransaction: "",
+        value: "R$ 0,00",
+      })
+      setDate('')
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   //lida com a mudança do input
   const handleChange = (
@@ -67,12 +87,12 @@ export default function NovaTransacao() {
               <option value="" hidden>
                 Selecione o tipo de transação
               </option>
-              <option value="credito">Câmbio de Moeda</option>
-              <option value="debito">DOC/TED</option>
-              <option value="debito">Empréstimo e Financiamento</option>
-              <option value="debito">Depósito</option>
+              <option value="cambio">Câmbio de Moeda</option>
+              <option value="doc/ted">DOC/TED</option>
+              <option value="emprestimo">Empréstimo e Financiamento</option>
+              <option value="deposito">Depósito</option>
               <option value="debito">Débito</option>
-              <option value="debito">Crédito</option>
+              <option value="credito">Crédito</option>
             </select>
             <svg
               className="absolute right-5 top-1/2 -translate-y-1/2"
@@ -87,6 +107,19 @@ export default function NovaTransacao() {
                 fill="#004D61"
               />
             </svg>
+          </div>
+
+          <div className="mt-2">
+            <label htmlFor="value">Data da transação:</label>
+            <br />
+            <input
+              id="value"
+              type="date"
+              name="value"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              className="py-3 w-full max-w-64 mt-3 border-[1px] border-my-blue focus:border-my-green rounded-lg text-black text-center outline-none"
+            />
           </div>
 
           <div className="mt-7">
@@ -104,6 +137,7 @@ export default function NovaTransacao() {
           <button
             type="submit"
             className="bg-my-blue hover:bg-black transition-all text-white py-3 rounded-lg max-w-64"
+            onClick={() => handleAddNewTransaction()}
           >
             Concluir transação
           </button>

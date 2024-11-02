@@ -1,5 +1,5 @@
 import { DepositoContext } from "@/app/contexts/deposito-context";
-import { formatDate, formatPrice } from "@/app/utils/format";
+import { formatDate } from "@/app/utils/format";
 import { useContext } from "react";
 
 export default function CardTransaction() {
@@ -18,7 +18,7 @@ export default function CardTransaction() {
                 </span>
                 <span className="capitalize">
                   <strong>Valor: </strong>
-                  {formatPrice(res?.valor)}
+                  {res?.valor}
                 </span>
                 <span className="capitalize">
                   <strong>Data: </strong>

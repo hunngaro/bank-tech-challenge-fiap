@@ -10,6 +10,7 @@ import {
 
 interface DepositoContextProps {
   depositos: depositos[];
+  addNewTransaction: (transactionData: TransactionData) => Promise<void>
 }
 
 export const DepositoContext = createContext<DepositoContextProps>(
@@ -20,16 +21,41 @@ interface Props {
   children: ReactNode;
 }
 
-interface depositos {
+export interface depositos {
   id: number;
   label: string;
   idUser: number;
-  valor: number;
+  valor: string;
   data: string;
+}
+
+interface TransactionData {
+  typeTransaction: string
+  value: string
+  date: string
 }
 
 export function DepositoProvider({ children }: Props) {
   const [depositos, setDepositos] = useState<depositos[]>([]);
+
+  const addNewTransaction = async (transactionData: TransactionData) => {
+    try {
+      const data: depositos = {
+        id: Math.random(),
+        idUser: 2,
+        label: transactionData.typeTransaction,
+        valor: transactionData.value,
+        data: transactionData.date
+      }
+      await fetch('http://localhost:3001/depositos', {
+        method: 'POST',
+        body: JSON.stringify(data)
+      })
+      setDepositos((depositos => [...depositos, data]))
+    } catch (error) {
+      throw error
+    }
+  }
 
   const fetchData = async (
     endpoint: string,
@@ -50,7 +76,7 @@ export function DepositoProvider({ children }: Props) {
   }, []);
 
   return (
-    <DepositoContext.Provider value={{ depositos }}>
+    <DepositoContext.Provider value={{ depositos, addNewTransaction }}>
       {children}
     </DepositoContext.Provider>
   );

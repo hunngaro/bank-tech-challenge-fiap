@@ -18,34 +18,45 @@
       "id": 1,
       "idUser": 1,
       "contaCorrente": 1500,
-      "contaInvestimentos": [{ "rendaFixa": 30000, "rendaVariavel": 26000 }]
-    },    {
+      "contaInvestimentos": [
+        {
+          "rendaFixa": 30000,
+          "rendaVariavel": 26000
+        }
+      ]
+    },
+    {
       "id": 2,
       "idUser": 2,
       "contaCorrente": 5000,
-      "contaInvestimentos": [{ "rendaFixa": 25000, "rendaVariavel": 15000 }]
+      "contaInvestimentos": [
+        {
+          "rendaFixa": 25000,
+          "rendaVariavel": 15000
+        }
+      ]
     }
   ],
   "depositos": [
     {
       "id": 1,
       "idUser": 2,
-      "label": "Depósito",
-      "valor": 100,
+      "label": "deposito",
+      "valor": "R$ 100,00",
       "data": "2023-11-18"
     },
     {
       "id": 2,
       "idUser": 1,
-      "label": "Câmbio",
-      "valor": 100,
+      "label": "cambio",
+      "valor": "R$ 100,00",
       "data": "2023-11-19"
     },
     {
       "id": 3,
       "idUser": 1,
-      "label": "Crédito",
-      "valor": 100,
+      "label": "credito",
+      "valor": "R$ 100,00",
       "data": "2023-11-20"
     }
   ],
