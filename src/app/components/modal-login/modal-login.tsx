@@ -1,8 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import imgLogin from "@/app/assets/login.svg";
 import close from "@/app/assets/close-black.svg";
+import { AuthContext } from "@/app/contexts/authentication-context";
+import { useRouter } from "next/navigation";
 
 interface LoginProps {
   isOpenLog: boolean;
@@ -11,21 +13,25 @@ interface LoginProps {
 
 const Login: React.FC<LoginProps> = ({ isOpenLog, onCloseLog }) => {
   if (!isOpenLog) return null;
-  const [users, setUsers] = useState([]);
+  const {login} = useContext(AuthContext)
+  const [password, setPassword] = useState<string>('')
+  const [email, setEmail] = useState<string>('');
 
-  const fetchData = async (endpoint: any, setState: any) => {
-    try {
-      const response = await fetch(`http://localhost:3000/${endpoint}`);
-      const data = await response.json();
-      setState(data);
-    } catch (error) {
-      console.error(`Erro ao buscar ${endpoint}:`, error);
+  const router = useRouter();
+  const [loginFail, setLoginFail] = useState<string>('')
+  
+  async function isLogged(){
+    let logged = await login(email, password);
+    
+    if(logged) {
+      router.push("/dashboard"); 
+      onCloseLog()
     }
-  };
+      else{
+        setLoginFail('Ops login falhou, tente novamente.')
+      }
+  }
 
-  useEffect(() => {
-    fetchData("users", setUsers);
-  }, []);
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center">
@@ -49,6 +55,8 @@ const Login: React.FC<LoginProps> = ({ isOpenLog, onCloseLog }) => {
               type="email"
               name="email"
               id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="bg-white border-my-input-border border-2 px-4 py-3 rounded-lg outline-my-green"
               placeholder="Digite seu email"
             />
@@ -61,9 +69,12 @@ const Login: React.FC<LoginProps> = ({ isOpenLog, onCloseLog }) => {
             <input
               type="password"
               name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               id="password"
               className="bg-white border-my-input-border border-2 px-4 py-3 rounded-lg outline-my-green"
               placeholder="Digite sua senha"
+              
             />
           </div>
         </form>
@@ -73,11 +84,13 @@ const Login: React.FC<LoginProps> = ({ isOpenLog, onCloseLog }) => {
         <div className="flex justify-center mt-8">
           <button
             type="submit"
+            onClick={isLogged}
             className="bg-my-green hover:bg-black transition-all text-white font-bold rounded-lg w-36 py-[14px]"
           >
             Acessar
           </button>
         </div>
+        { loginFail.length > 1 && <span>{loginFail}</span> }
       </div>
     </div>
   );
