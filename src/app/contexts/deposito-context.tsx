@@ -10,6 +10,9 @@ import {
 
 interface DepositoContextProps {
   depositos: depositos[];
+  addNewTransaction: (transactionData: TransactionData) => Promise<void>
+  updateTransaction: (transactionId: string, transactionData: TransactionData) => Promise<void>
+  removeTransaction: (transactionId: string) => Promise<void>
 }
 
 export const DepositoContext = createContext<DepositoContextProps>(
@@ -20,16 +23,74 @@ interface Props {
   children: ReactNode;
 }
 
-interface depositos {
-  id: number;
+export interface depositos {
+  id: string;
   label: string;
   idUser: number;
   valor: number;
   data: string;
 }
 
+export interface TransactionData {
+  typeTransaction: string
+  value: number
+  date: string
+}
+
 export function DepositoProvider({ children }: Props) {
   const [depositos, setDepositos] = useState<depositos[]>([]);
+
+  const addNewTransaction = async (transactionData: TransactionData) => {
+    try {
+      const data: depositos = {
+        id: String(Math.random()),
+        idUser: 2,
+        label: transactionData.typeTransaction,
+        valor: transactionData.value,
+        data: transactionData.date
+      }
+      await fetch('http://localhost:3001/depositos', {
+        method: 'POST',
+        body: JSON.stringify(data)
+      })
+      setDepositos((depositos => [...depositos, data]))
+    } catch (error) {
+      throw error
+    }
+  }
+
+  const updateTransaction = async (transactionId: string, transactionData: TransactionData) => {
+    try {
+      const data: depositos = {
+        id: transactionId,
+        idUser: 2,
+        label: transactionData.typeTransaction,
+        valor: transactionData.value,
+        data: transactionData.date
+      }
+      await fetch(`http://localhost:3001/depositos/${transactionId}`, {
+        method: 'PUT',
+        body: JSON.stringify(data)
+      })
+      const transactionIndex = depositos.findIndex((deposito) => deposito.id === transactionId)
+      depositos[transactionIndex] = data
+      setDepositos(depositos)
+    } catch (error) {
+      throw error
+    }
+  }
+
+  const removeTransaction = async (transactionId: string) => {
+    try {
+      await fetch(`http://localhost:3001/depositos/${transactionId}`, {
+        method: 'DELETE',
+      })
+      const newTransactions = depositos.filter((deposito) => deposito.id !== transactionId)
+      setDepositos(newTransactions)
+    } catch (error) {
+      throw error
+    }
+  }
 
   const fetchData = async (
     endpoint: string,
@@ -50,7 +111,7 @@ export function DepositoProvider({ children }: Props) {
   }, []);
 
   return (
-    <DepositoContext.Provider value={{ depositos }}>
+    <DepositoContext.Provider value={{ depositos, addNewTransaction, updateTransaction, removeTransaction }}>
       {children}
     </DepositoContext.Provider>
   );

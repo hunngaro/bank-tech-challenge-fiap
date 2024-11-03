@@ -1,13 +1,13 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Hungaro",
       "email": "fernandohungaro@gmail.com",
       "password": "12345678"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Rafael",
       "email": "rafamiralha1@gmail.com",
       "password": "987654321"
@@ -15,43 +15,54 @@
   ],
   "saldos": [
     {
-      "id": 1,
+      "id": "1",
       "idUser": 1,
       "contaCorrente": 1500,
-      "contaInvestimentos": [{ "rendaFixa": 30000, "rendaVariavel": 26000 }]
-    },    {
-      "id": 2,
+      "contaInvestimentos": [
+        {
+          "rendaFixa": 30000,
+          "rendaVariavel": 26000
+        }
+      ]
+    },
+    {
+      "id": "2",
       "idUser": 2,
       "contaCorrente": 5000,
-      "contaInvestimentos": [{ "rendaFixa": 25000, "rendaVariavel": 15000 }]
+      "contaInvestimentos": [
+        {
+          "rendaFixa": 25000,
+          "rendaVariavel": 15000
+        }
+      ]
     }
   ],
   "depositos": [
     {
-      "id": 1,
-      "idUser": 2,
-      "label": "deposito",
-      "valor": 100,
-      "data": "18/11/2023"
-    },
-    {
-      "id": 2,
+      "id": "2",
       "idUser": 1,
       "label": "cambio",
       "valor": 100,
-      "data": "19/11/2023"
+      "data": "2023-11-19"
     },
     {
-      "id": 3,
+      "id": "3",
       "idUser": 1,
       "label": "credito",
       "valor": 100,
-      "data": "20/11/2023"
+      "data": "2023-11-20"
+    },
+    {
+      "id": "0.22938457192998674",
+      "idUser": 2,
+      "label": "emprestimo",
+      "valor": 500,
+      "data": "2024-11-10"
     }
   ],
   "cartoes": [
     {
-      "id": 1,
+      "id": "1",
       "idUser": 1,
       "nameCartao": "Fernando Hungaro",
       "number": "1234123412341234",
@@ -60,7 +71,7 @@
       "status": true
     },
     {
-      "id": 2,
+      "id": "2",
       "idUser": 1,
       "nameCartao": "Fernando Hungaro",
       "number": "4321432143214321",
