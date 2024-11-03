@@ -1,71 +1,34 @@
 "use client";
-import { useContext, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import BoxInside from "@/app/ui/BoxInside";
 import Image from "next/image";
 
 import ilustracao from "@/app/assets/ilustracao2.svg";
-import { DepositoContext } from "@/app/contexts/deposito-context";
-
-type FormData = {
-  typeTransaction: string;
-  value: string;
-};
+import { DepositoContext, TransactionData } from "@/app/contexts/deposito-context";
 
 export default function NovaTransacao() {
   const { addNewTransaction } = useContext(DepositoContext)
-  const [formData, setFormData] = useState<FormData>({
-    typeTransaction: "",
-    value: "R$ 0,00",
-  });
+  const [typeTransaction, setTypeTransaction] = useState("")
+  const [value, setValue] = useState<number>(0)
   const [date, setDate] = useState('')
 
-  //remove texto e formata para reias o valor digitado
-  const formatToReais = (value: string): string => {
-    const cleanValue = value.replace(/\D/g, "");
-
-    const formattedValue = (+cleanValue / 100).toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    });
-    return formattedValue;
-  };
-
-  const handleAddNewTransaction = async () => {
+  const handleAddNewTransaction = async (event: FormEvent) => {
+    event.preventDefault();
     try {
-      const data = {
-        ...formData,
+      const data: TransactionData = {
+        typeTransaction,
+        value,
         date
       }
       await addNewTransaction(data)
-      setFormData({
-        typeTransaction: "",
-        value: "R$ 0,00",
-      })
+      setTypeTransaction('')
+      setValue(0)
       setDate('')
     } catch (error) {
       console.error(error)
     }
   }
 
-  //lida com a mudança do input
-  const handleChange = (
-    event: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
-  ) => {
-    const { name } = event.target;
-    let { value } = event.target;
-    if (event.target.name === "value") {
-      value = formatToReais(event.target.value);
-    }
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  //enviar o form
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-  };
   return (
     <BoxInside title=" Nova transação">
       <div className="mb-56 md:mb-20">
@@ -73,16 +36,17 @@ export default function NovaTransacao() {
           <Image src={ilustracao} alt="" />
         </div>
         <form
-          onSubmit={handleSubmit}
+          onSubmit={handleAddNewTransaction}
           className="relative z-10 flex flex-col gap-4 "
         >
           <div className="w-full max-w-80 relative">
             <select
               id="typeTransaction"
               name="typeTransaction"
-              value={formData.typeTransaction}
-              onChange={handleChange}
+              value={typeTransaction}
+              onChange={(e) => setTypeTransaction(e.target.value)}
               className="selectNewTransaction w-full h-12 pl-4 border-[1px] focus:border-my-green border-my-blue rounded-lg text-black appearance-none outline-none"
+              required
             >
               <option value="" hidden>
                 Selecione o tipo de transação
@@ -109,7 +73,7 @@ export default function NovaTransacao() {
             </svg>
           </div>
 
-          <div className="mt-2">
+          <div>
             <label htmlFor="value">Data da transação:</label>
             <br />
             <input
@@ -119,25 +83,26 @@ export default function NovaTransacao() {
               value={date}
               onChange={(e) => setDate(e.target.value)}
               className="py-3 w-full max-w-64 mt-3 border-[1px] border-my-blue focus:border-my-green rounded-lg text-black text-center outline-none"
+              required
             />
           </div>
 
-          <div className="mt-7">
+          <div>
             <label htmlFor="value">Valor:</label>
             <br />
             <input
               id="value"
               type="text"
               name="value"
-              value={formData.value}
-              onChange={handleChange}
+              value={value}
+              onChange={(e) => setValue(Number(e.target.value))}
               className="py-3 w-full max-w-64 mt-3 border-[1px] border-my-blue focus:border-my-green rounded-lg text-black text-center outline-none"
+              required
             />
           </div>
           <button
             type="submit"
             className="bg-my-blue hover:bg-black transition-all text-white py-3 rounded-lg max-w-64"
-            onClick={() => handleAddNewTransaction()}
           >
             Concluir transação
           </button>

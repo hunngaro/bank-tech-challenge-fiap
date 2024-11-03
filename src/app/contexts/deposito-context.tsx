@@ -11,6 +11,7 @@ import {
 interface DepositoContextProps {
   depositos: depositos[];
   addNewTransaction: (transactionData: TransactionData) => Promise<void>
+  removeTransaction: (transactionId: string) => Promise<void>
 }
 
 export const DepositoContext = createContext<DepositoContextProps>(
@@ -22,16 +23,16 @@ interface Props {
 }
 
 export interface depositos {
-  id: number;
+  id: string;
   label: string;
   idUser: number;
-  valor: string;
+  valor: number;
   data: string;
 }
 
-interface TransactionData {
+export interface TransactionData {
   typeTransaction: string
-  value: string
+  value: number
   date: string
 }
 
@@ -41,7 +42,7 @@ export function DepositoProvider({ children }: Props) {
   const addNewTransaction = async (transactionData: TransactionData) => {
     try {
       const data: depositos = {
-        id: Math.random(),
+        id: String(Math.random()),
         idUser: 2,
         label: transactionData.typeTransaction,
         valor: transactionData.value,
@@ -52,6 +53,18 @@ export function DepositoProvider({ children }: Props) {
         body: JSON.stringify(data)
       })
       setDepositos((depositos => [...depositos, data]))
+    } catch (error) {
+      throw error
+    }
+  }
+
+  const removeTransaction = async (transactionId: string) => {
+    try {
+      await fetch(`http://localhost:3001/depositos/${transactionId}`, {
+        method: 'DELETE',
+      })
+      const newTransactions = depositos.filter((deposito) => deposito.id !== transactionId)
+      setDepositos(newTransactions)
     } catch (error) {
       throw error
     }
@@ -76,7 +89,7 @@ export function DepositoProvider({ children }: Props) {
   }, []);
 
   return (
-    <DepositoContext.Provider value={{ depositos, addNewTransaction }}>
+    <DepositoContext.Provider value={{ depositos, addNewTransaction, removeTransaction }}>
       {children}
     </DepositoContext.Provider>
   );

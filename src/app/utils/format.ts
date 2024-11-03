@@ -1,3 +1,10 @@
+export const formatPrice = (value: number) => {
+  return new Intl.NumberFormat('pt-br', {
+    currency: 'BRL',
+    style: 'currency'
+  }).format(value)
+}
+
 export const getLongMonth = (date: string) => {
   if (!date) return
   return new Intl.DateTimeFormat('pt-br', {
