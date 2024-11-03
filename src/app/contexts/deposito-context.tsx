@@ -11,6 +11,7 @@ import {
 interface DepositoContextProps {
   depositos: depositos[];
   addNewTransaction: (transactionData: TransactionData) => Promise<void>
+  updateTransaction: (transactionId: string, transactionData: TransactionData) => Promise<void>
   removeTransaction: (transactionId: string) => Promise<void>
 }
 
@@ -58,6 +59,27 @@ export function DepositoProvider({ children }: Props) {
     }
   }
 
+  const updateTransaction = async (transactionId: string, transactionData: TransactionData) => {
+    try {
+      const data: depositos = {
+        id: transactionId,
+        idUser: 2,
+        label: transactionData.typeTransaction,
+        valor: transactionData.value,
+        data: transactionData.date
+      }
+      await fetch(`http://localhost:3001/depositos/${transactionId}`, {
+        method: 'PUT',
+        body: JSON.stringify(data)
+      })
+      const transactionIndex = depositos.findIndex((deposito) => deposito.id === transactionId)
+      depositos[transactionIndex] = data
+      setDepositos(depositos)
+    } catch (error) {
+      throw error
+    }
+  }
+
   const removeTransaction = async (transactionId: string) => {
     try {
       await fetch(`http://localhost:3001/depositos/${transactionId}`, {
@@ -89,7 +111,7 @@ export function DepositoProvider({ children }: Props) {
   }, []);
 
   return (
-    <DepositoContext.Provider value={{ depositos, addNewTransaction, removeTransaction }}>
+    <DepositoContext.Provider value={{ depositos, addNewTransaction, updateTransaction, removeTransaction }}>
       {children}
     </DepositoContext.Provider>
   );
