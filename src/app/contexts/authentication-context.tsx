@@ -2,7 +2,7 @@
 import { FC, ReactNode, createContext, useState } from 'react';
 
 // Definindo os tipos para o contexto
-interface User {
+export interface User {
   id: number;
   name: string;
   email: string;

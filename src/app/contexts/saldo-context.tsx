@@ -4,9 +4,11 @@ import {
     Dispatch,
     ReactNode,
     SetStateAction,
+    useContext,
     useEffect,
     useState,
 } from "react";
+import { AuthContext } from "./authentication-context";
 
 interface SaldoContextProps {
     saldos: saldos[];
@@ -37,6 +39,8 @@ interface saldos {
 
 
 export function SaldoProvider({ children }: Props) {
+    const { user } = useContext(AuthContext)
+
     const [saldos, setSaldos] = useState<saldos[]>([]);
     const fetchData = async (
         endpoint: string,
@@ -51,8 +55,8 @@ export function SaldoProvider({ children }: Props) {
         }
     };
     useEffect(() => {
-        fetchData("saldos?idUser=1", setSaldos);
-    }, []);
+        fetchData(`saldos?idUser=${user?.id}`, setSaldos);
+    }, [user]);
     return (
         <SaldoContext.Provider value={{ saldos }}>
             {children}

@@ -1,11 +1,21 @@
-import { ReactNode } from "react";
+'use client'
+import { ReactNode, useContext } from "react";
 import { NavLinks } from "@/app/ui/NavLinks";
+import { redirect } from "next/navigation";
+import { AuthContext } from "../contexts/authentication-context";
 
 interface Props {
   children: ReactNode;
 }
 
-export default function ProfileLayout({ children }: Props) {
+
+export default function ProfileLayout({ children }: Props) {  
+  const { user } = useContext(AuthContext);
+
+  if (!user) {
+    redirect('/')
+  }
+  
   return (
     <div className="flex flex-col flex-1 bg-my-light-green">
       <div className="flex px-6 md:px-[60px] lg:px-0">

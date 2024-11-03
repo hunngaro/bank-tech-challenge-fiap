@@ -4,9 +4,11 @@ import {
   Dispatch,
   ReactNode,
   SetStateAction,
+  useContext,
   useEffect,
   useState,
 } from "react";
+import { AuthContext } from "./authentication-context";
 
 interface DepositoContextProps {
   depositos: depositos[];
@@ -31,6 +33,10 @@ interface depositos {
 export function DepositoProvider({ children }: Props) {
   const [depositos, setDepositos] = useState<depositos[]>([]);
 
+  
+  const { user } = useContext(AuthContext)
+
+
   const fetchData = async (
     endpoint: string,
     setState: Dispatch<SetStateAction<depositos[]>>
@@ -46,8 +52,8 @@ export function DepositoProvider({ children }: Props) {
 
   useEffect(() => {
     // Buscar depositos pelo id do usuario
-    fetchData("depositos?idUser=2", setDepositos);
-  }, []);
+    fetchData(`depositos?idUser=${user?.id}`, setDepositos);
+  }, [user]);
 
   return (
     <DepositoContext.Provider value={{ depositos }}>
