@@ -1,5 +1,6 @@
 "use client";
-import { FC, ReactNode, createContext, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { FC, ReactNode, createContext, useEffect, useState } from 'react';
 
 // Definindo os tipos para o contexto
 export interface User {
@@ -24,7 +25,11 @@ interface AuthProviderProps {
   }
 
 export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
+  const pathname = usePathname()
+  const router = useRouter()
   const [user, setUser] = useState<User | null | undefined>(null);
+  const [loading, setLoading] = useState(true)
+
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
       const response = await fetch(`http://localhost:3001/users`);
@@ -38,35 +43,43 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   
       if (data.length) {
         const userLogged = data.find( res => (res.email === email && res.password === password));
-        console.log(userLogged)
+        const { id, name, email: loggedEmail } = userLogged!
         setUser(userLogged);
+        localStorage.setItem('@bytebank:user', JSON.stringify({ id, name, email: loggedEmail }))
         return userLogged ? true : false
       }
-        return false
-      
+      return false
     } catch (error) {
       console.error('Erro ao fazer login:', error);
       return false;
     }
   };
   
-
   const logout = () => {
     setUser(null);
+    localStorage.removeItem('@bytebank:user')
   };
+
+  useEffect(() => {
+    const storageUser = localStorage.getItem('@bytebank:user')
+    const user: User = JSON.parse(storageUser!)
+    if (user && user.id) {
+      setUser(user)
+      const customPathname = pathname === '/' ? '/dashboard' : pathname
+      router.push(customPathname)
+    } else {
+      router.push('/')
+    }
+    setLoading(false)
+  }, [])
+
+  if (loading) {
+    return null
+  }
 
   return (
     <AuthContext.Provider value={{login, user, logout}}>
-        {children}
+      {children}
     </AuthContext.Provider>
   )
 };
-
-
-// export const useAuth = (): AuthContext<AuthContextProps> => {
-//   const context = useContext(AuthContext);
-//   if (!context) {
-//     throw new Error('useAuth deve ser usado dentro de um AuthProvider');
-//   }
-//   return context;
-// };

@@ -9,9 +9,9 @@ import { AuthContext } from "@/app/contexts/authentication-context";
 export default function Profile() {
   const { user } = useContext(AuthContext)
 
-  const [name, setName] = useState<string>(user!.name);
-  const [email, setEmail] = useState<string>(user!.email);
-  const [password, setPassword] = useState<string>(user!.password);
+  const [name, setName] = useState<string>(user?.name || '');
+  const [email, setEmail] = useState<string>(user?.email || '');
+  const [password, setPassword] = useState<string>(user?.password || '');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
