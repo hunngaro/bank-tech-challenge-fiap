@@ -1,6 +1,8 @@
 "use client";
 import { FormEvent, useContext, useState } from "react";
+import { formatStringToReais } from "@/app/utils/format";
 import BoxInside from "@/app/ui/BoxInside";
+
 import Image from "next/image";
 
 import ilustracao from "@/app/assets/ilustracao2.svg";
@@ -12,25 +14,37 @@ import {
 export default function NovaTransacao() {
   const { addNewTransaction } = useContext(DepositoContext);
   const [typeTransaction, setTypeTransaction] = useState("");
-  const [value, setValue] = useState<number>(0);
+  const [value, setValue] = useState<string>('R$ 0,00');
   const [date, setDate] = useState("");
 
   const handleAddNewTransaction = async (event: FormEvent) => {
     event.preventDefault();
+    const valueTransaction = typeof value == 'string' ? +value.replace(/\D/g, "") : value
+    
     try {
       const data: TransactionData = {
         typeTransaction,
-        value,
+        valueTransaction,
         date,
       };
       await addNewTransaction(data);
       setTypeTransaction("");
-      setValue(0);
+      setValue('R$ 0,00');
       setDate("");
     } catch (error) {
       console.error(error);
     }
   };
+
+  //lida com a mudança do input colcocar o R$ visualmente
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
+    let { value } = event.target;
+    if (event.target.name === "value") {
+      value = formatStringToReais(event.target.value);
+    }
+    setValue(value)
+  };
+
 
   return (
     <BoxInside title=" Nova transação">
@@ -80,9 +94,9 @@ export default function NovaTransacao() {
             <label htmlFor="value">Data da transação:</label>
             <br />
             <input
-              id="value"
+              id="date"
               type="date"
-              name="value"
+              name="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
               className="py-3 w-full max-w-64 mt-3 border-[1px] border-my-blue focus:border-my-green rounded-lg text-black text-center outline-none"
@@ -98,7 +112,7 @@ export default function NovaTransacao() {
               type="text"
               name="value"
               value={value}
-              onChange={(e) => setValue(Number(e.target.value))}
+              onChange={handleChange}
               className="py-3 w-full max-w-64 mt-3 border-[1px] border-my-blue focus:border-my-green rounded-lg text-black text-center outline-none"
               required
             />

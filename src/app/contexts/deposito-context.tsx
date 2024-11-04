@@ -38,7 +38,7 @@ export interface depositos {
 
 export interface TransactionData {
   typeTransaction: string;
-  value: number;
+  valueTransaction: number ;
   date: string;
 }
 
@@ -52,7 +52,7 @@ export function DepositoProvider({ children }: Props) {
         id: String(Math.random()),
         idUser: user!.id,
         label: transactionData.typeTransaction,
-        valor: transactionData.value,
+        valor: transactionData.valueTransaction,
         data: transactionData.date,
       };
       await fetch("http://localhost:3001/depositos", {
@@ -74,7 +74,7 @@ export function DepositoProvider({ children }: Props) {
         id: transactionId,
         idUser: user!.id,
         label: transactionData.typeTransaction,
-        valor: transactionData.value,
+        valor: transactionData.valueTransaction,
         data: transactionData.date,
       };
       await fetch(`http://localhost:3001/depositos/${transactionId}`, {

@@ -9,7 +9,6 @@ import { AuthContext } from "@/app/contexts/authentication-context";
 
 export default function Saldo() {
   const { saldos } = useContext(SaldoContext);
-  // const [saldo, setSaldo] = useState<number>(2500);
   const [showValue, setShowValue] = useState<boolean>(true);
 
   const formatToBRL = (value: number) => {

@@ -18,6 +18,13 @@
       "email": "lucas.vieira@gmail.com",
       "password": "12345678",
       "terms": true
+    },
+    {
+      "id": "fd75",
+      "name": "Guilherme",
+      "email": "gui@farias.com",
+      "password": "12341234",
+      "terms": true
     }
   ],
   "saldos": [
@@ -47,6 +54,12 @@
       "id": "447a",
       "idUser": "c24d",
       "contaCorrente": 0,
+      "contaInvestimentos": []
+    },
+    {
+      "id": "44f8",
+      "idUser": "fd75",
+      "contaCorrente": 10000,
       "contaInvestimentos": []
     }
   ],
@@ -78,6 +91,27 @@
       "label": "debito",
       "valor": 2000,
       "data": "2024-09-10"
+    },
+    {
+      "id": "0.028349414645917115",
+      "idUser": "fd75",
+      "label": "deposito",
+      "valor": 111111,
+      "data": "2024-11-04"
+    },
+    {
+      "id": "0.306819322925713",
+      "idUser": "fd75",
+      "label": "emprestimo",
+      "valor": 10,
+      "data": "2024-11-05"
+    },
+    {
+      "id": "0.26220085438194074",
+      "idUser": "fd75",
+      "label": "emprestimo",
+      "valor": 1223,
+      "data": "2024-11-03"
     }
   ],
   "cartoes": [
