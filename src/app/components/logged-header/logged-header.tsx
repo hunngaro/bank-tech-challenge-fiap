@@ -3,19 +3,23 @@ import avatar from "@/app/assets/avatar.svg";
 import menu from "@/app/assets/menu.svg";
 import Image from "next/image";
 import { BurgerMenu } from "../burger-menu/burger-menu";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLinks } from "@/app/ui/NavLinks";
+import { AuthContext } from "@/app/contexts/authentication-context";
 
 export function LoggedHeader() {
   const [isOpenAppMenu, setIsOpenAppMenu] = useState(false);
   const [isOpenProfileMenu, setIsOpenProfileMenu] = useState(false);
+
+  const { logout, user } = useContext(AuthContext)
+
 
   return (
     <header className="bg-my-dark-green">
       <div className="container mx-auto py-7 px-6 md:px-0 static md:relative">
         <div className="flex lg:justify-end md:justify-end sm:justify-between justify-between items-center lg:gap-10 md:gap-4">
           <strong className="text-white text-sm lg:block md:block sm:hidden hidden">
-            Joana da Silva Oliveira
+            {user?.name}
           </strong>
           <BurgerMenu
             className="left-0 top-0"
@@ -47,7 +51,7 @@ export function LoggedHeader() {
                 text="Sair"
                 hasBorder={false}
                 textColor="text-white"
-                onClick={() => setIsOpenProfileMenu(false)}
+                onClick={logout}
               />
             </ul>
           </BurgerMenu>

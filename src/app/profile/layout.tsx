@@ -1,3 +1,4 @@
+'use client'
 import { ReactNode } from "react";
 import { NavLinks } from "@/app/ui/NavLinks";
 
@@ -5,7 +6,8 @@ interface Props {
   children: ReactNode;
 }
 
-export default function ProfileLayout({ children }: Props) {
+
+export default function ProfileLayout({ children }: Props) {  
   return (
     <div className="flex flex-col flex-1 bg-my-light-green">
       <div className="flex px-6 md:px-[60px] lg:px-0">

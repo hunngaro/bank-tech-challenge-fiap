@@ -4,9 +4,11 @@ import {
     Dispatch,
     ReactNode,
     SetStateAction,
+    useContext,
     useEffect,
     useState,
 } from "react";
+import { AuthContext } from "./authentication-context";
 
 interface CartoesContextProps {
     cartoes: cartoes[];
@@ -33,6 +35,8 @@ interface cartoes {
 
 
 export function CartoesProvider({ children }: Props) {
+    const { user } = useContext(AuthContext)
+
     const [cartoes, setCartoes] = useState<cartoes[]>([]);
     const fetchData = async (
         endpoint: string,
@@ -47,8 +51,8 @@ export function CartoesProvider({ children }: Props) {
         }
     };
     useEffect(() => {
-        fetchData("cartoes?idUser=1", setCartoes);
-    }, []);
+        fetchData(`cartoes?idUser=${user?.id}`, setCartoes);
+    }, [user]);
     return (
         <CartoesContext.Provider value={{ cartoes }}>
             {children}

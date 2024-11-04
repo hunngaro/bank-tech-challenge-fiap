@@ -9,12 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.1",
     "chart.js": "^4.4.4",
     "json-server": "^1.0.0-beta.3",
     "next": "14.2.13",
     "react": "^18",
     "react-chartjs-2": "^5.2.0",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-hook-form": "^7.53.1",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",

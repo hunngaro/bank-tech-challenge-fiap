@@ -40,17 +40,10 @@
   "depositos": [
     {
       "id": "2",
-      "idUser": 1,
-      "label": "cambio",
-      "valor": 100,
+      "idUser": 2,
+      "label": "deposito",
+      "valor": 200,
       "data": "2023-11-19"
-    },
-    {
-      "id": "3",
-      "idUser": 1,
-      "label": "credito",
-      "valor": 100,
-      "data": "2023-11-20"
     },
     {
       "id": "0.22938457192998674",
