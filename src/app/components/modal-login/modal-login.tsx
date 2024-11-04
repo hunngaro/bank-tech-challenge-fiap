@@ -1,37 +1,62 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import Image from "next/image";
 import imgLogin from "@/app/assets/login.svg";
 import close from "@/app/assets/close-black.svg";
 import { AuthContext } from "@/app/contexts/authentication-context";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 interface LoginProps {
   isOpenLog: boolean;
   onCloseLog: VoidFunction;
 }
 
+interface LoginData {
+  email: string;
+  password: string;
+}
+
+const schema = yup.object().shape({
+  email: yup
+    .string()
+    .email("Dado incorreto. Revise e digite novamente")
+    .required("O campo e-mail é obrigatório"),
+  password: yup
+    .string()
+    .min(8, "A senha deve ter pelo menos 8 dígitos")
+    .required("O campo e-mail é obrigatório"),
+});
+
 const Login: React.FC<LoginProps> = ({ isOpenLog, onCloseLog }) => {
-  if (!isOpenLog) return null;
-  const {login} = useContext(AuthContext)
-  const [password, setPassword] = useState<string>('')
-  const [email, setEmail] = useState<string>('');
+  const { login } = useContext(AuthContext);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
 
   const router = useRouter();
-  const [loginFail, setLoginFail] = useState<string>('')
-  
-  async function isLogged(){
-    let logged = await login(email, password);
-    
-    if(logged) {
-      router.push("/dashboard"); 
-      onCloseLog()
+
+  async function isLogged({ email, password }: LoginData) {
+    const logged = await login(email, password);
+
+    if (logged) {
+      router.push("/dashboard");
+      onCloseLog();
+      reset();
     }
-      else{
-        setLoginFail('Ops login falhou, tente novamente.')
-      }
   }
 
+  if (!isOpenLog) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center">
@@ -46,36 +71,60 @@ const Login: React.FC<LoginProps> = ({ isOpenLog, onCloseLog }) => {
           className="mt-6 mx-auto md:mt-auto"
         />
         <h2 className="text-xl text-center font-bold mt-8">Login</h2>
-        <form className="grid gap-6 mt-8">
+        <form
+          id="login-form"
+          className="grid gap-6 mt-8"
+          onSubmit={handleSubmit(isLogged)}
+        >
           <div className="flex flex-col gap-2">
             <label htmlFor="email" className="text-md font-bold">
               Email
             </label>
             <input
+              {...register("email")}
               type="email"
               name="email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="bg-white border-my-input-border border-2 px-4 py-3 rounded-lg outline-my-green"
+              className={`bg-white ${
+                errors.email?.message
+                  ? "border-my-dark-red"
+                  : "border-my-input-border"
+              } border-2 px-4 py-3 rounded-lg ${
+                errors.email?.message
+                  ? "outline-my-dark-red"
+                  : "outline-my-green"
+              }`}
               placeholder="Digite seu email"
             />
+            <p className="text-my-dark-red text-sm">{errors.email?.message}</p>
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="password" className="text-md font-bold">
               Senha
             </label>
-            <p></p>
             <input
+              {...register("password")}
               type="password"
               name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               id="password"
-              className="bg-white border-my-input-border border-2 px-4 py-3 rounded-lg outline-my-green"
+              className={`bg-white ${
+                errors.password?.message
+                  ? "border-my-dark-red"
+                  : "border-my-input-border"
+              } border-2 px-4 py-3 rounded-lg ${
+                errors.password?.message
+                  ? "outline-my-dark-red"
+                  : "outline-my-green"
+              }`}
               placeholder="Digite sua senha"
-              
             />
+            <p className="text-my-dark-red text-sm">
+              {errors.password?.message}
+            </p>
           </div>
         </form>
         <a href="#" className="text-my-green underline block mt-2">
@@ -83,14 +132,13 @@ const Login: React.FC<LoginProps> = ({ isOpenLog, onCloseLog }) => {
         </a>
         <div className="flex justify-center mt-8">
           <button
+            form="login-form"
             type="submit"
-            onClick={isLogged}
             className="bg-my-green hover:bg-black transition-all text-white font-bold rounded-lg w-36 py-[14px]"
           >
             Acessar
           </button>
         </div>
-        { loginFail.length > 1 && <span>{loginFail}</span> }
       </div>
     </div>
   );
