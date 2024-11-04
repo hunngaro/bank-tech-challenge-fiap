@@ -1,7 +1,7 @@
 "use client";
 import { useContext, useState, useEffect } from "react";
-import { Doughnut } from 'react-chartjs-2';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Doughnut } from "react-chartjs-2";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 import BoxInside from "@/app/ui/BoxInside";
 import { SaldoContext } from "@/app/contexts/saldo-context";
@@ -14,77 +14,73 @@ interface ContaInvestimento {
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function Investiment() {
-  const { saldos } = useContext(SaldoContext)
+  const { saldos } = useContext(SaldoContext);
   const [fixa, setFixa] = useState<number>(0);
   const [variavel, setVariavel] = useState<number>(0);
   const [amount, setAmount] = useState<number>(0);
 
-  let contaInvestimentos:ContaInvestimento
-  contaInvestimentos = { rendaVariavel:0, rendaFixa:0 }
-  
-  saldos.map(saldo => (
-    saldo.contaInvestimentos.map(sal => (
-      contaInvestimentos = sal
-    ))
-  ))
-  
+  let contaInvestimentos: ContaInvestimento;
+  contaInvestimentos = { rendaVariavel: 0, rendaFixa: 0 };
+
+  saldos.map((saldo) =>
+    saldo.contaInvestimentos.map((sal) => (contaInvestimentos = sal))
+  );
+
   useEffect(() => {
     if (contaInvestimentos) {
-        setFixa(contaInvestimentos.rendaFixa);
-        setVariavel(contaInvestimentos.rendaVariavel);
-        setAmount(contaInvestimentos.rendaFixa + contaInvestimentos.rendaVariavel)
-      }
+      setFixa(contaInvestimentos.rendaFixa);
+      setVariavel(contaInvestimentos.rendaVariavel);
+      setAmount(
+        contaInvestimentos.rendaFixa + contaInvestimentos.rendaVariavel
+      );
+    }
   }, [contaInvestimentos]);
-  
-  
-
 
   const formatToBRL = (value: number) => {
-    return value.toLocaleString('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
+    return value.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
     });
   };
 
   const data = {
-    labels: ['Fundos de investimento', 'Tesouro Direto'],
+    labels: ["Fundos de investimento", "Tesouro Direto"],
     datasets: [
       {
-        label: '% do Total',
+        label: "% do Total",
         data: [fixa, variavel],
-        backgroundColor: ['#2567F9', '#8F3CFF'],
+        backgroundColor: ["#2567F9", "#8F3CFF"],
         hoverOffset: 4,
         borderWidth: 0,
       },
     ],
   };
-  
+
   const options = {
-    cutout: '60%', // Faz o círculo no meio vazio
+    cutout: "60%", // Faz o círculo no meio vazio
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
       legend: {
         position: () => {
-          return window.innerWidth > 768 ? 'right' : 'bottom'; // 'right' acima de tablets e 'bottom' em telas menores
+          return window.innerWidth > 768 ? "right" : "bottom"; // 'right' acima de tablets e 'bottom' em telas menores
         },
         labels: {
-          color: '#fff',       // Cor do texto da legenda
+          color: "#fff", // Cor do texto da legenda
           usePointStyle: true, // Usa ponto ao invés de quadrado na legenda
-          pointStyle: 'circle',// Estilo do ícone na legenda (círculo)
-          boxWidth: 20,        // Largura da caixa de cor na legenda
+          pointStyle: "circle", // Estilo do ícone na legenda (círculo)
+          boxWidth: 20, // Largura da caixa de cor na legenda
           boxHeight: 8,
-          padding: 20,         // Espaçamento entre os itens da legenda
+          padding: 20, // Espaçamento entre os itens da legenda
           font: {
-            size: 16,          // Tamanho da fonte da legenda
-            weight: 'normal',    // Peso da fonte
-            family: 'Inter',   // Família da fonte
+            size: 16, // Tamanho da fonte da legenda
+            weight: "normal", // Peso da fonte
+            family: "Inter", // Família da fonte
           },
-        }
-      }
-    }
+        },
+      },
+    },
   };
-
 
   return (
     <BoxInside title="Investimentos">
@@ -110,5 +106,5 @@ export default function Investiment() {
         </div>
       </div>
     </BoxInside>
-  )
+  );
 }

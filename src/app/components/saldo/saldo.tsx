@@ -5,6 +5,7 @@ import Image from "next/image";
 import pixels from "@/app/assets/pixels.svg";
 import illustration from "@/app/assets/ilustracao.svg";
 import { SaldoContext } from "@/app/contexts/saldo-context";
+import { AuthContext } from "@/app/contexts/authentication-context";
 
 export default function Saldo() {
   const { saldos } = useContext(SaldoContext);
@@ -42,6 +43,8 @@ export default function Saldo() {
     return `${diaSemana}, ${dia}/${mes}/${ano}`;
   };
 
+  const { user } = useContext(AuthContext);
+
   return (
     <div className="bg-my-blue w-full p-6 min-h-[655px] md:min-h-[402px] md:flex justify-between pb-36 rounded-lg text-white relative">
       <Image
@@ -61,7 +64,7 @@ export default function Saldo() {
       />
       <div className="flex md:block flex-col items-center">
         <h2 className="text-2xl mb-4 mt-4 md:mt-0 font-semibold">
-          Olá, <Link href="/profile">Joana!</Link> :)
+          Olá, <Link href="/profile">{user?.name}!</Link> :)
         </h2>
         <p>{formatarData()}</p>
       </div>
@@ -73,8 +76,9 @@ export default function Saldo() {
           >
             Saldo
             <span
-              className={`relative before:content-[''] before:w-1 before:h-7 ${!showValue ? "before:block" : "before:hidden"
-                }  before:absolute before:top-1/2 before:left-1/2 before:bg-white lg:before:bg-my-red before:-rotate-45 before:-translate-x-1/2 before:-translate-y-1/2`}
+              className={`relative before:content-[''] before:w-1 before:h-7 ${
+                !showValue ? "before:block" : "before:hidden"
+              }  before:absolute before:top-1/2 before:left-1/2 before:bg-white lg:before:bg-my-red before:-rotate-45 before:-translate-x-1/2 before:-translate-y-1/2`}
             >
               <svg
                 className="relative"
@@ -95,16 +99,27 @@ export default function Saldo() {
 
           <p className="mt-4">Conta Corrente</p>
           <div className="text-3xl mt-2">
-            {saldos?.length  
-             ? saldos.map((res) => (
+            {saldos?.length ? (
+              saldos.map((res) => (
                 <div key={res.id}>
-                  <div className="flex justify-between w-full cursor-pointer" onClick={toggleValueVisibility}>
-                  {showValue ? formatToBRL(res?.contaCorrente) : "R$ *******"}
+                  <div
+                    className="flex justify-between w-full cursor-pointer"
+                    onClick={toggleValueVisibility}
+                  >
+                    {showValue ? formatToBRL(res?.contaCorrente) : "R$ *******"}
                   </div>
                 </div>
               ))
-            :null}
-
+            ) : (
+              <div>
+                <div
+                  className="flex justify-between w-full cursor-pointer"
+                  onClick={toggleValueVisibility}
+                >
+                  {showValue ? formatToBRL(0) : "R$ *******"}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -2,21 +2,28 @@
   "users": [
     {
       "id": "1",
-      "name": "Hungaro",
+      "name": "Fernando Hungaro",
       "email": "fernandohungaro@gmail.com",
       "password": "12345678"
     },
     {
       "id": "2",
-      "name": "Rafael",
+      "name": "Rafael Miralha",
       "email": "rafamiralha1@gmail.com",
       "password": "987654321"
+    },
+    {
+      "id": "c24d",
+      "name": "Lucas Vieira",
+      "email": "lucas.vieira@gmail.com",
+      "password": "12345678",
+      "terms": true
     }
   ],
   "saldos": [
     {
       "id": "1",
-      "idUser": 1,
+      "idUser": "1",
       "contaCorrente": 1500,
       "contaInvestimentos": [
         {
@@ -27,7 +34,7 @@
     },
     {
       "id": "2",
-      "idUser": 2,
+      "idUser": "2",
       "contaCorrente": 5000,
       "contaInvestimentos": [
         {
@@ -35,35 +42,48 @@
           "rendaVariavel": 15000
         }
       ]
+    },
+    {
+      "id": "447a",
+      "idUser": "c24d",
+      "contaCorrente": 0,
+      "contaInvestimentos": []
     }
   ],
   "depositos": [
     {
       "id": "2",
-      "idUser": 1,
-      "label": "cambio",
-      "valor": 100,
+      "idUser": "2",
+      "label": "deposito",
+      "valor": 200,
       "data": "2023-11-19"
     },
     {
-      "id": "3",
-      "idUser": 1,
-      "label": "credito",
-      "valor": 100,
-      "data": "2023-11-20"
-    },
-    {
       "id": "0.22938457192998674",
-      "idUser": 2,
+      "idUser": "2",
       "label": "emprestimo",
       "valor": 500,
       "data": "2024-11-10"
+    },
+    {
+      "id": "0.3608566454491269",
+      "idUser": "1",
+      "label": "deposito",
+      "valor": 2000,
+      "data": "2024-11-04"
+    },
+    {
+      "id": "0.8855915394579899",
+      "idUser": "2",
+      "label": "debito",
+      "valor": 2000,
+      "data": "2024-09-10"
     }
   ],
   "cartoes": [
     {
       "id": "1",
-      "idUser": 1,
+      "idUser": "1",
       "nameCartao": "Fernando Hungaro",
       "number": "1234123412341234",
       "type": "digital",
@@ -72,7 +92,7 @@
     },
     {
       "id": "2",
-      "idUser": 1,
+      "idUser": "1",
       "nameCartao": "Fernando Hungaro",
       "number": "4321432143214321",
       "type": "fisico",

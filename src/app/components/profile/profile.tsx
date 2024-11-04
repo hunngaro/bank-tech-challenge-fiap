@@ -1,16 +1,17 @@
 "use client";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import Image from "next/image";
 import iluProfile from "@/app/assets/ilu-profile.svg";
 import BoxInside from "@/app/ui/BoxInside";
+import { AuthContext } from "@/app/contexts/authentication-context";
 
 export default function Profile() {
-  const [name, setName] = useState<string>("Joana da Silva Oliveira");
-  const [email, setEmail] = useState<string>(
-    "joanadasilvaoliveira@email.com.br"
-  );
-  const [password, setPassword] = useState<string>("SenhaSenha");
+  const { user } = useContext(AuthContext)
+
+  const [name, setName] = useState<string>(user?.name || '');
+  const [email, setEmail] = useState<string>(user?.email || '');
+  const [password, setPassword] = useState<string>(user?.password || '');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

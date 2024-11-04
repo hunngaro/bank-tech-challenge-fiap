@@ -4,13 +4,16 @@ import BoxInside from "@/app/ui/BoxInside";
 import Image from "next/image";
 
 import ilustracao from "@/app/assets/ilustracao2.svg";
-import { DepositoContext, TransactionData } from "@/app/contexts/deposito-context";
+import {
+  DepositoContext,
+  TransactionData,
+} from "@/app/contexts/deposito-context";
 
 export default function NovaTransacao() {
-  const { addNewTransaction } = useContext(DepositoContext)
-  const [typeTransaction, setTypeTransaction] = useState("")
-  const [value, setValue] = useState<number>(0)
-  const [date, setDate] = useState('')
+  const { addNewTransaction } = useContext(DepositoContext);
+  const [typeTransaction, setTypeTransaction] = useState("");
+  const [value, setValue] = useState<number>(0);
+  const [date, setDate] = useState("");
 
   const handleAddNewTransaction = async (event: FormEvent) => {
     event.preventDefault();
@@ -18,16 +21,16 @@ export default function NovaTransacao() {
       const data: TransactionData = {
         typeTransaction,
         value,
-        date
-      }
-      await addNewTransaction(data)
-      setTypeTransaction('')
-      setValue(0)
-      setDate('')
+        date,
+      };
+      await addNewTransaction(data);
+      setTypeTransaction("");
+      setValue(0);
+      setDate("");
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   return (
     <BoxInside title=" Nova transação">
@@ -45,7 +48,7 @@ export default function NovaTransacao() {
               name="typeTransaction"
               value={typeTransaction}
               onChange={(e) => setTypeTransaction(e.target.value)}
-              className="selectNewTransaction w-full h-12 pl-4 border-[1px] focus:border-my-green border-my-blue rounded-lg text-black appearance-none outline-none"
+              className="selectNewTransaction w-full h-12 pl-4 pr-10 border-[1px] focus:border-my-green border-my-blue rounded-lg text-black appearance-none outline-none"
               required
             >
               <option value="" hidden>
