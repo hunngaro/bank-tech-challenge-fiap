@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bank-Teck-Challenge-Fiap
 
-## Getting Started
+> Projeto Front-End de uma aplicação de internet banking
 
-First, run the development server:
+### Ajustes e melhorias
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas para as seguintes tarefas:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [x] Listagem de transações
+- [x] Edição de uma transação
+- [x] Adição de uma nova transação
+- [x] Exclusão de uma transação
+- [ ] Incluir graficos e analises financeiras
+- [ ] Filtro de pesquisa/busca
+- [ ] Paginação
+- [ ] Gerenciamento de usuarios
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 💻 Pré-requisitos
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
-## Learn More
+- Você precisa instalar a versão mais recente do node.js, next.js
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Instalando Bank-Teck-Challenge-Fiap
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Para instalar o Bank-Teck-Challenge-Fiap, siga estas etapas:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- dentro da pasta raiz do projeto você precisa instalar as dependências com o comando <b>npm install</b>
 
-## Deploy on Vercel
+## ☕ Usando Bank-Teck-Challenge-Fiap
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Para usar Bank-Teck-Challenge-Fiap, siga estas etapas:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Após a instalação das dependências, você precisa instanciar o servidor local, para isso execute o comando <b>npm run dev</b>
+
+- Observe que junto com o projeto front-end será inciado também uma instância do <b>Json-server</b>
+
+
+## 📫 Contribuindo para Bank-Teck-Challenge-Fiap
+
+Para contribuir com Bank-Teck-Challenge-Fiap, implementamos um sistema de git flow, todas as branchs devem partir da <b>develop</b>
+
+1. Bifurque este repositório.
+2. Faça checkout para a branch develop.
+3. Crie um branch: `git checkout -b <nome_branch>`.
+4. Faça suas alterações e confirme-as: `git commit -m '<mensagem_commit>'`
+5. Envie para o branch original develop: `git push origin <nome_do_projeto> / <local>`
+6. Crie a solicitação de pull.
+
+Como alternativa, consulte a documentação do GitHub em [como criar uma solicitação pull](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
+
+## 🤝 Colaboradores
+
+Agradecemos às seguintes pessoas que contribuíram para este projeto:
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="#" title="Fernando Hungaro">
+        <img src="https://avatars.githubusercontent.com/u/142272179?v=4" width="100px;" alt="Foto do Fernando Hungaro" alt="Foto do Fernando Hungaro"/><br>
+        <sub>
+          <b>Fernando Hungaro"</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#" title="Rafael Miralha">
+        <img src="https://avatars.githubusercontent.com/u/99886434?s=400&u=f0ed1e8411421c6e0c8874cbbe44a9383ad01a69&v=4" width="100px;" alt="Foto do Rafael Miralha"/><br>
+        <sub>
+          <b>Rafael Miralha</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#" title="Lucas Vieira">
+        <img src="https://avatars.githubusercontent.com/u/38146739?v=4" width="100px;" alt="Foto do Lucas Vieira"/><br>
+        <sub>
+          <b>Lucas Vieira</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#" title="Guilherme Farias">
+        <img src="https://avatars.githubusercontent.com/u/37490430?v=4" width="100px;" alt="Foto do Guilherme Farias"/><br>
+        <sub>
+          <b>Guilherme Farias</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
