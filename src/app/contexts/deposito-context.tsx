@@ -50,7 +50,7 @@ export function DepositoProvider({ children }: Props) {
     try {
       const data: depositos = {
         id: String(Math.random()),
-        idUser: 2,
+        idUser: user!.id,
         label: transactionData.typeTransaction,
         valor: transactionData.value,
         data: transactionData.date,
@@ -72,7 +72,7 @@ export function DepositoProvider({ children }: Props) {
     try {
       const data: depositos = {
         id: transactionId,
-        idUser: 2,
+        idUser: user!.id,
         label: transactionData.typeTransaction,
         valor: transactionData.value,
         data: transactionData.date,
@@ -81,11 +81,11 @@ export function DepositoProvider({ children }: Props) {
         method: "PUT",
         body: JSON.stringify(data),
       });
-      const transactionIndex = depositos.findIndex(
-        (deposito) => deposito.id === transactionId
+      setDepositos((currentDepositos) =>
+        currentDepositos.map((deposito) =>
+          deposito.id === transactionId ? data : deposito
+        )
       );
-      depositos[transactionIndex] = data;
-      setDepositos(depositos);
     } catch (error) {
       throw error;
     }
