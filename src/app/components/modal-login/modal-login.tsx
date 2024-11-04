@@ -27,7 +27,7 @@ const schema = yup.object().shape({
   password: yup
     .string()
     .min(8, "A senha deve ter pelo menos 8 dígitos")
-    .required("O campo e-mail é obrigatório"),
+    .required("O campo senha é obrigatório"),
 });
 
 const Login: React.FC<LoginProps> = ({ isOpenLog, onCloseLog }) => {

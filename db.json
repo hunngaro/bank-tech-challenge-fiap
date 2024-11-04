@@ -11,12 +11,19 @@
       "name": "Rafael Miralha",
       "email": "rafamiralha1@gmail.com",
       "password": "987654321"
+    },
+    {
+      "id": "c24d",
+      "name": "Lucas Vieira",
+      "email": "lucas.vieira@gmail.com",
+      "password": "12345678",
+      "terms": true
     }
   ],
   "saldos": [
     {
       "id": "1",
-      "idUser": 1,
+      "idUser": "1",
       "contaCorrente": 1500,
       "contaInvestimentos": [
         {
@@ -27,7 +34,7 @@
     },
     {
       "id": "2",
-      "idUser": 2,
+      "idUser": "2",
       "contaCorrente": 5000,
       "contaInvestimentos": [
         {
@@ -35,19 +42,25 @@
           "rendaVariavel": 15000
         }
       ]
+    },
+    {
+      "id": "447a",
+      "idUser": "c24d",
+      "contaCorrente": 0,
+      "contaInvestimentos": []
     }
   ],
   "depositos": [
     {
       "id": "2",
-      "idUser": 2,
+      "idUser": "2",
       "label": "deposito",
       "valor": 200,
       "data": "2023-11-19"
     },
     {
       "id": "0.22938457192998674",
-      "idUser": 2,
+      "idUser": "2",
       "label": "emprestimo",
       "valor": 500,
       "data": "2024-11-10"
@@ -70,7 +83,7 @@
   "cartoes": [
     {
       "id": "1",
-      "idUser": 1,
+      "idUser": "1",
       "nameCartao": "Fernando Hungaro",
       "number": "1234123412341234",
       "type": "digital",
@@ -79,7 +92,7 @@
     },
     {
       "id": "2",
-      "idUser": 1,
+      "idUser": "1",
       "nameCartao": "Fernando Hungaro",
       "number": "4321432143214321",
       "type": "fisico",
