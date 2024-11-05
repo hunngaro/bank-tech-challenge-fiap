@@ -31,7 +31,7 @@ export function Extract() {
                 {getLongMonth(deposito.data)}
               </strong>
               <div className="flex justify-between items-center">
-                <p className="text-black">{deposito.label}</p>
+                <p className="text-black first-letter:capitalize">{deposito.label}</p>
                 <span className="text-[13px] text-my-extract-date-color">
                   {formatDate(deposito.data)}
                 </span>

@@ -13,6 +13,7 @@ export default function CardTransaction() {
   return (
     <div>
       <div className="flex flex-col gap-4">
+        {!depositos.length && <h2 className="text-xl">Ainda <b>não há</b> registro de transações.</h2>}
         {depositos.map((deposito) => (
           <div
             key={deposito.id}
@@ -25,7 +26,7 @@ export default function CardTransaction() {
             />
             <div className="flex flex-1 flex-col">
               <small>Tipo</small>
-              <strong>{deposito.label}</strong>
+              <strong className="first-letter:capitalize">{deposito.label}</strong>
             </div>
             <div className="flex flex-col">
               <small>Valor</small>
@@ -35,17 +36,17 @@ export default function CardTransaction() {
               <small>Data da transação</small>
               <strong>{formatDate(deposito.data)}</strong>
             </div>
-            <div className="flex justify-end gap-2">
+            <div className="flex justify-end gap-8">
               <button
                 type="button"
-                className="bg-my-dark-green p-2 rounded-full"
+                className="bg-my-dark-green p-2 rounded-full cursor-pointer"
                 onClick={() => setOpenModalId(deposito.id)}
               >
                 <Image src={lapis} alt="" />
               </button>
               <button
                 type="button"
-                className="bg-my-dark-green p-2 rounded-full"
+                className="bg-my-dark-green p-2 rounded-full cursor-pointer"
                 onClick={() => removeTransaction(String(deposito.id))}
               >
                 <Image src={lixeira} alt="" />

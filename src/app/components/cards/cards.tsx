@@ -27,7 +27,7 @@ export default function Cards() {
                         <Card key={card.id} name={card.nameCartao} status={card.status} funcoes={card.function} typeCard={card.type} number={card.number} />
                     ))
                     ) : (
-                    <p>Você ainda não possui cartão.</p>
+                    <p className="text-xl">Você ainda <b> não possui</b> cartão.</p>
                     )
                 )
             }
