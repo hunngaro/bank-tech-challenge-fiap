@@ -4,7 +4,8 @@ import edit from "@/app/assets/lapis.svg";
 import trash from "@/app/assets/lixeira.svg";
 import { useContext } from "react";
 import { DepositoContext } from "@/app/contexts/deposito-context";
-import { formatDate, formatPrice, getLongMonth } from "@/app/utils/format";
+import { formatDate, formatStringToReais, getLongMonth } from "@/app/utils/format";
+import Link from "next/link";
 
 export function Extract() {
   const { depositos } = useContext(DepositoContext)
@@ -14,14 +15,14 @@ export function Extract() {
       <div className="w-60 mx-auto lg:w-full">
         <div className="flex justify-between items-center">
           <h1 className="text-black font-bold text-[25px]">Extrato</h1>
-          <div className="flex items-center gap-4">
+          <Link href='/transacoes' className="flex items-center gap-4">
             <button type="button" className="bg-my-blue rounded-full p-2">
               <Image src={edit} alt="" />
             </button>
             <button type="button" className="bg-my-blue rounded-full p-2">
               <Image src={trash} alt="" />
             </button>
-          </div>
+          </Link>
         </div>
         <section className="grid gap-6 mt-6">
           {depositos.map((deposito) => (
@@ -35,7 +36,7 @@ export function Extract() {
                   {formatDate(deposito.data)}
                 </span>
               </div>
-              <strong className="text-black font-semibold">{formatPrice(deposito.valor)}</strong>
+              <strong className="text-black font-semibold">{formatStringToReais(deposito.valor)}</strong>
               <hr className="w-3/4 border-b-[1px] border-b-my-green" />
             </div>
           ))}

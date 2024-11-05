@@ -5,8 +5,14 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function Custom404() {
+  const storageUser = localStorage.getItem("@bytebank:user");
   const router = useRouter();
-  router.push("/not");
+
+  if (storageUser) {
+    router.push("/dashboard") 
+  } else (
+    router.push("/not")
+  )  
 
   return (
     <div className="bg-gradient-to-t from-white to-cyan-900 md:h-screen pb-20 md:pb-72">

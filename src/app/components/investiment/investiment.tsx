@@ -86,24 +86,36 @@ export default function Investiment() {
     <BoxInside title="Investimentos">
       <div className="w-full">
         <h3 className="text-my-blue text-2xl">Total: {formatToBRL(amount)}</h3>
-        <div className="flex flex-col md:flex-row gap-4 mt-8 mb-20">
-          <div className="py-3 px-6 flex-1 rounded-lg text-center bg-my-blue text-white">
-            <p>Renda Fixa:</p>
-            <p className="text-xl mt-2">{formatToBRL(fixa)}</p>
-          </div>
-          <div className="py-3 px-6 flex-1 rounded-lg text-center bg-my-blue text-white">
-            <p>Renda variável:</p>
-            <p className="text-xl mt-2">{formatToBRL(variavel)}</p>
-          </div>
-        </div>
-        <div className="w-full">
-          <h3 className="text-xl mb-6">Estatísticas</h3>
-          <div className="bg-my-blue text-white py-6 rounded-lg text-center w-full flex justify-center">
-            <div className="max-w-[500px] w-full">
-              <Doughnut data={data} options={options} />
+        
+        {
+          amount ? (
+            <>
+            <div className="flex flex-col md:flex-row gap-4 mt-8 mb-20">
+              <div className="py-3 px-6 flex-1 rounded-lg text-center bg-my-blue text-white">
+                <p>Renda Fixa:</p>
+                <p className="text-xl mt-2">{formatToBRL(fixa)}</p>
+              </div>
+              <div className="py-3 px-6 flex-1 rounded-lg text-center bg-my-blue text-white">
+                <p>Renda variável:</p>
+                <p className="text-xl mt-2">{formatToBRL(variavel)}</p>
+              </div>
             </div>
-          </div>
-        </div>
+              <div className="w-full">
+                <h3 className="text-xl mb-6">Estatísticas</h3>
+                <div className="bg-my-blue text-white py-6 rounded-lg text-center w-full flex justify-center">
+                  <div className="max-w-[500px] w-full">
+                    <Doughnut data={data} options={options} />
+                  </div>
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className="w-full">
+                <h3 className="text-xl mt-8">Você ainda não possui investimentos, <br /> Investir sempre é uma boa :)</h3>
+            </div>
+          )
+        }
+       
       </div>
     </BoxInside>
   );
