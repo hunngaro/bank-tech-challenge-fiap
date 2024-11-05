@@ -38,7 +38,7 @@ export function LoggedHeader() {
             <Image src={menu} alt="" />
           </button>
           <BurgerMenu
-            className={`right-0 top-[-28px] bg-black ${
+            className={`right-0 top-0 md:top-[-28px] bg-black ${
               isOpenProfileMenu ? "!block" : "!hidden"
             }`}
             isOpen={isOpenProfileMenu}
