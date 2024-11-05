@@ -11,14 +11,16 @@ import {
   TransactionData,
 } from "@/app/contexts/deposito-context";
 
-export default function NovaTransacao() {
+const getToday = () => {
+  const today = new Date();
+  return today.toISOString().split("T")[0];
+}
+
+export default function NovaTransacao() {  
   const { addNewTransaction } = useContext(DepositoContext);
   const [typeTransaction, setTypeTransaction] = useState("");
   const [value, setValue] = useState<string>('R$ 0,00');
-  const [date, setDate] = useState<string>(() => {
-    const today = new Date();
-    return today.toISOString().split("T")[0];
-  });
+  const [date, setDate] = useState<string>(getToday);
 
   const handleAddNewTransaction = async (event: FormEvent) => {
     event.preventDefault();
@@ -33,7 +35,7 @@ export default function NovaTransacao() {
       await addNewTransaction(data);
       setTypeTransaction("");
       setValue('R$ 0,00');
-      setDate("");
+      setDate(getToday);
     } catch (error) {
       console.error(error);
     }
