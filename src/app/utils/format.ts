@@ -15,6 +15,15 @@ export const formatToReais = (value: string | number): string | number => {
   return formattedValue;
 };
 
+//lida com a mudança do input colcocar o R$ visualmente
+export const inputFormatedToReais = (event: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
+  let { value }: any = event.target;
+  if (event.target.name === "value") {
+    value = formatToReais(event.target.value);
+  }
+  return value
+};
+
 export const getLongMonth = (date: string) => {
   if (!date) return
   return new Intl.DateTimeFormat('pt-br', {

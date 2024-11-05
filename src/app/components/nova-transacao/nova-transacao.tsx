@@ -1,6 +1,6 @@
 "use client";
 import { FormEvent, useContext, useState } from "react";
-import { formatToReais } from "@/app/utils/format";
+import { inputFormatedToReais } from "@/app/utils/format";
 import BoxInside from "@/app/ui/BoxInside";
 
 import Image from "next/image";
@@ -15,7 +15,10 @@ export default function NovaTransacao() {
   const { addNewTransaction } = useContext(DepositoContext);
   const [typeTransaction, setTypeTransaction] = useState("");
   const [value, setValue] = useState<string>('R$ 0,00');
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState<string>(() => {
+    const today = new Date();
+    return today.toISOString().split("T")[0];
+  });
 
   const handleAddNewTransaction = async (event: FormEvent) => {
     event.preventDefault();
@@ -35,16 +38,6 @@ export default function NovaTransacao() {
       console.error(error);
     }
   };
-
-  //lida com a mudança do input colcocar o R$ visualmente
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
-    let { value }: any = event.target;
-    if (event.target.name === "value") {
-      value = formatToReais(event.target.value);
-    }
-    setValue(value)
-  };
-
 
   return (
     <BoxInside title=" Nova transação">
@@ -99,7 +92,7 @@ export default function NovaTransacao() {
               name="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
-              className="py-3 w-full max-w-64 mt-3 border-[1px] border-my-blue focus:border-my-green rounded-lg text-black text-center outline-none"
+              className="py-3 w-full max-w-64 mt-3 border-[1px] border-my-blue focus:border-my-green rounded-lg text-black text-center outline-none flex justify-center"
               required
             />
           </div>
@@ -112,7 +105,7 @@ export default function NovaTransacao() {
               type="text"
               name="value"
               value={value}
-              onChange={handleChange}
+              onChange={(e) => setValue(inputFormatedToReais(e))}
               className="py-3 w-full max-w-64 mt-3 border-[1px] border-my-blue focus:border-my-green rounded-lg text-black text-center outline-none"
               required
             />

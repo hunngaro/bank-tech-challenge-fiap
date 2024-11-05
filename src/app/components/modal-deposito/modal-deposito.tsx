@@ -6,7 +6,7 @@ import {
   TransactionData,
 } from "@/app/contexts/deposito-context";
 import { FormEvent, useContext, useState } from "react";
-import { formatToReais } from "@/app/utils/format";
+import { formatToReais, inputFormatedToReais } from "@/app/utils/format";
 
 interface Props {
   isOpen: boolean;
@@ -33,16 +33,6 @@ export function ModalDeposito({ isOpen, onClose, deposito }: Props) {
     } catch (error) {
       console.error(error);
     }
-  };
-
-  const handleChange = (
-    event: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
-  ) => {
-    let { value }: any = event.target;
-    if (event.target.name === "value") {
-      value = formatToReais(event.target.value);
-    }
-    setValue(value);
   };
 
   if (!isOpen) return null;
@@ -93,7 +83,7 @@ export function ModalDeposito({ isOpen, onClose, deposito }: Props) {
               type="text"
               name="value"
               value={formatToReais(value)}
-              onChange={handleChange}
+              onChange={(e) => setValue(inputFormatedToReais(e))}
               className="py-3 w-full border-[1px] border-my-blue focus:border-my-green rounded-lg text-black text-center outline-none"
             />
 

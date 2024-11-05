@@ -25,6 +25,13 @@
       "email": "gui@farias.com",
       "password": "12341234",
       "terms": true
+    },
+    {
+      "id": "c6d3",
+      "name": "Guilherme ",
+      "email": "Guilehre@gui.com",
+      "password": "121321123123",
+      "terms": true
     }
   ],
   "saldos": [
@@ -59,7 +66,7 @@
     {
       "id": "44f8",
       "idUser": "fd75",
-      "contaCorrente": 12608.10,
+      "contaCorrente": 12608.1,
       "contaInvestimentos": []
     }
   ],
@@ -103,8 +110,15 @@
       "id": "0.8562225782901148",
       "idUser": "fd75",
       "label": "credito",
-      "valor": "R$ 22,22",
+      "valor": "R$ 222,22",
       "data": "2024-11-06"
+    },
+    {
+      "id": "0.8501048134935097",
+      "idUser": "fd75",
+      "label": "doc/ted",
+      "valor": "R$ 100,50",
+      "data": "2024-11-05"
     }
   ],
   "cartoes": [
@@ -121,6 +135,24 @@
       "id": "2",
       "idUser": "1",
       "nameCartao": "Fernando Hungaro",
+      "number": "4321432143214321",
+      "type": "fisico",
+      "function": "debito",
+      "status": false
+    },
+    {
+      "id": "1",
+      "idUser": "fd75",
+      "nameCartao": "Guilherme",
+      "number": "1234123412341234",
+      "type": "digital",
+      "function": "credito",
+      "status": true
+    },
+    {
+      "id": "2",
+      "idUser": "fd75",
+      "nameCartao": "Guilherme",
       "number": "4321432143214321",
       "type": "fisico",
       "function": "debito",
