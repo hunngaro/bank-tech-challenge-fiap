@@ -1,5 +1,5 @@
 import { DepositoContext } from "@/app/contexts/deposito-context";
-import { formatDate, formatPrice, formatToReais } from "@/app/utils/format";
+import { formatDate, formatToReais } from "@/app/utils/format";
 import { useContext, useState } from "react";
 import Image from "next/image";
 import lapis from "@/app/assets/lapis.svg";
@@ -8,7 +8,7 @@ import { ModalDeposito } from "../modal-deposito/modal-deposito";
 
 export default function CardTransaction() {
   const { depositos, removeTransaction } = useContext(DepositoContext);
-  const [isOpen, setIsOpen] = useState(false);
+  const [openModalId, setOpenModalId] = useState<string | null>(null);
 
   return (
     <div>
@@ -19,8 +19,8 @@ export default function CardTransaction() {
             className="flex md:grid grid-cols-4 flex-col md:flex-row justify-between md:items-center gap-2 bg-white py-2 px-4 rounded-lg"
           >
             <ModalDeposito
-              isOpen={isOpen}
-              onClose={() => setIsOpen(false)}
+              isOpen={openModalId === deposito.id}
+              onClose={() => setOpenModalId(null)}
               deposito={deposito}
             />
             <div className="flex flex-1 flex-col">
@@ -39,7 +39,7 @@ export default function CardTransaction() {
               <button
                 type="button"
                 className="bg-my-dark-green p-2 rounded-full"
-                onClick={() => setIsOpen(true)}
+                onClick={() => setOpenModalId(deposito.id)}
               >
                 <Image src={lapis} alt="" />
               </button>
