@@ -111,7 +111,7 @@ export default function Investiment() {
             </>
           ) : (
             <div className="w-full">
-                <h3 className="text-xl mt-8">Você ainda não possui investimentos, <br /> Investir sempre é uma boa :)</h3>
+                <h3 className="text-xl mt-8">Você ainda <b> não possui investimentos</b>, <br /> Investir sempre é uma boa :)</h3>
             </div>
           )
         }
