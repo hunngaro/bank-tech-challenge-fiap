@@ -4,7 +4,7 @@ import edit from "@/app/assets/lapis.svg";
 import trash from "@/app/assets/lixeira.svg";
 import { useContext } from "react";
 import { DepositoContext } from "@/app/contexts/deposito-context";
-import { formatDate, formatStringToReais, getLongMonth } from "@/app/utils/format";
+import { formatDate, formatToReais, getLongMonth } from "@/app/utils/format";
 import Link from "next/link";
 
 export function Extract() {
@@ -36,7 +36,7 @@ export function Extract() {
                   {formatDate(deposito.data)}
                 </span>
               </div>
-              <strong className="text-black font-semibold">{formatStringToReais(deposito.valor)}</strong>
+              <strong className="text-black font-semibold">{formatToReais(deposito.valor)}</strong>
               <hr className="w-3/4 border-b-[1px] border-b-my-green" />
             </div>
           ))}

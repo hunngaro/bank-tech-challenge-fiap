@@ -6,7 +6,7 @@ export const formatPrice = (value: number) => {
 }
 
 //converte texto e formata para reias o valor digitado
-export const formatStringToReais = (value: string | number): string | number => {
+export const formatToReais = (value: string | number): string | number => {
   const cleanValue = typeof value == 'number' ? String(value).replace(/\D/g, "") : value.replace(/\D/g, "") ;
   const formattedValue = (+cleanValue / 100).toLocaleString("pt-BR", {
     style: "currency",

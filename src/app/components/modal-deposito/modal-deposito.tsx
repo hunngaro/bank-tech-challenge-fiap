@@ -2,6 +2,7 @@ import Image from "next/image";
 import close from '@/app/assets/close-black.svg'
 import { DepositoContext, depositos, TransactionData } from "@/app/contexts/deposito-context";
 import { FormEvent, useContext, useState } from "react";
+import { formatToReais } from "@/app/utils/format";
 
 interface Props {
   isOpen: boolean
@@ -21,7 +22,7 @@ export function ModalDeposito({ isOpen, onClose, deposito }: Props) {
       const transactionData: TransactionData = {
         typeTransaction,
         date,
-        value
+        valueTransaction: value
       }
       await updateTransaction(deposito.id, transactionData)
       onClose()
@@ -29,6 +30,14 @@ export function ModalDeposito({ isOpen, onClose, deposito }: Props) {
       console.error(error)
     }
   }
+
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
+    let { value }: any = event.target;
+    if (event.target.name === "value") {
+      value = formatToReais(event.target.value);
+    }
+    setValue(value)
+  };
 
   if (!isOpen) return null
 
@@ -59,7 +68,7 @@ export function ModalDeposito({ isOpen, onClose, deposito }: Props) {
             <input type="date" name="transaction-date" value={date} onChange={(e) => setDate(e.target.value)} className="py-3 w-full border-[1px] border-my-blue focus:border-my-green rounded-lg text-black text-center outline-none" />
 
             <label htmlFor="value">Valor</label>
-            <input type="text" name="value" value={value} onChange={(e) => setValue(Number(e.target.value))} className="py-3 w-full border-[1px] border-my-blue focus:border-my-green rounded-lg text-black text-center outline-none" />
+            <input type="text" name="value" value={formatToReais(value)} onChange={handleChange} className="py-3 w-full border-[1px] border-my-blue focus:border-my-green rounded-lg text-black text-center outline-none" />
 
             <button type="submit" className="bg-my-blue hover:bg-black transition-all text-white py-3 rounded-lg mt-2">Editar transação</button>
           </form>

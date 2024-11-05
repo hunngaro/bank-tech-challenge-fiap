@@ -40,7 +40,6 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
-  const { addSaldo } = useContext(SaldoContext);
   const pathname = usePathname();
   const router = useRouter();
   const [user, setUser] = useState<User | null | undefined>(null);
@@ -81,12 +80,6 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
       const response = await fetch("http://localhost:3001/users", {
         method: "POST",
         body: JSON.stringify(data),
-      });
-      const responseData = await response.json();
-      await addSaldo({
-        idUser: responseData.id,
-        contaCorrente: 0,
-        contaInvestimentos: [],
       });
       await login(data.email, data.password);
       router.push("/dashboard");

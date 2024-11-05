@@ -21,13 +21,13 @@ export default function RootLayout({
       <body>
         <main className="flex flex-col h-screen overflow-x-hidden">
             <AuthProvider>
+            <SaldoProvider>
               <CustomHeader />
-              <SaldoProvider>
               <DepositoProvider>
                 <CartoesProvider>{children}</CartoesProvider>
               </DepositoProvider>
-              </SaldoProvider>
               <Footer />
+              </SaldoProvider>
             </AuthProvider>
         </main>
       </body>

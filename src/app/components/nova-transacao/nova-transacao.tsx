@@ -1,6 +1,6 @@
 "use client";
 import { FormEvent, useContext, useState } from "react";
-import { formatStringToReais } from "@/app/utils/format";
+import { formatToReais } from "@/app/utils/format";
 import BoxInside from "@/app/ui/BoxInside";
 
 import Image from "next/image";
@@ -38,9 +38,9 @@ export default function NovaTransacao() {
 
   //lida com a mudança do input colcocar o R$ visualmente
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
-    let { value } = event.target;
+    let { value }: any = event.target;
     if (event.target.name === "value") {
-      value = formatStringToReais(event.target.value);
+      value = formatToReais(event.target.value);
     }
     setValue(value)
   };

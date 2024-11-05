@@ -40,7 +40,7 @@ export interface TransactionData {
   typeTransaction: string;
   valueTransaction: number ;
   date: string;
-}
+ }
 
 export function DepositoProvider({ children }: Props) {
   const { user } = useContext(AuthContext);

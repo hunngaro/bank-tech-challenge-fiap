@@ -25,6 +25,97 @@
       "email": "gui@farias.com",
       "password": "12341234",
       "terms": true
+    },
+    {
+      "id": "6b94",
+      "name": "Jose",
+      "email": "joseteste@email.com",
+      "password": "123456789",
+      "terms": true
+    },
+    {
+      "id": "769f",
+      "name": "Jose",
+      "email": "joseteste@email.com",
+      "password": "123456789",
+      "terms": true
+    },
+    {
+      "id": "3f67",
+      "name": "Jose",
+      "email": "joseteste@email.com",
+      "password": "123456789",
+      "terms": true
+    },
+    {
+      "id": "fa7c",
+      "name": "Jose",
+      "email": "joseteste@email.com",
+      "password": "123456789",
+      "terms": true
+    },
+    {
+      "id": "d278",
+      "name": "Jose",
+      "email": "joseteste@email.com",
+      "password": "123456789",
+      "terms": true
+    },
+    {
+      "id": "74e1",
+      "name": "Jose2",
+      "email": "joseteste2@email.com",
+      "password": "12345678",
+      "terms": true
+    },
+    {
+      "id": "a0d9",
+      "name": "joao",
+      "email": "joao@email.com",
+      "password": "12345678",
+      "terms": true
+    },
+    {
+      "id": "2e80",
+      "name": "pedro",
+      "email": "pedro@email.com",
+      "password": "12345678",
+      "terms": true
+    },
+    {
+      "id": "5f94",
+      "name": "Lucas",
+      "email": "lucas@email.com",
+      "password": "12345678",
+      "terms": true
+    },
+    {
+      "id": "7c1b",
+      "name": "Fiap",
+      "email": "Fiap@email.com",
+      "password": "12345678",
+      "terms": true
+    },
+    {
+      "id": "6cb9",
+      "name": "Fiap Teste",
+      "email": "fiapteste@email.com",
+      "password": "12345678",
+      "terms": true
+    },
+    {
+      "id": "8f24",
+      "name": "tablet",
+      "email": "tablet@email.com",
+      "password": "12345678",
+      "terms": true
+    },
+    {
+      "id": "0007",
+      "name": "tiago",
+      "email": "tiago@email.com",
+      "password": "12345678",
+      "terms": true
     }
   ],
   "saldos": [
@@ -60,6 +151,18 @@
       "id": "44f8",
       "idUser": "fd75",
       "contaCorrente": 10000,
+      "contaInvestimentos": []
+    },
+    {
+      "id": "08e5",
+      "idUser": "74e1",
+      "contaCorrente": 159,
+      "contaInvestimentos": []
+    },
+    {
+      "id": "65b4",
+      "idUser": "2e80",
+      "contaCorrente": 0,
       "contaInvestimentos": []
     }
   ],
@@ -104,6 +207,83 @@
       "idUser": "fd75",
       "label": "emprestimo",
       "valor": 1223,
+      "data": "2024-11-03"
+    },
+    {
+      "id": "0.5232990022661903",
+      "idUser": "74e1",
+      "label": "deposito",
+      "valor": 11111,
+      "data": "2024-11-04"
+    },
+    {
+      "id": "0.08346383909510102",
+      "idUser": "74e1",
+      "label": "deposito",
+      "valor": 2222,
+      "data": "2024-11-04"
+    },
+    {
+      "id": "0.6915561105774044",
+      "idUser": "74e1",
+      "label": "debito",
+      "valor": 2222,
+      "data": "2024-11-04"
+    },
+    {
+      "id": "0.8874224646094728",
+      "idUser": "74e1",
+      "label": "deposito",
+      "valor": 1023,
+      "data": "2024-11-04"
+    },
+    {
+      "id": "0.7138479562456375",
+      "idUser": "5f94",
+      "label": "deposito",
+      "valor": "R$ 56,00",
+      "data": "2024-11-03"
+    },
+    {
+      "id": "0.5216036358984217",
+      "idUser": "7c1b",
+      "label": "deposito",
+      "valor": 15633,
+      "data": "2024-11-04"
+    },
+    {
+      "id": "0.3239243670423775",
+      "idUser": "7c1b",
+      "label": "cambio",
+      "valor": 2000,
+      "data": "2024-11-04"
+    },
+    {
+      "id": "0.7735412201978014",
+      "idUser": "7c1b",
+      "label": "doc/ted",
+      "valor": 3000,
+      "data": "2024-11-04"
+    },
+    {
+      "id": "0.5820500859609825",
+      "idUser": "7c1b",
+      "label": "emprestimo",
+      "valor": 100000,
+      "data": "2024-11-04"
+    },
+    {
+      "id": "0.7214429720224278",
+      "idUser": "1",
+      "label": "deposito",
+      "valor": "R$ 60,00",
+      "data": "2024-11-04"
+    },
+    {
+      "id": "0.4859637765436673",
+      "idUser": "0007",
+      "label": "deposito",
+      "valor": "R$ 45,00",
       "data": "2024-11-03"
     }
   ],

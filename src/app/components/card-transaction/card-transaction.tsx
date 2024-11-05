@@ -1,5 +1,5 @@
 import { DepositoContext } from "@/app/contexts/deposito-context";
-import { formatDate, formatPrice } from "@/app/utils/format";
+import { formatDate, formatPrice, formatToReais } from "@/app/utils/format";
 import { useContext, useState } from "react";
 import Image from "next/image";
 import lapis from "@/app/assets/lapis.svg";
@@ -29,7 +29,7 @@ export default function CardTransaction() {
             </div>
             <div className="flex flex-col">
               <small>Valor</small>
-              <strong>{formatPrice(deposito.valor)}</strong>
+              <strong>{formatToReais(deposito.valor)}</strong>
             </div>
             <div className="flex flex-col">
               <small>Data da transação</small>
