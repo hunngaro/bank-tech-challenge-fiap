@@ -1,15 +1,13 @@
 "use client";
-import { FormEvent, useContext, useState } from "react";
+import { FormEvent, useState } from "react";
 import { inputFormatedToReais } from "@/utils/format";
 import BoxInside from "@/ui/BoxInside";
 
 import Image from "next/image";
 
 import ilustracao from "@/assets/ilustracao2.svg";
-import {
-  DepositoContext,
-  TransactionData,
-} from "@/contexts/deposito-context";
+import { useAppDispatch } from "@/app/hooks";
+import { addNewTransaction, TransactionData } from "@/features/deposito/deposito-thunks";
 
 const getToday = () => {
   const today = new Date();
@@ -17,7 +15,7 @@ const getToday = () => {
 }
 
 export default function NovaTransacao() {  
-  const { addNewTransaction } = useContext(DepositoContext);
+  const dispatch = useAppDispatch()
   const [typeTransaction, setTypeTransaction] = useState("");
   const [value, setValue] = useState<string>('R$ 0,00');
   const [date, setDate] = useState<string>(getToday);
@@ -32,7 +30,7 @@ export default function NovaTransacao() {
         valueTransaction,
         date,
       };
-      await addNewTransaction(data);
+      await dispatch(addNewTransaction(data));
       setTypeTransaction("");
       setValue('R$ 0,00');
       setDate(getToday);

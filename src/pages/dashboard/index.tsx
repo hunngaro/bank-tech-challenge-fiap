@@ -2,6 +2,7 @@ import DefaultLayout from "@/layouts/default-layout";
 import NovaTransacao from "@/components/nova-transacao/nova-transacao";
 import Saldo from "@/components/saldo/saldo";
 import { ReactElement } from "react";
+import { AuthWrapper } from "@/components/auth-wrapper/auth-wrapper";
 
 export default function Dashboard() {
   return (
@@ -15,7 +16,9 @@ export default function Dashboard() {
 Dashboard.getLayout = function getLayout(page: ReactElement) {
   return (
     <DefaultLayout>
-      {page}
+      <AuthWrapper>
+        {page}
+      </AuthWrapper>
     </DefaultLayout>
   )
 }

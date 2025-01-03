@@ -1,4 +1,5 @@
 "use client";
+import { AuthWrapper } from "@/components/auth-wrapper/auth-wrapper";
 import CardTransaction from "@/components/card-transaction/card-transaction";
 import Saldo from "@/components/saldo/saldo";
 import DefaultLayout from "@/layouts/default-layout";
@@ -19,7 +20,7 @@ export default function TransactionsPage() {
 TransactionsPage.getLayout = function getLayout(page: ReactElement) {
   return (
     <DefaultLayout>
-      {page}
+      <AuthWrapper>{page}</AuthWrapper>
     </DefaultLayout>
-  )
-}
+  );
+};

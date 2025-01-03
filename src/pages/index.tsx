@@ -7,7 +7,8 @@ import pontos from "@/assets/pontos.svg";
 import dispositivos from "@/assets/dispositivos.svg";
 import Cadastro from "@/components/formulario-cadastro/formulario-cadastro";
 import Login from "@/components/modal-login/modal-login";
-import { useState } from "react";
+import { ReactElement, useState } from "react";
+import { AuthWrapper } from "@/components/auth-wrapper/auth-wrapper";
 
 export default function Home() {
   const [showModal, setShowModal] = useState(false);
@@ -29,6 +30,7 @@ export default function Home() {
             </h1>
             <Image
               src={ilustrac}
+              priority
               alt="graphics and a person"
               className="lg:w-2/3 lg:max-w-2xl "
             />
@@ -104,3 +106,7 @@ export default function Home() {
     </>
   );
 }
+
+Home.getLayout = function getLayout(page: ReactElement) {
+  return <AuthWrapper>{page}</AuthWrapper>;
+};

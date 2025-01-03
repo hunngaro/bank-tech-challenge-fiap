@@ -1,12 +1,14 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import imgCadastro from "@/assets/cadastro.svg";
 import close from "@/assets/close-black.svg";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { AuthContext, SignUpData } from "@/contexts/authentication-context";
+import { useAppDispatch } from "@/app/hooks";
+import { signUp, SignUpData } from "@/features/auth/auth-thunks";
+import { useRouter } from "next/navigation";
 
 interface CadastroProps {
   isOpen: boolean;
@@ -30,7 +32,8 @@ const schema = yup.object().shape({
 });
 
 const Cadastro: React.FC<CadastroProps> = ({ isOpen, onClose }) => {
-  const { signUp } = useContext(AuthContext);
+  const dispatch = useAppDispatch()
+  const router = useRouter()
   const {
     register,
     handleSubmit,
@@ -45,7 +48,8 @@ const Cadastro: React.FC<CadastroProps> = ({ isOpen, onClose }) => {
 
   const handleSignUp = async (data: SignUpData) => {
     try {
-      await signUp(data);
+      await dispatch(signUp(data));
+      router.push('/dashboard')
     } catch (error) {
       console.error(error);
     }

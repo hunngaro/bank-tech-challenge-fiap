@@ -1,10 +1,11 @@
 "use client";
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 import BoxInside from "@/ui/BoxInside";
-import { SaldoContext } from "@/contexts/saldo-context";
+import { useAppDispatch, useAppSelector } from "@/app/hooks";
+import { fetchSaldos } from "@/features/saldo/saldo-thunks";
 
 interface ContaInvestimento {
   rendaFixa: number;
@@ -14,7 +15,9 @@ interface ContaInvestimento {
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function Investiment() {
-  const { saldos } = useContext(SaldoContext);
+  const dispatch = useAppDispatch()
+  const saldos = useAppSelector((state) => state.saldo.saldos)
+  const user = useAppSelector((state) => state.auth.user)
   const [fixa, setFixa] = useState<number>(0);
   const [variavel, setVariavel] = useState<number>(0);
   const [amount, setAmount] = useState<number>(0);
@@ -25,6 +28,12 @@ export default function Investiment() {
   saldos.map((saldo) =>
     saldo.contaInvestimentos.map((sal) => (contaInvestimentos = sal))
   );
+
+  useEffect(() => {
+    if (user?.id) {
+      dispatch(fetchSaldos(user.id))
+    }
+  }, [user, dispatch])
 
   useEffect(() => {
     if (contaInvestimentos) {

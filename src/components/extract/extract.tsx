@@ -2,13 +2,22 @@
 import Image from "next/image";
 import edit from "@/assets/lapis.svg";
 import trash from "@/assets/lixeira.svg";
-import { useContext } from "react";
-import { DepositoContext } from "@/contexts/deposito-context";
 import { formatDate, formatToReais, getLongMonth } from "@/utils/format";
 import Link from "next/link";
+import { useAppDispatch, useAppSelector } from "@/app/hooks";
+import { useEffect } from "react";
+import { fetchDepositos } from "@/features/deposito/deposito-thunks";
 
 export function Extract() {
-  const { depositos } = useContext(DepositoContext)
+  const dispatch = useAppDispatch()
+  const user = useAppSelector((state) => state.auth.user)
+  const depositos = useAppSelector((state) => state.deposito.depositos)
+  
+   useEffect(() => {
+    if (user?.id) {
+      dispatch(fetchDepositos(user.id));
+    }
+  }, [user, dispatch]);
 
   return (
     <aside className="bg-[#F5F5F5] overflow-auto rounded-lg py-8 px-6 mt-8 lg:mt-0">

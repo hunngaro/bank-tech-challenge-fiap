@@ -1,3 +1,4 @@
+import { AuthWrapper } from "@/components/auth-wrapper/auth-wrapper";
 import Saldo from "@/components/saldo/saldo";
 import Servico from "@/components/servico/servico";
 import DefaultLayout from "@/layouts/default-layout";
@@ -15,7 +16,7 @@ export default function Servicos() {
 Servicos.getLayout = function getLayout(page: ReactElement) {
   return (
     <DefaultLayout>
-      {page}
+      <AuthWrapper>{page}</AuthWrapper>
     </DefaultLayout>
-  )
-}
+  );
+};

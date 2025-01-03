@@ -14,7 +14,6 @@ export default function Header() {
   const [showModalLog, setShowModalLog] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-
   return (
     <header className="bg-black px-6 md:px-[60px]">
       <Cadastro isOpen={showModal} onClose={() => setShowModal(false)} />
