@@ -3,15 +3,17 @@ import avatar from "@/assets/avatar.svg";
 import menu from "@/assets/menu.svg";
 import Image from "next/image";
 import { BurgerMenu } from "../burger-menu/burger-menu";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link, NavLinks } from "@/ui/NavLinks";
-import { AuthContext } from "@/contexts/authentication-context";
+import { useAppDispatch, useAppSelector } from "@/app/hooks";
+import { logout } from "@/features/auth/auth-slice";
 
 export function LoggedHeader() {
   const [isOpenAppMenu, setIsOpenAppMenu] = useState(false);
   const [isOpenProfileMenu, setIsOpenProfileMenu] = useState(false);
 
-  const { logout, user } = useContext(AuthContext);
+  const { user } = useAppSelector((state) => state.auth)
+  const dispatch = useAppDispatch()
 
   return (
     <header className="bg-my-dark-green">
@@ -62,7 +64,7 @@ export function LoggedHeader() {
                 text="Sair"
                 hasBorder={false}
                 textColor="text-white"
-                onClick={logout}
+                onClick={() => dispatch(logout())}
               />
             </ul>
           </BurgerMenu>

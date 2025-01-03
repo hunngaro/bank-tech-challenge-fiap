@@ -1,3 +1,4 @@
+import { AuthWrapper } from "@/components/auth-wrapper/auth-wrapper";
 import Cards from "@/components/cards/cards";
 import Saldo from "@/components/saldo/saldo";
 import DefaultLayout from "@/layouts/default-layout";
@@ -15,8 +16,7 @@ export default function MyCards() {
 MyCards.getLayout = function getLayout(page: ReactElement) {
   return (
     <DefaultLayout>
-      {page}
+      <AuthWrapper>{page}</AuthWrapper>
     </DefaultLayout>
-  )
-}
-
+  );
+};

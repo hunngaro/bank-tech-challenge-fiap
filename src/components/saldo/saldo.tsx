@@ -1,14 +1,14 @@
 "use client";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import pixels from "@/assets/pixels.svg";
 import illustration from "@/assets/ilustracao.svg";
-import { SaldoContext } from "@/contexts/saldo-context";
-import { AuthContext } from "@/contexts/authentication-context";
+import { useAppSelector } from "@/app/hooks";
 
 export default function Saldo() {
-  const { saldos } = useContext(SaldoContext);
+  const user = useAppSelector((state) => state.auth.user)
+  const saldos = useAppSelector((state) => state.saldo.saldos)
   const [showValue, setShowValue] = useState<boolean>(true);
 
   const formatToBRL = (value: number) => {
@@ -42,7 +42,6 @@ export default function Saldo() {
     return `${diaSemana}, ${dia}/${mes}/${ano}`;
   };
 
-  const { user } = useContext(AuthContext);
 
   return (
     <div className="bg-my-blue w-full p-6 min-h-[655px] md:min-h-[402px] md:flex justify-between pb-36 rounded-lg text-white relative">

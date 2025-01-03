@@ -1,13 +1,13 @@
 "use client";
-import { useContext, useState } from "react";
+import { useState } from "react";
 
 import Image from "next/image";
 import iluProfile from "@/assets/ilu-profile.svg";
 import BoxInside from "@/ui/BoxInside";
-import { AuthContext } from "@/contexts/authentication-context";
+import { useAppSelector } from "@/app/hooks";
 
 export default function Profile() {
-  const { user } = useContext(AuthContext)
+  const user = useAppSelector((state) => state.auth.user)
 
   const [name, setName] = useState<string>(user?.name || '');
   const [email, setEmail] = useState<string>(user?.email || '');
