@@ -4,6 +4,7 @@ import CardTransaction from "@/components/card-transaction/card-transaction";
 import Saldo from "@/components/saldo/saldo";
 import DefaultLayout from "@/layouts/default-layout";
 import BoxInside from "@/ui/BoxInside";
+import { GetServerSidePropsContext } from "next";
 import { ReactElement } from "react";
 
 export default function TransactionsPage() {
@@ -24,3 +25,21 @@ TransactionsPage.getLayout = function getLayout(page: ReactElement) {
     </DefaultLayout>
   );
 };
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const cookies = context.req.cookies;
+  const user = cookies.user ? JSON.parse(cookies.user) : null;
+
+  if (!user) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+}

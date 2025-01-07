@@ -10,44 +10,57 @@ export interface SignUpData {
 
 export const login = createAsyncThunk(
   "auth/login",
-  async (payload: { email: string; password: string }) => {
+  async (payload: { email: string; password: string }, { rejectWithValue }) => {
     try {
       const { email, password } = payload;
 
-      const response = await fetch(`http://localhost:3001/users`);
+      const response = await fetch(
+        `http://localhost:3001/users?email=${email}&password=${password}`
+      );
 
       // Verificando se a resposta foi bem-sucedida
       if (!response.ok) {
-        throw new Error("Erro na resposta do servidor");
+        return rejectWithValue("Erro na resposta do servidor");
       }
 
       const data: User[] = await response.json();
 
-      const userLogged = data.find(
-        (res) => res.email === email && res.password === password
-      );
-      Cookies.set("user", JSON.stringify(userLogged));
+      if (data.length === 0) {
+        return rejectWithValue("E-mail ou senha incorretos");
+      }
 
-      return userLogged;
+      const user = data[0];
+
+      Cookies.set(
+        "user",
+        JSON.stringify({ id: user.id, name: user.name, email: user.email })
+      );
+
+      return user;
     } catch (error) {
-      throw error;
+      rejectWithValue(error);
     }
   }
 );
 
 export const signUp = createAsyncThunk(
   "auth/signup",
-  async (payload: SignUpData, { dispatch }) => {
+  async (payload: SignUpData, { dispatch, rejectWithValue }) => {
     try {
-      await fetch("http://localhost:3001/users", {
+      const response = await fetch("http://localhost:3001/users", {
         method: "POST",
         body: JSON.stringify(payload),
       });
+
+      if (!response.ok) {
+        return rejectWithValue("Erro na resposta do servidor");
+      }
+
       await dispatch(
         login({ email: payload.email, password: payload.password })
       );
     } catch (error) {
-      throw error;
+      rejectWithValue(error);
     }
   }
 );

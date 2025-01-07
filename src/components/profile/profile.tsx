@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Image from "next/image";
 import iluProfile from "@/assets/ilu-profile.svg";
@@ -9,13 +9,20 @@ import { useAppSelector } from "@/lib/hooks";
 export default function Profile() {
   const user = useAppSelector((state) => state.auth.user);
 
-  const [name, setName] = useState<string>(user?.name || "");
-  const [email, setEmail] = useState<string>(user?.email || "");
-  const [password, setPassword] = useState<string>(user?.password || "");
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
   };
+
+  useEffect(() => {
+    if (user?.id) {
+      setName(user.name || "");
+      setEmail(user.email || "");
+    }
+  }, [user]);
 
   return (
     <BoxInside title="Minha conta">

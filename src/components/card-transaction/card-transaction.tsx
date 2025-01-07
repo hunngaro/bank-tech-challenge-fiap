@@ -6,11 +6,20 @@ import lixeira from "@/assets/lixeira.svg";
 import { ModalDeposito } from "../modal-deposito/modal-deposito";
 import { removeTransaction } from "@/features/deposito/deposito-thunks";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import toast from "react-hot-toast";
 
 export default function CardTransaction() {
   const dispatch = useAppDispatch();
   const depositos = useAppSelector((state) => state.deposito.depositos);
   const [openModalId, setOpenModalId] = useState<string | null>(null);
+
+  const handleRemoveTransaction = (transactionId: string) => {
+    dispatch(removeTransaction(transactionId))
+      .unwrap()
+      .catch((error) => {
+        toast.error(error);
+      });
+  };
 
   return (
     <div>
@@ -55,7 +64,7 @@ export default function CardTransaction() {
               <button
                 type="button"
                 className="bg-my-dark-green p-2 rounded-full cursor-pointer"
-                onClick={() => dispatch(removeTransaction(String(deposito.id)))}
+                onClick={() => handleRemoveTransaction(String(deposito.id))}
               >
                 <Image src={lixeira} alt="" />
               </button>

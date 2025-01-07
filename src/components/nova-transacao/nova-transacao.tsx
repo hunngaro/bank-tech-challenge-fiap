@@ -11,6 +11,7 @@ import {
   TransactionData,
 } from "@/features/deposito/deposito-thunks";
 import { useAppDispatch } from "@/lib/hooks";
+import toast from "react-hot-toast";
 
 const getToday = () => {
   const today = new Date();
@@ -28,19 +29,21 @@ export default function NovaTransacao() {
     const valueTransaction =
       typeof value == "string" ? +value.replace(/\D/g, "") : value;
 
-    try {
-      const data: TransactionData = {
-        typeTransaction,
-        valueTransaction,
-        date,
-      };
-      await dispatch(addNewTransaction(data));
-      setTypeTransaction("");
-      setValue("R$ 0,00");
-      setDate(getToday);
-    } catch (error) {
-      console.error(error);
-    }
+    const data: TransactionData = {
+      typeTransaction,
+      valueTransaction,
+      date,
+    };
+    await dispatch(addNewTransaction(data))
+      .unwrap()
+      .then(() => {
+        setTypeTransaction("");
+        setValue("R$ 0,00");
+        setDate(getToday);
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
   };
 
   return (
