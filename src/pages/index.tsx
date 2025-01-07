@@ -9,6 +9,7 @@ import Cadastro from "@/components/formulario-cadastro/formulario-cadastro";
 import Login from "@/components/modal-login/modal-login";
 import { ReactElement, useState } from "react";
 import { AuthWrapper } from "@/components/auth-wrapper/auth-wrapper";
+import { GetServerSidePropsContext } from "next";
 
 export default function Home() {
   const [showModal, setShowModal] = useState(false);
@@ -110,3 +111,21 @@ export default function Home() {
 Home.getLayout = function getLayout(page: ReactElement) {
   return <AuthWrapper>{page}</AuthWrapper>;
 };
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const cookies = context.req.cookies;
+  const user = cookies.user ? JSON.parse(cookies.user) : null;
+
+  if (user) {
+    return {
+      redirect: {
+        destination: "/dashboard",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+}

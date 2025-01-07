@@ -8,6 +8,7 @@ import {
 } from "@/features/deposito/deposito-thunks";
 import { depositos } from "@/features/deposito/deposito-slice";
 import { useAppDispatch } from "@/lib/hooks";
+import toast from "react-hot-toast";
 
 interface Props {
   isOpen: boolean;
@@ -23,22 +24,24 @@ export function ModalDeposito({ isOpen, onClose, deposito }: Props) {
 
   const handleUpdateTransaction = async (event: FormEvent) => {
     event.preventDefault();
-    try {
-      const transactionData: TransactionData = {
-        typeTransaction,
-        date,
-        valueTransaction: value,
-      };
-      await dispatch(
-        updateTransaction({
-          transactionId: deposito.id,
-          transactionData,
-        })
-      );
-      onClose();
-    } catch (error) {
-      console.error(error);
-    }
+    const transactionData: TransactionData = {
+      typeTransaction,
+      date,
+      valueTransaction: value,
+    };
+    await dispatch(
+      updateTransaction({
+        transactionId: deposito.id,
+        transactionData,
+      })
+    )
+      .unwrap()
+      .then(() => {
+        onClose();
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
   };
 
   if (!isOpen) return null;

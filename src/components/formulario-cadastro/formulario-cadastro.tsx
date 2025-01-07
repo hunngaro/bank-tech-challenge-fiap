@@ -9,6 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { signUp, SignUpData } from "@/features/auth/auth-thunks";
 import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/lib/hooks";
+import toast from "react-hot-toast";
 
 interface CadastroProps {
   isOpen: boolean;
@@ -47,12 +48,14 @@ const Cadastro: React.FC<CadastroProps> = ({ isOpen, onClose }) => {
   const [terms, setTerms] = useState(false);
 
   const handleSignUp = async (data: SignUpData) => {
-    try {
-      await dispatch(signUp(data));
-      router.push("/dashboard");
-    } catch (error) {
-      console.error(error);
-    }
+    await dispatch(signUp(data))
+      .unwrap()
+      .then(() => {
+        router.push("/dashboard");
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLSpanElement>) => {

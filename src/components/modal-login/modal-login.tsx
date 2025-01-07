@@ -9,6 +9,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { login } from "@/features/auth/auth-thunks";
 import { useAppDispatch } from "@/lib/hooks";
+import toast from "react-hot-toast";
 
 interface LoginProps {
   isOpenLog: boolean;
@@ -47,12 +48,14 @@ const Login: React.FC<LoginProps> = ({ isOpenLog, onCloseLog }) => {
   const router = useRouter();
 
   async function isLogged({ email, password }: LoginData) {
-    try {
-      await dispatch(login({ email, password }));
-      router.push("/dashboard");
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(login({ email, password }))
+      .unwrap()
+      .then(() => {
+        router.push("/dashboard");
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
   }
 
   if (!isOpenLog) return null;

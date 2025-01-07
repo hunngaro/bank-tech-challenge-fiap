@@ -10,7 +10,7 @@ export interface TransactionData {
 
 export const addNewTransaction = createAsyncThunk(
   "deposito/addNewTransaction",
-  async (payload: TransactionData, { getState }) => {
+  async (payload: TransactionData, { getState, rejectWithValue }) => {
     try {
       const state = getState() as { auth: { user: User } };
       const user = state.auth.user;
@@ -22,14 +22,18 @@ export const addNewTransaction = createAsyncThunk(
         valor: payload.valueTransaction,
         data: payload.date,
       };
-      await fetch("http://localhost:3001/depositos", {
+      const response = await fetch("http://localhost:3001/depositos", {
         method: "POST",
         body: JSON.stringify(data),
       });
 
+      if (!response.ok) {
+        return rejectWithValue("Erro na resposta do servidor");
+      }
+
       return data;
     } catch (error) {
-      throw error;
+      return rejectWithValue(error);
     }
   }
 );
@@ -38,7 +42,7 @@ export const updateTransaction = createAsyncThunk(
   "deposito/updateTransaction",
   async (
     payload: { transactionId: string; transactionData: TransactionData },
-    { getState }
+    { getState, rejectWithValue }
   ) => {
     const { transactionId, transactionData } = payload;
     const state = getState() as { auth: { user: User } };
@@ -52,48 +56,72 @@ export const updateTransaction = createAsyncThunk(
         valor: transactionData.valueTransaction,
         data: transactionData.date,
       };
-      await fetch(`http://localhost:3001/depositos/${transactionId}`, {
-        method: "PUT",
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        `http://localhost:3001/depositos/${transactionId}`,
+        {
+          method: "PUT",
+          body: JSON.stringify(data),
+        }
+      );
+
+      if (!response.ok) {
+        return rejectWithValue("Erro na resposta do servidor");
+      }
 
       return {
         transactionId,
         data,
       };
     } catch (error) {
-      throw error;
+      return rejectWithValue(error);
     }
   }
 );
 
 export const removeTransaction = createAsyncThunk(
   "deposito/removeTransaction",
-  async (transactionId: string, { getState }) => {
+  async (transactionId: string, { getState, rejectWithValue }) => {
     const state = getState() as { deposito: { depositos: depositos[] } };
     const depositos = state.deposito.depositos;
 
     try {
-      await fetch(`http://localhost:3001/depositos/${transactionId}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `http://localhost:3001/depositos/${transactionId}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (!response.ok) {
+        return rejectWithValue("Erro na resposta do servidor");
+      }
+
       const newTransactions = depositos.filter(
         (deposito) => deposito.id !== transactionId
       );
 
       return newTransactions;
     } catch (error) {
-      throw error;
+      return rejectWithValue(error);
     }
   }
 );
 
 export const fetchDepositos = createAsyncThunk(
   "deposito/fetchDepositos",
-  async (userId: number) => {
-    const response = await fetch(
-      `http://localhost:3001/depositos?idUser=${userId}`
-    );
-    return (await response.json()) as depositos[];
+  async (userId: number, { rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/depositos?idUser=${userId}`
+      );
+
+      if (!response.ok) {
+        return rejectWithValue("Erro na resposta do servidor");
+      }
+
+      return (await response.json()) as depositos[];
+    } catch (error) {
+      return rejectWithValue(error);
+    }
   }
 );

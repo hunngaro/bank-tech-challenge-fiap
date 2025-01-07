@@ -5,6 +5,7 @@ import type { AppProps } from "next/app";
 import { ReactElement, ReactNode } from "react";
 import { NextPage } from "next";
 import StoreProvider from "@/app/store-provider";
+import { Toaster } from "react-hot-toast";
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -24,6 +25,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
         {getLayout(<Component {...pageProps} />)}
         <Footer />
       </main>
+      <Toaster />
     </StoreProvider>
   );
 }
