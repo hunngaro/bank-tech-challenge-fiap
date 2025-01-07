@@ -16,9 +16,7 @@ export default function Dashboard() {
 Dashboard.getLayout = function getLayout(page: ReactElement) {
   return (
     <DefaultLayout>
-      <AuthWrapper>
-        {page}
-      </AuthWrapper>
+      <AuthWrapper>{page}</AuthWrapper>
     </DefaultLayout>
-  )
-}
+  );
+};

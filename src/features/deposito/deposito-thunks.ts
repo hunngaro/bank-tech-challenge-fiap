@@ -81,7 +81,7 @@ export const removeTransaction = createAsyncThunk(
         (deposito) => deposito.id !== transactionId
       );
 
-      return newTransactions
+      return newTransactions;
     } catch (error) {
       throw error;
     }
