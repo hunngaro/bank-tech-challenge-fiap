@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { User } from "./auth-slice";
+import Cookies from "js-cookie";
 
 export interface SignUpData {
   name: string;
@@ -12,28 +13,24 @@ export const login = createAsyncThunk(
   async (payload: { email: string; password: string }) => {
     try {
       const { email, password } = payload;
-  
+
       const response = await fetch(`http://localhost:3001/users`);
-  
+
       // Verificando se a resposta foi bem-sucedida
       if (!response.ok) {
         throw new Error("Erro na resposta do servidor");
       }
-  
+
       const data: User[] = await response.json();
-  
+
       const userLogged = data.find(
         (res) => res.email === email && res.password === password
       );
-      const { id, name, email: loggedEmail } = userLogged!;
-      localStorage.setItem(
-        "@bytebank:user",
-        JSON.stringify({ id, name, email: loggedEmail })
-      );
-  
-      return userLogged; 
+      Cookies.set("user", JSON.stringify(userLogged));
+
+      return userLogged;
     } catch (error) {
-      throw error
+      throw error;
     }
   }
 );
@@ -54,18 +51,3 @@ export const signUp = createAsyncThunk(
     }
   }
 );
-
-export const checkUserFromLocalStorage = createAsyncThunk(
-  'auth/checkUserFromLocalStorage',
-  async (_, { dispatch }) => {
-    const storageUser = localStorage.getItem("@bytebank:user");
-    if (storageUser) {
-      const userData: User = JSON.parse(storageUser);
-      if (userData && userData.id) {
-        await dispatch(
-          login({ email: userData.email, password: userData.password })
-        );
-      }
-    }
-  }
-)

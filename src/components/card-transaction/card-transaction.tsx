@@ -1,23 +1,16 @@
 import { formatDate, formatToReais } from "@/utils/format";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import lapis from "@/assets/lapis.svg";
 import lixeira from "@/assets/lixeira.svg";
 import { ModalDeposito } from "../modal-deposito/modal-deposito";
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
-import { fetchDepositos, removeTransaction } from "@/features/deposito/deposito-thunks";
+import { removeTransaction } from "@/features/deposito/deposito-thunks";
 
 export default function CardTransaction() {
-  const dispatch = useAppDispatch()
-  const user = useAppSelector((state) => state.auth.user)
-  const depositos = useAppSelector((state) => state.deposito.depositos)
+  const dispatch = useAppDispatch();
+  const depositos = useAppSelector((state) => state.deposito.depositos);
   const [openModalId, setOpenModalId] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (user?.id) {
-      dispatch(fetchDepositos(user.id));
-    }
-  }, [user, dispatch]);
 
   return (
     <div>

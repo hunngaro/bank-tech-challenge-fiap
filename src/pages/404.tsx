@@ -3,13 +3,14 @@ import Image from "next/image";
 import page404 from "@/assets/404.svg";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 export default function Custom404() {
-  const storageUser = localStorage.getItem("@bytebank:user");
+  const storageUser = Cookies.get("user");
   const router = useRouter();
 
   if (storageUser) {
-    router.push("/dashboard") 
+    router.push("/dashboard");
   }
 
   return (

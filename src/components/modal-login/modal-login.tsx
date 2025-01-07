@@ -32,7 +32,7 @@ const schema = yup.object().shape({
 });
 
 const Login: React.FC<LoginProps> = ({ isOpenLog, onCloseLog }) => {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
@@ -51,7 +51,7 @@ const Login: React.FC<LoginProps> = ({ isOpenLog, onCloseLog }) => {
       await dispatch(login({ email, password }));
       router.push("/dashboard");
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 

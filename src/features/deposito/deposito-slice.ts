@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addNewTransaction, fetchDepositos, removeTransaction, updateTransaction } from "./deposito-thunks";
+import {
+  addNewTransaction,
+  fetchDepositos,
+  removeTransaction,
+  updateTransaction,
+} from "./deposito-thunks";
 
 export interface depositos {
   id: string;
@@ -58,7 +63,7 @@ export const depositoSlice = createSlice({
       })
       .addCase(removeTransaction.fulfilled, (state, action) => {
         state.status = "idle";
-        state.depositos = action.payload
+        state.depositos = action.payload;
       })
       .addCase(removeTransaction.rejected, (state) => {
         state.status = "failed";
