@@ -1,8 +1,8 @@
 import { setUser, User } from "@/features/auth/auth-slice";
-import { useAppDispatch } from "@/app/hooks";
 import { usePathname, useRouter } from "next/navigation";
 import { ReactNode, useEffect } from "react";
 import Cookies from "js-cookie";
+import { useAppDispatch } from "@/lib/hooks";
 
 interface Props {
   children: ReactNode;

@@ -1,14 +1,12 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import pixels from "@/assets/pixels.svg";
 import illustration from "@/assets/ilustracao.svg";
-import { useAppDispatch, useAppSelector } from "@/app/hooks";
-import { fetchSaldos } from "@/features/saldo/saldo-thunks";
+import { useAppSelector } from "@/lib/hooks";
 
 export default function Saldo() {
-  const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.auth.user);
   const saldos = useAppSelector((state) => state.saldo.saldos);
   const [showValue, setShowValue] = useState<boolean>(true);
@@ -43,12 +41,6 @@ export default function Saldo() {
 
     return `${diaSemana}, ${dia}/${mes}/${ano}`;
   };
-
-  useEffect(() => {
-    if (user?.id) {
-      dispatch(fetchSaldos(user.id));
-    }
-  }, [user, dispatch]);
 
   return (
     <div className="bg-my-blue w-full p-6 min-h-[655px] md:min-h-[402px] md:flex justify-between pb-36 rounded-lg text-white relative">

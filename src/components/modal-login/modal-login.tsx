@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { login } from "@/features/auth/auth-thunks";
-import { useAppDispatch } from "@/app/hooks";
+import { useAppDispatch } from "@/lib/hooks";
 
 interface LoginProps {
   isOpenLog: boolean;

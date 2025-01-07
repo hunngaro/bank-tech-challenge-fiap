@@ -4,8 +4,8 @@ import Image from "next/image";
 import lapis from "@/assets/lapis.svg";
 import lixeira from "@/assets/lixeira.svg";
 import { ModalDeposito } from "../modal-deposito/modal-deposito";
-import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import { removeTransaction } from "@/features/deposito/deposito-thunks";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 
 export default function CardTransaction() {
   const dispatch = useAppDispatch();

@@ -5,15 +5,15 @@ import Image from "next/image";
 import { BurgerMenu } from "../burger-menu/burger-menu";
 import { useState } from "react";
 import { Link, NavLinks } from "@/ui/NavLinks";
-import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import { logout } from "@/features/auth/auth-slice";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 
 export function LoggedHeader() {
   const [isOpenAppMenu, setIsOpenAppMenu] = useState(false);
   const [isOpenProfileMenu, setIsOpenProfileMenu] = useState(false);
 
-  const { user } = useAppSelector((state) => state.auth)
-  const dispatch = useAppDispatch()
+  const { user } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
 
   return (
     <header className="bg-my-dark-green">

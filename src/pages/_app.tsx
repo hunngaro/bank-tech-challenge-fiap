@@ -4,8 +4,7 @@ import Footer from "@/components/footer/footer";
 import type { AppProps } from "next/app";
 import { ReactElement, ReactNode } from "react";
 import { NextPage } from "next";
-import ReduxProvider from "@/app/provider";
-import { wrapper } from "@/app/store";
+import StoreProvider from "@/app/store-provider";
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -17,15 +16,14 @@ type AppPropsWithLayout = AppProps & {
 
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
-  const { props } = wrapper.useWrappedStore(pageProps);
 
   return (
-    <ReduxProvider>
+    <StoreProvider>
       <main className="flex flex-col h-screen overflow-x-hidden">
         <CustomHeader />
-        {getLayout(<Component {...props} />)}
+        {getLayout(<Component {...pageProps} />)}
         <Footer />
       </main>
-    </ReduxProvider>
+    </StoreProvider>
   );
 }
