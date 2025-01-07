@@ -6,9 +6,9 @@ import close from "@/assets/close-black.svg";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useAppDispatch } from "@/app/hooks";
 import { signUp, SignUpData } from "@/features/auth/auth-thunks";
 import { useRouter } from "next/navigation";
+import { useAppDispatch } from "@/lib/hooks";
 
 interface CadastroProps {
   isOpen: boolean;
@@ -32,8 +32,8 @@ const schema = yup.object().shape({
 });
 
 const Cadastro: React.FC<CadastroProps> = ({ isOpen, onClose }) => {
-  const dispatch = useAppDispatch()
-  const router = useRouter()
+  const dispatch = useAppDispatch();
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -49,19 +49,20 @@ const Cadastro: React.FC<CadastroProps> = ({ isOpen, onClose }) => {
   const handleSignUp = async (data: SignUpData) => {
     try {
       await dispatch(signUp(data));
-      router.push('/dashboard')
+      router.push("/dashboard");
     } catch (error) {
       console.error(error);
     }
   };
-  
+
   const handleKeyDown = (event: React.KeyboardEvent<HTMLSpanElement>) => {
-    if (event.key === " ") { // Barra de espaço
+    if (event.key === " ") {
+      // Barra de espaço
       event.preventDefault(); // Evita que a página role ao pressionar espaço
       setTerms(!terms);
     }
   };
-  
+
   if (!isOpen) return null;
 
   return (
@@ -171,27 +172,34 @@ const Cadastro: React.FC<CadastroProps> = ({ isOpen, onClose }) => {
               onChange={(e) => setTerms(e.target.checked)}
               className="appearance-none -mr-3"
             />
-            <label htmlFor="terms" className="text-md leading-5 flex items-center gap-3 cursor-pointer">
-            <span
-              tabIndex={0}
-              aria-checked={terms}
-              onKeyDown={handleKeyDown}
-              className={`w-8 aspect-square border-2 border-my-green rounded transition-colors focus:bg-my-green  ${
-                terms ? 'bg-my-green' : 'bg-transparent focus:opacity-50'
-              }`}
+            <label
+              htmlFor="terms"
+              className="text-md leading-5 flex items-center gap-3 cursor-pointer"
             >
-              {terms && (
-                <svg
-                  className="w-4 h-4 text-white mx-auto my-auto"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-              )}
-            </span>
+              <span
+                tabIndex={0}
+                aria-checked={terms}
+                onKeyDown={handleKeyDown}
+                className={`w-8 aspect-square border-2 border-my-green rounded transition-colors focus:bg-my-green  ${
+                  terms ? "bg-my-green" : "bg-transparent focus:opacity-50"
+                }`}
+              >
+                {terms && (
+                  <svg
+                    className="w-4 h-4 text-white mx-auto my-auto"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                )}
+              </span>
               Li e estou ciente quanto às condições de tratamento dos meus dados
               conforme descrito na Política de Privacidade do banco.
             </label>

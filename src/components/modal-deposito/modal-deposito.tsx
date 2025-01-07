@@ -2,9 +2,12 @@ import Image from "next/image";
 import close from "@/assets/close-black.svg";
 import { FormEvent, useState } from "react";
 import { formatToReais, inputFormatedToReais } from "@/utils/format";
-import { useAppDispatch } from "@/app/hooks";
-import { TransactionData, updateTransaction } from "@/features/deposito/deposito-thunks";
+import {
+  TransactionData,
+  updateTransaction,
+} from "@/features/deposito/deposito-thunks";
 import { depositos } from "@/features/deposito/deposito-slice";
+import { useAppDispatch } from "@/lib/hooks";
 
 interface Props {
   isOpen: boolean;
@@ -13,7 +16,7 @@ interface Props {
 }
 
 export function ModalDeposito({ isOpen, onClose, deposito }: Props) {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const [typeTransaction, setTypeTransaction] = useState(deposito.label);
   const [date, setDate] = useState(deposito.data);
   const [value, setValue] = useState(deposito.valor);
@@ -26,10 +29,12 @@ export function ModalDeposito({ isOpen, onClose, deposito }: Props) {
         date,
         valueTransaction: value,
       };
-      await dispatch(updateTransaction({
-        transactionId: deposito.id,
-        transactionData
-      }));
+      await dispatch(
+        updateTransaction({
+          transactionId: deposito.id,
+          transactionData,
+        })
+      );
       onClose();
     } catch (error) {
       console.error(error);

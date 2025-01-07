@@ -6,24 +6,28 @@ import BoxInside from "@/ui/BoxInside";
 import Image from "next/image";
 
 import ilustracao from "@/assets/ilustracao2.svg";
-import { useAppDispatch } from "@/app/hooks";
-import { addNewTransaction, TransactionData } from "@/features/deposito/deposito-thunks";
+import {
+  addNewTransaction,
+  TransactionData,
+} from "@/features/deposito/deposito-thunks";
+import { useAppDispatch } from "@/lib/hooks";
 
 const getToday = () => {
   const today = new Date();
   return today.toISOString().split("T")[0];
-}
+};
 
-export default function NovaTransacao() {  
-  const dispatch = useAppDispatch()
+export default function NovaTransacao() {
+  const dispatch = useAppDispatch();
   const [typeTransaction, setTypeTransaction] = useState("");
-  const [value, setValue] = useState<string>('R$ 0,00');
+  const [value, setValue] = useState<string>("R$ 0,00");
   const [date, setDate] = useState<string>(getToday);
 
   const handleAddNewTransaction = async (event: FormEvent) => {
     event.preventDefault();
-    const valueTransaction = typeof value == 'string' ? +value.replace(/\D/g, "") : value
-    
+    const valueTransaction =
+      typeof value == "string" ? +value.replace(/\D/g, "") : value;
+
     try {
       const data: TransactionData = {
         typeTransaction,
@@ -32,7 +36,7 @@ export default function NovaTransacao() {
       };
       await dispatch(addNewTransaction(data));
       setTypeTransaction("");
-      setValue('R$ 0,00');
+      setValue("R$ 0,00");
       setDate(getToday);
     } catch (error) {
       console.error(error);
