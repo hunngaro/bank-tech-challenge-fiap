@@ -1,13 +1,15 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import imgLogin from "@/assets/login.svg";
 import close from "@/assets/close-black.svg";
-import { AuthContext } from "@/contexts/authentication-context";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { login } from "@/features/auth/auth-thunks";
+import { useAppDispatch } from "@/lib/hooks";
+import toast from "react-hot-toast";
 
 interface LoginProps {
   isOpenLog: boolean;
@@ -31,12 +33,11 @@ const schema = yup.object().shape({
 });
 
 const Login: React.FC<LoginProps> = ({ isOpenLog, onCloseLog }) => {
-  const { login } = useContext(AuthContext);
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -47,13 +48,14 @@ const Login: React.FC<LoginProps> = ({ isOpenLog, onCloseLog }) => {
   const router = useRouter();
 
   async function isLogged({ email, password }: LoginData) {
-    const logged = await login(email, password);
-
-    if (logged) {
-      router.push("/dashboard");
-      onCloseLog();
-      reset();
-    }
+    dispatch(login({ email, password }))
+      .unwrap()
+      .then(() => {
+        router.push("/dashboard");
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
   }
 
   if (!isOpenLog) return null;

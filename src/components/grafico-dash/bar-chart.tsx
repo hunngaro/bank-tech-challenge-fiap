@@ -12,13 +12,13 @@ import {
   LineElement,
   PointElement
 } from 'chart.js';
-import { DepositoContext } from '@/contexts/deposito-context';
+import { useAppSelector } from '@/lib/hooks';
   
 // Registrando os módulos necessários
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, LineElement, PointElement);
 
 const MyChart: React.FC = () => {
-  const { depositos } = useContext(DepositoContext)
+  const depositos = useAppSelector((state) => state.deposito.depositos);
 
   // Define as cores com base no tipo de transação
   const colorGreen = '#2ECC71'

@@ -7,7 +7,9 @@ import pontos from "@/assets/pontos.svg";
 import dispositivos from "@/assets/dispositivos.svg";
 import Cadastro from "@/components/formulario-cadastro/formulario-cadastro";
 import Login from "@/components/modal-login/modal-login";
-import { useState } from "react";
+import { ReactElement, useState } from "react";
+import { AuthWrapper } from "@/components/auth-wrapper/auth-wrapper";
+import { GetServerSidePropsContext } from "next";
 
 export default function Home() {
   const [showModal, setShowModal] = useState(false);
@@ -29,6 +31,7 @@ export default function Home() {
             </h1>
             <Image
               src={ilustrac}
+              priority
               alt="graphics and a person"
               className="lg:w-2/3 lg:max-w-2xl "
             />
@@ -103,4 +106,26 @@ export default function Home() {
       </div>
     </>
   );
+}
+
+Home.getLayout = function getLayout(page: ReactElement) {
+  return <AuthWrapper>{page}</AuthWrapper>;
+};
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const cookies = context.req.cookies;
+  const user = cookies.user ? JSON.parse(cookies.user) : null;
+
+  if (user) {
+    return {
+      redirect: {
+        destination: "/dashboard",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
 }

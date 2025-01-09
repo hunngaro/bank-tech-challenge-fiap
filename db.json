@@ -95,8 +95,8 @@
     {
       "id": "0.9285287923544268",
       "idUser": "1",
-      "label": "doc/ted",
-      "valor": 160000,
+      "label": "cambio",
+      "valor": "R$ 1.500,00",
       "data": "2024-12-29"
     },
     {
@@ -188,7 +188,19 @@
       "idUser": "fd75",
       "label": "doc/ted",
       "valor": 100000,
-      "data": "2025-01-09"
+      "data": "2025-01-09",
+      "id": "0.752353115035137",
+      "idUser": "c24d",
+      "label": "debito",
+      "valor": 50000,
+      "data": "2025-01-06"
+    },
+    {
+      "id": "0.8984087673314147",
+      "idUser": "1",
+      "label": "debito",
+      "valor": 500000,
+      "data": "2025-01-07"
     }
   ],
   "cartoes": [

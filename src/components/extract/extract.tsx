@@ -1,21 +1,20 @@
-'use client'
+"use client";
 import Image from "next/image";
 import edit from "@/assets/lapis.svg";
 import trash from "@/assets/lixeira.svg";
-import { useContext } from "react";
-import { DepositoContext } from "@/contexts/deposito-context";
 import { formatDate, formatToReais, getLongMonth } from "@/utils/format";
 import Link from "next/link";
+import { useAppSelector } from "@/lib/hooks";
 
 export function Extract() {
-  const { depositos } = useContext(DepositoContext)
+  const depositos = useAppSelector((state) => state.deposito.depositos);
 
   return (
     <aside className="bg-[#F5F5F5] overflow-auto rounded-lg py-8 px-6 mt-8 lg:mt-0">
       <div className="w-60 mx-auto lg:w-full">
         <div className="flex justify-between items-center">
           <h1 className="text-black font-bold text-[25px]">Extrato</h1>
-          <Link href='/transacoes' className="flex items-center gap-4">
+          <Link href="/transacoes" className="flex items-center gap-4">
             <button type="button" className="bg-my-blue rounded-full p-2">
               <Image src={edit} alt="" />
             </button>
@@ -31,12 +30,16 @@ export function Extract() {
                 {getLongMonth(deposito.data)}
               </strong>
               <div className="flex justify-between items-center">
-                <p className="text-black first-letter:capitalize">{deposito.label}</p>
+                <p className="text-black first-letter:capitalize">
+                  {deposito.label}
+                </p>
                 <span className="text-[13px] text-my-extract-date-color">
                   {formatDate(deposito.data)}
                 </span>
               </div>
-              <strong className="text-black font-semibold">{formatToReais(deposito.valor)}</strong>
+              <strong className="text-black font-semibold">
+                {formatToReais(deposito.valor)}
+              </strong>
               <hr className="w-3/4 border-b-[1px] border-b-my-green" />
             </div>
           ))}

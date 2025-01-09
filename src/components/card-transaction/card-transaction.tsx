@@ -1,19 +1,34 @@
-import { DepositoContext } from "@/contexts/deposito-context";
 import { formatDate, formatToReais } from "@/utils/format";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import lapis from "@/assets/lapis.svg";
 import lixeira from "@/assets/lixeira.svg";
 import { ModalDeposito } from "../modal-deposito/modal-deposito";
+import { removeTransaction } from "@/features/deposito/deposito-thunks";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import toast from "react-hot-toast";
 
 export default function CardTransaction() {
-  const { depositos, removeTransaction } = useContext(DepositoContext);
+  const dispatch = useAppDispatch();
+  const depositos = useAppSelector((state) => state.deposito.depositos);
   const [openModalId, setOpenModalId] = useState<string | null>(null);
+
+  const handleRemoveTransaction = (transactionId: string) => {
+    dispatch(removeTransaction(transactionId))
+      .unwrap()
+      .catch((error) => {
+        toast.error(error);
+      });
+  };
 
   return (
     <div>
       <div className="flex flex-col gap-4">
-        {!depositos.length && <h2 className="text-xl">Ainda <b>não há</b> registro de transações.</h2>}
+        {!depositos.length && (
+          <h2 className="text-xl">
+            Ainda <b>não há</b> registro de transações.
+          </h2>
+        )}
         {depositos.map((deposito) => (
           <div
             key={deposito.id}
@@ -26,7 +41,9 @@ export default function CardTransaction() {
             />
             <div className="flex flex-1 flex-col">
               <small>Tipo</small>
-              <strong className="first-letter:capitalize">{deposito.label}</strong>
+              <strong className="first-letter:capitalize">
+                {deposito.label}
+              </strong>
             </div>
             <div className="flex flex-col">
               <small>Valor</small>
@@ -47,7 +64,7 @@ export default function CardTransaction() {
               <button
                 type="button"
                 className="bg-my-dark-green p-2 rounded-full cursor-pointer"
-                onClick={() => removeTransaction(String(deposito.id))}
+                onClick={() => handleRemoveTransaction(String(deposito.id))}
               >
                 <Image src={lixeira} alt="" />
               </button>

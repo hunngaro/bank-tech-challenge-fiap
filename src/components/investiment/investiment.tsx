@@ -1,10 +1,10 @@
 "use client";
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 import BoxInside from "@/ui/BoxInside";
-import { SaldoContext } from "@/contexts/saldo-context";
+import { useAppSelector } from "@/lib/hooks";
 
 interface ContaInvestimento {
   rendaFixa: number;
@@ -14,7 +14,7 @@ interface ContaInvestimento {
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function Investiment() {
-  const { saldos } = useContext(SaldoContext);
+  const saldos = useAppSelector((state) => state.saldo.saldos);
   const [fixa, setFixa] = useState<number>(0);
   const [variavel, setVariavel] = useState<number>(0);
   const [amount, setAmount] = useState<number>(0);
@@ -86,10 +86,9 @@ export default function Investiment() {
     <BoxInside title="Investimentos">
       <div className="w-full">
         <h3 className="text-my-blue text-2xl">Total: {formatToBRL(amount)}</h3>
-        
-        {
-          amount ? (
-            <>
+
+        {amount ? (
+          <>
             <div className="flex flex-col md:flex-row gap-4 mt-8 mb-20">
               <div className="py-3 px-6 flex-1 rounded-lg text-center bg-my-blue text-white">
                 <p>Renda Fixa:</p>
@@ -100,22 +99,23 @@ export default function Investiment() {
                 <p className="text-xl mt-2">{formatToBRL(variavel)}</p>
               </div>
             </div>
-              <div className="w-full">
-                <h3 className="text-xl mb-6">Estatísticas</h3>
-                <div className="bg-my-blue text-white py-6 rounded-lg text-center w-full flex justify-center">
-                  <div className="max-w-[500px] w-full">
-                    <Doughnut data={data} options={options} />
-                  </div>
+            <div className="w-full">
+              <h3 className="text-xl mb-6">Estatísticas</h3>
+              <div className="bg-my-blue text-white py-6 rounded-lg text-center w-full flex justify-center">
+                <div className="max-w-[500px] w-full">
+                  <Doughnut data={data} options={options} />
                 </div>
               </div>
-            </>
-          ) : (
-            <div className="w-full">
-                <h3 className="text-xl mt-8">Você ainda <b> não possui investimentos</b>, <br /> Investir sempre é uma boa :)</h3>
             </div>
-          )
-        }
-       
+          </>
+        ) : (
+          <div className="w-full">
+            <h3 className="text-xl mt-8">
+              Você ainda <b> não possui investimentos</b>, <br /> Investir
+              sempre é uma boa :)
+            </h3>
+          </div>
+        )}
       </div>
     </BoxInside>
   );

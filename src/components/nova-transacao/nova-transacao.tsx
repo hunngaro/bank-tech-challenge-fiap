@@ -1,5 +1,5 @@
 "use client";
-import { FormEvent, useContext, useState } from "react";
+import { FormEvent, useState } from "react";
 import { inputFormatedToReais } from "@/utils/format";
 import BoxInside from "@/ui/BoxInside";
 
@@ -7,38 +7,43 @@ import Image from "next/image";
 
 import ilustracao from "@/assets/ilustracao2.svg";
 import {
-  DepositoContext,
+  addNewTransaction,
   TransactionData,
-} from "@/contexts/deposito-context";
+} from "@/features/deposito/deposito-thunks";
+import { useAppDispatch } from "@/lib/hooks";
+import toast from "react-hot-toast";
 
 const getToday = () => {
   const today = new Date();
   return today.toISOString().split("T")[0];
-}
+};
 
-export default function NovaTransacao() {  
-  const { addNewTransaction } = useContext(DepositoContext);
+export default function NovaTransacao() {
+  const dispatch = useAppDispatch();
   const [typeTransaction, setTypeTransaction] = useState("");
-  const [value, setValue] = useState<string>('R$ 0,00');
+  const [value, setValue] = useState<string>("R$ 0,00");
   const [date, setDate] = useState<string>(getToday);
 
   const handleAddNewTransaction = async (event: FormEvent) => {
     event.preventDefault();
-    const valueTransaction = typeof value == 'string' ? +value.replace(/\D/g, "") : value
-    
-    try {
-      const data: TransactionData = {
-        typeTransaction,
-        valueTransaction,
-        date,
-      };
-      await addNewTransaction(data);
-      setTypeTransaction("");
-      setValue('R$ 0,00');
-      setDate(getToday);
-    } catch (error) {
-      console.error(error);
-    }
+    const valueTransaction =
+      typeof value == "string" ? +value.replace(/\D/g, "") : value;
+
+    const data: TransactionData = {
+      typeTransaction,
+      valueTransaction,
+      date,
+    };
+    await dispatch(addNewTransaction(data))
+      .unwrap()
+      .then(() => {
+        setTypeTransaction("");
+        setValue("R$ 0,00");
+        setDate(getToday);
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
   };
 
   return (

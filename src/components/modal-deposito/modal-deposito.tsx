@@ -1,12 +1,14 @@
 import Image from "next/image";
 import close from "@/assets/close-black.svg";
-import {
-  DepositoContext,
-  depositos,
-  TransactionData,
-} from "@/contexts/deposito-context";
-import { FormEvent, useContext, useState } from "react";
+import { FormEvent, useState } from "react";
 import { formatToReais, inputFormatedToReais } from "@/utils/format";
+import {
+  TransactionData,
+  updateTransaction,
+} from "@/features/deposito/deposito-thunks";
+import { depositos } from "@/features/deposito/deposito-slice";
+import { useAppDispatch } from "@/lib/hooks";
+import toast from "react-hot-toast";
 
 interface Props {
   isOpen: boolean;
@@ -15,24 +17,31 @@ interface Props {
 }
 
 export function ModalDeposito({ isOpen, onClose, deposito }: Props) {
-  const { updateTransaction } = useContext(DepositoContext);
+  const dispatch = useAppDispatch();
   const [typeTransaction, setTypeTransaction] = useState(deposito.label);
   const [date, setDate] = useState(deposito.data);
   const [value, setValue] = useState(deposito.valor);
 
   const handleUpdateTransaction = async (event: FormEvent) => {
     event.preventDefault();
-    try {
-      const transactionData: TransactionData = {
-        typeTransaction,
-        date,
-        valueTransaction: value,
-      };
-      await updateTransaction(deposito.id, transactionData);
-      onClose();
-    } catch (error) {
-      console.error(error);
-    }
+    const transactionData: TransactionData = {
+      typeTransaction,
+      date,
+      valueTransaction: value,
+    };
+    await dispatch(
+      updateTransaction({
+        transactionId: deposito.id,
+        transactionData,
+      })
+    )
+      .unwrap()
+      .then(() => {
+        onClose();
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
   };
 
   if (!isOpen) return null;
