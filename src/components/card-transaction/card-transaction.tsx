@@ -1,5 +1,5 @@
 import { formatDate, formatToReais } from "@/utils/format";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import lapis from "@/assets/lapis.svg";
 import lixeira from "@/assets/lixeira.svg";
@@ -21,6 +21,40 @@ export default function CardTransaction() {
       });
   };
 
+  //scroll infinito
+  const [visibleCount, setVisibleCount] = useState(4); // Quantidade inicial de itens visíveis
+  const observerRef = useRef<HTMLDivElement | null>(null);
+
+  const visibleItems = depositos.slice(0, visibleCount);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting) {
+          // Incrementa mais x itens quando o último item visível entra na viewport
+          setVisibleCount((prev) => Math.min(prev + 4, depositos.length));
+        }
+      },
+      {
+        root: null, // Usa o viewport padrão
+        rootMargin: "0px", // Gatilho ao estar completamente visível
+        threshold: 1.0, // 100% visível
+      }
+    );
+
+    if (observerRef.current) {
+      observer.observe(observerRef.current);
+    }
+
+    return () => {
+      if (observerRef.current) {
+        observer.unobserve(observerRef.current);
+      }
+    };
+  }, [depositos]); // Reexecuta se `depositos` mudar
+
+
   return (
     <div>
       <div className="flex flex-col gap-4">
@@ -29,7 +63,7 @@ export default function CardTransaction() {
             Ainda <b>não há</b> registro de transações.
           </h2>
         )}
-        {depositos.map((deposito) => (
+        {visibleItems.map((deposito) => (
           <div
             key={deposito.id}
             className="flex md:grid grid-cols-4 flex-col md:flex-row justify-between md:items-center gap-2 bg-white py-2 px-4 rounded-lg"
@@ -71,6 +105,9 @@ export default function CardTransaction() {
             </div>
           </div>
         ))}
+        {visibleCount < depositos.length && (
+          <div ref={observerRef} className="h-36 bg-transparent"></div>
+        )}
       </div>
     </div>
   );
