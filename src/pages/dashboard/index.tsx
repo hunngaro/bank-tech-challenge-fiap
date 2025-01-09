@@ -2,6 +2,7 @@ import DefaultLayout from "@/layouts/default-layout";
 import NovaTransacao from "@/components/nova-transacao/nova-transacao";
 import Saldo from "@/components/saldo/saldo";
 import { ReactElement } from "react";
+import GraficoDash from "@/components/grafico-dash/grafico-dash";
 import { AuthWrapper } from "@/components/auth-wrapper/auth-wrapper";
 import { GetServerSidePropsContext } from "next";
 
@@ -10,6 +11,7 @@ export default function Dashboard() {
     <div className="flex flex-col gap-8">
       <Saldo />
       <NovaTransacao />
+      <GraficoDash/>
     </div>
   );
 }
