@@ -10,9 +10,8 @@ export function Extract() {
   const depositos = useAppSelector((state) => state.deposito.depositos);
 
   return (
-    <aside className="bg-[#F5F5F5] overflow-auto rounded-lg py-8 px-6 mt-8 lg:mt-0">
       <div className="w-60 mx-auto lg:w-full">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center ">
           <h1 className="text-black font-bold text-[25px]">Extrato</h1>
           <Link href="/transacoes" className="flex items-center gap-4">
             <button type="button" className="bg-my-blue rounded-full p-2">
@@ -45,6 +44,5 @@ export function Extract() {
           ))}
         </section>
       </div>
-    </aside>
   );
 }
