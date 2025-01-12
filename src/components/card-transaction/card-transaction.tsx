@@ -54,7 +54,6 @@ export default function CardTransaction() {
     };
   }, [depositos]); // Reexecuta se `depositos` mudar
 
-
   return (
     <div>
       <div className="flex flex-col gap-4">

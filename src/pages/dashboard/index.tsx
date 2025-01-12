@@ -11,7 +11,7 @@ export default function Dashboard() {
     <div className="flex flex-col gap-8">
       <Saldo />
       <NovaTransacao />
-      <GraficoDash/>
+      <GraficoDash />
     </div>
   );
 }
