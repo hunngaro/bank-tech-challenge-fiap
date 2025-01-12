@@ -4,7 +4,7 @@ import Footer from "@/components/footer/footer";
 import type { AppProps } from "next/app";
 import { ReactElement, ReactNode } from "react";
 import { NextPage } from "next";
-import StoreProvider from "@/app/store-provider";
+import StoreProvider from "@/lib/store-provider";
 import { Toaster } from "react-hot-toast";
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
