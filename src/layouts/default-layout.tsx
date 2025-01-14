@@ -10,7 +10,6 @@ export default function DefaultLayout({ children }: Props) {
   const mainRef = useRef<HTMLDivElement>(null); // referência para o <main>
   const [mainHeight, setMainHeight] = useState(0);
 
-
   // Atualiza altura quando `children` mudar
   useEffect(() => {
     if (mainRef.current) {
@@ -18,29 +17,28 @@ export default function DefaultLayout({ children }: Props) {
     }
   }, [children]);
 
-
- // Observa mudanças no tamanho do <main>
- useEffect(() => {
-  //atualizar a altura
-  const updateHeight = () => {
+  // Observa mudanças no tamanho do <main>
+  useEffect(() => {
+    //atualizar a altura
+    const updateHeight = () => {
+      if (mainRef.current) {
+        setMainHeight(mainRef.current.offsetHeight);
+      }
+    };
+    //chama sempre que mudar o tamanho
+    const observer = new ResizeObserver(() => {
+      updateHeight();
+    });
     if (mainRef.current) {
-      setMainHeight(mainRef.current.offsetHeight);
+      observer.observe(mainRef.current);
     }
-  };
-  //chama sempre que mudar o tamanho
-  const observer = new ResizeObserver(() => {
-    updateHeight();
-  });
-  if (mainRef.current) {
-    observer.observe(mainRef.current);
-  }
-  // Para de observar o elemento quando o componente desmonta
-  return () => {
-    if (mainRef.current) {
-      observer.unobserve(mainRef.current); 
-    }
-  };
-}, []);
+    // Para de observar o elemento quando o componente desmonta
+    return () => {
+      if (mainRef.current) {
+        observer.unobserve(mainRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div className="flex flex-col flex-1 bg-my-light-green">
@@ -50,9 +48,14 @@ export default function DefaultLayout({ children }: Props) {
             <NavLinks />
           </aside>
 
-          <main ref={mainRef} className="w-full max-h-fit">{children}</main>
+          <main ref={mainRef} className="w-full max-h-fit">
+            {children}
+          </main>
 
-          <aside className="bg-[#F5F5F5] overflow-auto h-full rounded-lg py-8 px-6 mt-8 lg:mt-0" style={{ maxHeight: mainHeight }}>
+          <aside
+            className="bg-[#F5F5F5] overflow-auto rounded-lg py-8 px-6 mt-8 lg:mt-0"
+            style={{ maxHeight: mainHeight }}
+          >
             <Extract />
           </aside>
         </div>
