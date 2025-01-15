@@ -103,7 +103,7 @@ export default function Investiment() {
               <h3 className="text-xl mb-6">Estatísticas</h3>
               <div className="bg-my-blue text-white py-6 rounded-lg text-center w-full flex justify-center">
                 <div className="max-w-[500px] w-full">
-                  <Doughnut data={data} options={options} />
+                  <Doughnut data={data} options={options as any} />
                 </div>
               </div>
             </div>
