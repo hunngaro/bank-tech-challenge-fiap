@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"cross-env NEXT_PRIVATE_LOCAL_WEBPACK=true next dev\" \"json-server --watch db.json --port 3001\"",
+    "dev": "cross-env NEXT_PRIVATE_LOCAL_WEBPACK=true next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
