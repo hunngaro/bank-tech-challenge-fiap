@@ -3,11 +3,15 @@ import Investiment from "@/components/investiment/investiment";
 import Saldo from "@/components/saldo/saldo";
 import DefaultLayout from "@/layouts/default-layout";
 import { GetServerSidePropsContext } from "next";
+import Head from "next/head";
 import { ReactElement } from "react";
 
 export default function InvestimentPage() {
   return (
     <div className="flex flex-col gap-8">
+      <Head>
+        <title>ByteBank | Investimentos</title>
+      </Head>
       <Saldo />
       <Investiment />
     </div>

@@ -3,11 +3,15 @@ import Cards from "@/components/cards/cards";
 import Saldo from "@/components/saldo/saldo";
 import DefaultLayout from "@/layouts/default-layout";
 import { GetServerSidePropsContext } from "next";
+import Head from "next/head";
 import { ReactElement } from "react";
 
 export default function MyCards() {
   return (
     <div className="flex flex-col gap-8">
+      <Head>
+        <title>ByteBank | Meus cartões</title>
+      </Head>
       <Saldo />
       <Cards />
     </div>

@@ -10,6 +10,7 @@ import Login from "@/components/modal-login/modal-login";
 import { ReactElement, useState } from "react";
 import { AuthWrapper } from "@/components/auth-wrapper/auth-wrapper";
 import { GetServerSidePropsContext } from "next";
+import Head from "next/head";
 
 export default function Home() {
   const [showModal, setShowModal] = useState(false);
@@ -17,6 +18,9 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <title>ByteBank</title>
+      </Head>
       <Cadastro isOpen={showModal} onClose={() => setShowModal(false)} />
       <Login
         isOpenLog={showModalLog}

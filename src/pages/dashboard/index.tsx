@@ -5,10 +5,14 @@ import { ReactElement } from "react";
 import GraficoDash from "@/components/grafico-dash/grafico-dash";
 import { AuthWrapper } from "@/components/auth-wrapper/auth-wrapper";
 import { GetServerSidePropsContext } from "next";
+import Head from "next/head";
 
 export default function Dashboard() {
   return (
     <div className="flex flex-col gap-8">
+      <Head>
+        <title>ByteBank | Dashboard</title>
+      </Head>
       <Saldo />
       <NovaTransacao />
       <GraficoDash />
