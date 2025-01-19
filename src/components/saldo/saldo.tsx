@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import pixels from "@/assets/pixels.svg";
@@ -10,6 +10,7 @@ export default function Saldo() {
   const user = useAppSelector((state) => state.auth.user);
   const saldos = useAppSelector((state) => state.saldo.saldos);
   const [showValue, setShowValue] = useState<boolean>(true);
+  const [isClient, setIsClient] = useState(false);
 
   const formatToBRL = (value: number) => {
     return value.toLocaleString("pt-BR", {
@@ -42,6 +43,10 @@ export default function Saldo() {
     return `${diaSemana}, ${dia}/${mes}/${ano}`;
   };
 
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <div className="bg-my-blue w-full p-6 min-h-[655px] md:min-h-[402px] md:flex justify-between pb-36 rounded-lg text-white relative">
       <Image
@@ -63,7 +68,7 @@ export default function Saldo() {
         <h2 className="text-2xl mb-4 mt-4 md:mt-0 font-semibold">
           Olá, <Link href="/profile">{user?.name}!</Link> :)
         </h2>
-        <p>{formatarData()}</p>
+        <p>{isClient && formatarData()}</p>
       </div>
       <div className="flex justify-center">
         <div className="mt-8 md:mt-[68px] md:mr-16 lg:mr-20">

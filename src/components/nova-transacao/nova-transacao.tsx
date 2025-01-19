@@ -1,6 +1,6 @@
 "use client";
 import { FormEvent, useState } from "react";
-import { inputFormatedToReais } from "@/utils/format";
+import { getToday, inputFormatedToReais } from "@/utils/format";
 import BoxInside from "@/ui/BoxInside";
 
 import Image from "next/image";
@@ -13,16 +13,11 @@ import {
 import { useAppDispatch } from "@/lib/hooks";
 import toast from "react-hot-toast";
 
-const getToday = () => {
-  const today = new Date();
-  return today.toISOString().split("T")[0];
-};
-
 export default function NovaTransacao() {
   const dispatch = useAppDispatch();
   const [typeTransaction, setTypeTransaction] = useState("");
   const [value, setValue] = useState<string>("R$ 0,00");
-  const [date, setDate] = useState<string>(getToday);
+  const [date, setDate] = useState<string>(getToday());
 
   const handleAddNewTransaction = async (event: FormEvent) => {
     event.preventDefault();
@@ -39,7 +34,7 @@ export default function NovaTransacao() {
       .then(() => {
         setTypeTransaction("");
         setValue("R$ 0,00");
-        setDate(getToday);
+        setDate(getToday());
       })
       .catch((error) => {
         toast.error(error);
