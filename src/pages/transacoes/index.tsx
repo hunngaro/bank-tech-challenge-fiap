@@ -9,6 +9,7 @@ import {
 import DefaultLayout from "@/layouts/default-layout";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { GetServerSidePropsContext } from "next";
+import Head from "next/head";
 import { lazy, ReactElement, Suspense, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -49,6 +50,9 @@ export default function TransactionsPage() {
 
   return (
     <div className="flex flex-col gap-8">
+      <Head>
+        <title>ByteBank | Transações</title>
+      </Head>
       <Saldo />
       {isClient && (
         <Suspense fallback={<div>Carregando...</div>}>
