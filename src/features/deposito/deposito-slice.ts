@@ -12,7 +12,7 @@ export interface depositos {
   idUser: number;
   valor: number;
   data: string;
-  documentsUrl?: string[];
+  documentsUrl?: File[];
 }
 
 interface DepositoState {
