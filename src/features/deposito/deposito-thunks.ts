@@ -6,21 +6,30 @@ export interface TransactionData {
   typeTransaction: string;
   valueTransaction: number;
   date: string;
+  documentsUrl?: File[];
+}
+
+export interface TransactionDataUpdate {
+  label?: string;
+  valor?: number;
+  data?: string;
+  documentsUrl?: string[];
 }
 
 export const addNewTransaction = createAsyncThunk(
   "deposito/addNewTransaction",
-  async (payload: TransactionData, { getState, rejectWithValue }) => {
+  async (payload: TransactionData, { dispatch, getState, rejectWithValue }) => {
     try {
+      const { typeTransaction, valueTransaction, date, documentsUrl } = payload;
       const state = getState() as { auth: { user: User } };
       const user = state.auth.user;
 
       const data: depositos = {
         id: String(Math.random()),
         idUser: user!.id,
-        label: payload.typeTransaction,
-        valor: payload.valueTransaction,
-        data: payload.date,
+        label: typeTransaction,
+        valor: valueTransaction,
+        data: date,
       };
       const response = await fetch("http://localhost:3001/depositos", {
         method: "POST",
@@ -31,7 +40,63 @@ export const addNewTransaction = createAsyncThunk(
         return rejectWithValue("Erro na resposta do servidor");
       }
 
+      if (documentsUrl.length > 0) {
+        const transaction = await response.json();
+        await dispatch(
+          addTransactionDocuments({
+            transaction: {
+              ...transaction,
+              documentsUrl,
+            },
+          })
+        ).unwrap();
+      }
+
       return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const addTransactionDocuments = createAsyncThunk(
+  "deposito/addTransactionDocuments",
+  async (
+    payload: { transaction: depositos },
+    { dispatch, rejectWithValue }
+  ) => {
+    try {
+      const { transaction } = payload;
+      const formData = new FormData();
+
+      for (const document of transaction.documentsUrl) {
+        formData.append("documents", document);
+      }
+
+      const response = await fetch(
+        "http://localhost:3004/transaction/documents/upload",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      if (!response.ok) {
+        return rejectWithValue("Erro na resposta do servidor");
+      }
+
+      const documents = await response.json();
+      await dispatch(
+        updateTransaction({
+          transactionId: transaction.id,
+          transactionData: {
+            typeTransaction: transaction.label,
+            date: transaction.data,
+            valueTransaction: transaction.valor,
+            documentsUrl: documents,
+          },
+        })
+      ).unwrap();
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -49,12 +114,13 @@ export const updateTransaction = createAsyncThunk(
     const user = state.auth.user;
 
     try {
-      const data: depositos = {
+      const data = {
         id: transactionId,
         idUser: user!.id,
         label: transactionData.typeTransaction,
         valor: transactionData.valueTransaction,
         data: transactionData.date,
+        documentsUrl: transactionData.documentsUrl,
       };
       const response = await fetch(
         `http://localhost:3001/depositos/${transactionId}`,

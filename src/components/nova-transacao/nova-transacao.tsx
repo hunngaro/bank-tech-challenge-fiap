@@ -12,12 +12,14 @@ import {
 } from "@/features/deposito/deposito-thunks";
 import { useAppDispatch } from "@/lib/hooks";
 import toast from "react-hot-toast";
+import { FileUpload } from "../file-upload/file-upload";
 
 export default function NovaTransacao() {
   const dispatch = useAppDispatch();
   const [typeTransaction, setTypeTransaction] = useState("");
   const [value, setValue] = useState<string>("R$ 0,00");
   const [date, setDate] = useState<string>(getToday());
+  const [documents, setDocuments] = useState<File[]>([]);
 
   const handleAddNewTransaction = async (event: FormEvent) => {
     event.preventDefault();
@@ -28,6 +30,7 @@ export default function NovaTransacao() {
       typeTransaction,
       valueTransaction,
       date,
+      documentsUrl: documents,
     };
     await dispatch(addNewTransaction(data))
       .unwrap()
@@ -35,10 +38,33 @@ export default function NovaTransacao() {
         setTypeTransaction("");
         setValue("R$ 0,00");
         setDate(getToday());
+        setDocuments([]);
       })
       .catch((error) => {
         toast.error(error);
       });
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const selectedFiles = Array.from(e.target.files);
+
+      if (documents.length + selectedFiles.length > 3) {
+        toast.error(
+          "Você pode selecionar até no máximo 3 recibos ou documentos."
+        );
+        return;
+      }
+
+      setDocuments((prevImages) => [...prevImages, ...selectedFiles]);
+    }
+  };
+
+  const handleRemoveFile = (fileToRemove: File) => {
+    const newFiles = documents.filter(
+      (document) => document.name !== fileToRemove.name
+    );
+    setDocuments(newFiles);
   };
 
   return (
@@ -112,6 +138,18 @@ export default function NovaTransacao() {
               required
             />
           </div>
+
+          <div>
+            <label htmlFor="value">Documentos relacionados:</label>
+            <br />
+            <FileUpload
+              files={documents}
+              onFileChange={handleFileChange}
+              onRemoveFile={handleRemoveFile}
+              className="block mt-3"
+            />
+          </div>
+
           <button
             type="submit"
             className="bg-my-blue hover:bg-black transition-all text-white py-3 rounded-lg max-w-64"
