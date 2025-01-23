@@ -245,6 +245,23 @@
       "label": "deposito",
       "valor": 15000,
       "data": "2025-01-14"
+    },
+    {
+      "id": "0.20288456080667383",
+      "idUser": "1",
+      "label": "doc/ted",
+      "valor": 10035,
+      "data": "2025-01-23"
+    },
+    {
+      "id": "0.6709279415711595",
+      "idUser": "1",
+      "label": "doc/ted",
+      "valor": 10550,
+      "data": "2025-01-23",
+      "documentsUrl": [
+        "http://localhost:3004/uploads/1737662524371-744731581.jpg"
+      ]
     }
   ],
   "cartoes": [
