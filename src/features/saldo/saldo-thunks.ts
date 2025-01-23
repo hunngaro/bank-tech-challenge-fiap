@@ -11,10 +11,13 @@ export const addSaldo = createAsyncThunk(
   "saldo/addSaldo",
   async (data: SaldoData, { rejectWithValue }) => {
     try {
-      const response = await fetch("http://localhost:3001/saldos", {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_DB_JSON_SERVER_URL}/saldos`,
+        {
+          method: "POST",
+          body: JSON.stringify(data),
+        }
+      );
 
       if (!response.ok) {
         return rejectWithValue("Erro na resposta do servidor");
@@ -34,7 +37,7 @@ export const fetchSaldos = createAsyncThunk(
   async (userId: number, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/saldos?idUser=${userId}`
+        `${process.env.NEXT_PUBLIC_DB_JSON_SERVER_URL}/saldos?idUser=${userId}`
       );
 
       if (!response.ok) {

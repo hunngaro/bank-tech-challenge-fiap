@@ -6,7 +6,7 @@ export const fetchMeusCartoes = createAsyncThunk(
   async (userId: number, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/cartoes?idUser=${userId}`
+        `${process.env.NEXT_PUBLIC_DB_JSON_SERVER_URL}/cartoes?idUser=${userId}`
       );
 
       if (!response.ok) {
