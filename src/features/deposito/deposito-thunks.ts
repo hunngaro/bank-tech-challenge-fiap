@@ -31,10 +31,13 @@ export const addNewTransaction = createAsyncThunk(
         valor: valueTransaction,
         data: date,
       };
-      const response = await fetch("http://localhost:3001/depositos", {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_DB_JSON_SERVER_URL}/depositos`,
+        {
+          method: "POST",
+          body: JSON.stringify(data),
+        }
+      );
 
       if (!response.ok) {
         return rejectWithValue("Erro na resposta do servidor");
@@ -74,7 +77,7 @@ export const addTransactionDocuments = createAsyncThunk(
       }
 
       const response = await fetch(
-        "http://localhost:3004/transaction/documents/upload",
+        `${process.env.NEXT_PUBLIC_API_URL}/transaction/documents/upload`,
         {
           method: "POST",
           body: formData,
@@ -123,7 +126,7 @@ export const updateTransaction = createAsyncThunk(
         documentsUrl: transactionData.documentsUrl,
       };
       const response = await fetch(
-        `http://localhost:3001/depositos/${transactionId}`,
+        `${process.env.NEXT_PUBLIC_DB_JSON_SERVER_URL}/depositos/${transactionId}`,
         {
           method: "PUT",
           body: JSON.stringify(data),
@@ -152,7 +155,7 @@ export const removeTransaction = createAsyncThunk(
 
     try {
       const response = await fetch(
-        `http://localhost:3001/depositos/${transactionId}`,
+        `${process.env.NEXT_PUBLIC_DB_JSON_SERVER_URL}/depositos/${transactionId}`,
         {
           method: "DELETE",
         }
@@ -178,7 +181,7 @@ export const fetchDepositos = createAsyncThunk(
   async (userId: number, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/depositos?idUser=${userId}`
+        `${process.env.NEXT_PUBLIC_DB_JSON_SERVER_URL}/depositos?idUser=${userId}`
       );
 
       if (!response.ok) {

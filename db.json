@@ -245,6 +245,14 @@
       "label": "deposito",
       "valor": 15000,
       "data": "2025-01-14"
+    },
+    {
+      "id": "0.03215776034355322",
+      "idUser": "1",
+      "label": "cambio",
+      "valor": 1500,
+      "data": "2025-01-23",
+      "documentsUrl": ["/uploads/1737663329877-663971469.jpg"]
     }
   ],
   "cartoes": [

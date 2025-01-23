@@ -15,7 +15,7 @@ export const login = createAsyncThunk(
       const { email, password } = payload;
 
       const response = await fetch(
-        `http://localhost:3001/users?email=${email}&password=${password}`
+        `${process.env.NEXT_PUBLIC_DB_JSON_SERVER_URL}/users?email=${email}&password=${password}`
       );
 
       // Verificando se a resposta foi bem-sucedida
@@ -47,10 +47,13 @@ export const signUp = createAsyncThunk(
   "auth/signup",
   async (payload: SignUpData, { dispatch, rejectWithValue }) => {
     try {
-      const response = await fetch("http://localhost:3001/users", {
-        method: "POST",
-        body: JSON.stringify(payload),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_DB_JSON_SERVER_URL}/users`,
+        {
+          method: "POST",
+          body: JSON.stringify(payload),
+        }
+      );
 
       if (!response.ok) {
         return rejectWithValue("Erro na resposta do servidor");
